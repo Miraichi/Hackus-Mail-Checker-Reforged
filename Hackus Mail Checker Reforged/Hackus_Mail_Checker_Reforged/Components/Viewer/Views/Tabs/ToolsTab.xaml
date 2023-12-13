@@ -1,0 +1,334 @@
+<UserControl
+	x:Class="Hackus_Mail_Checker_Reforged.Components.Viewer.Views.Tabs.ToolsTab" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.Components.Viewer.Views.Tabs" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+	<FrameworkElement.Resources>
+		<ResourceDictionary>
+			<Style
+				TargetType="{x:Type Border}"
+				x:Key="ScaleBorder">
+				<Setter
+					Property="Width"
+					Value="180" />
+				<Setter
+					Property="Height"
+					Value="180" />
+				<Setter
+					Property="HorizontalAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalAlignment"
+					Value="Center" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource BlockBackgroundBrush}" />
+				<Setter
+					Property="BorderThickness"
+					Value="3" />
+				<Setter
+					Property="Border.CornerRadius"
+					Value="5" />
+				<Setter
+					Property="FrameworkElement.Cursor"
+					Value="Hand" />
+				<Setter
+					Property="UIElement.RenderTransformOrigin"
+					Value="0.5, 0.5" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource BlockBackgroundBrush}" />
+				<Setter
+					Property="RenderTransform">
+					<Setter.Value>
+						<ScaleTransform
+							ScaleX="1"
+							ScaleY="1" />
+					</Setter.Value>
+				</Setter>
+				<Style.Triggers>
+					<EventTrigger
+						RoutedEvent="Mouse.MouseEnter">
+						<BeginStoryboard>
+							<Storyboard>
+								<DoubleAnimation
+									Storyboard.TargetProperty="RenderTransform.ScaleX"
+									From="1"
+									To="1.07"
+									Duration="0:0:0.1" />
+								<ColorAnimation
+									Storyboard.TargetProperty="BorderBrush.Color"
+									To="#64FFDA"
+									Duration="0:0:0.2" />
+								<DoubleAnimation
+									Storyboard.TargetProperty="RenderTransform.ScaleY"
+									From="1"
+									To="1.07"
+									Duration="0:0:0.1" />
+							</Storyboard>
+						</BeginStoryboard>
+					</EventTrigger>
+					<EventTrigger
+						RoutedEvent="Mouse.MouseLeave">
+						<BeginStoryboard>
+							<Storyboard>
+								<DoubleAnimation
+									Storyboard.TargetProperty="RenderTransform.ScaleX"
+									To="1"
+									Duration="0:0:0.1" />
+								<ColorAnimation
+									Storyboard.TargetProperty="BorderBrush.Color"
+									To="#242424"
+									Duration="0:0:0.2" />
+								<DoubleAnimation
+									Storyboard.TargetProperty="RenderTransform.ScaleY"
+									To="1"
+									Duration="0:0:0.1" />
+							</Storyboard>
+						</BeginStoryboard>
+					</EventTrigger>
+				</Style.Triggers>
+			</Style>
+			<Style
+				BasedOn="{StaticResource {x:Type Button}}"
+				TargetType="{x:Type Button}"
+				x:Key="OptionButtonStyle">
+				<Setter
+					Property="Column"
+					Value="1" />
+				<Setter
+					Property="Height"
+					Value="40" />
+				<Setter
+					Property="Padding"
+					Value="0" />
+				<Setter
+					Property="HorizontalAlignment"
+					Value="Stretch" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Stretch" />
+				<Setter
+					Property="hc:BorderElement.CornerRadius"
+					Value="0" />
+				<Setter
+					Property="BorderThickness"
+					Value="0,0,0,2" />
+				<Setter
+					Property="FrameworkElement.Cursor"
+					Value="Hand" />
+				<Setter
+					Property="Focusable"
+					Value="False" />
+			</Style>
+		</ResourceDictionary>
+	</FrameworkElement.Resources>
+	<Grid
+		Background="{DynamicResource WindowBackgroundBrush}">
+		<TextBlock
+			Margin="0,40,0,0"
+			HorizontalAlignment="Center"
+			FontFamily="{StaticResource Roboto-Medium}"
+			FontSize="40"
+			Text="{DynamicResource l_TOOLS}" />
+		<ScrollViewer
+			Margin="120,100,120,20">
+			<hc:FlexPanel
+				VerticalAlignment="Center"
+				AlignContent="SpaceBetween"
+				AlignItems="FlexStart"
+				FlexDirection="Row"
+				FlexWrap="Wrap"
+				JustifyContent="SpaceAround">
+				<Grid
+					Width="200"
+					Height="200">
+					<Border
+						Style="{StaticResource ScaleBorder}">
+						<hc:Interaction.Triggers>
+							<hc:EventTrigger
+								EventName="MouseDown">
+								<hc:EventToCommand
+									CommandParameter="Merge"
+									Command="{Binding OpenPageCommand}" />
+							</hc:EventTrigger>
+						</hc:Interaction.Triggers>
+						<Grid>
+							<Path
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Data="{StaticResource LayersGeometry}"
+								Fill="#d9d9d9"
+								RenderTransformOrigin="0.5, 0.5">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="3"
+										ScaleY="3" />
+								</UIElement.RenderTransform>
+							</Path>
+							<TextBlock
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Bottom"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="16"
+								Text="{DynamicResource l_Merge}" />
+						</Grid>
+					</Border>
+				</Grid>
+				<Grid
+					Width="200"
+					Height="200">
+					<Border
+						Style="{StaticResource ScaleBorder}">
+						<hc:Interaction.Triggers>
+							<hc:EventTrigger
+								EventName="MouseDown">
+								<hc:EventToCommand
+									CommandParameter="Normalize"
+									Command="{Binding OpenPageCommand}" />
+							</hc:EventTrigger>
+						</hc:Interaction.Triggers>
+						<Grid>
+							<Path
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Data="{StaticResource FileCheckGeometry}"
+								Fill="#d9d9d9"
+								RenderTransformOrigin="0.5, 0.5">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="3"
+										ScaleY="3" />
+								</UIElement.RenderTransform>
+							</Path>
+							<TextBlock
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Bottom"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="16"
+								Text="{DynamicResource l_Normalize}" />
+						</Grid>
+					</Border>
+				</Grid>
+				<Grid
+					Width="200"
+					Height="200">
+					<Border
+						Style="{StaticResource ScaleBorder}">
+						<hc:Interaction.Triggers>
+							<hc:EventTrigger
+								EventName="MouseDown">
+								<hc:EventToCommand
+									CommandParameter="Shuffle"
+									Command="{Binding OpenPageCommand}" />
+							</hc:EventTrigger>
+						</hc:Interaction.Triggers>
+						<Grid>
+							<Path
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Data="{StaticResource SchuffleGeometry}"
+								Fill="#d9d9d9"
+								RenderTransformOrigin="0.5, 0.5">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="3"
+										ScaleY="3" />
+								</UIElement.RenderTransform>
+							</Path>
+							<TextBlock
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Bottom"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="16"
+								Text="{DynamicResource l_Shuffle}" />
+						</Grid>
+					</Border>
+				</Grid>
+				<Grid
+					Width="200"
+					Height="200">
+					<Border
+						Style="{StaticResource ScaleBorder}">
+						<hc:Interaction.Triggers>
+							<hc:EventTrigger
+								EventName="MouseDown">
+								<hc:EventToCommand
+									CommandParameter="Sort"
+									Command="{Binding OpenPageCommand}" />
+							</hc:EventTrigger>
+						</hc:Interaction.Triggers>
+						<Grid>
+							<Path
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Data="{StaticResource SortGeometry}"
+								Fill="#d9d9d9"
+								RenderTransformOrigin="0.5, 0.5">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="3"
+										ScaleY="3" />
+								</UIElement.RenderTransform>
+							</Path>
+							<TextBlock
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Bottom"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="16"
+								Text="{DynamicResource l_Sort}" />
+						</Grid>
+					</Border>
+				</Grid>
+				<Grid
+					Width="200"
+					Height="200">
+					<Border
+						Style="{StaticResource ScaleBorder}">
+						<hc:Interaction.Triggers>
+							<hc:EventTrigger
+								EventName="MouseDown">
+								<hc:EventToCommand
+									CommandParameter="Distinct"
+									Command="{Binding OpenPageCommand}" />
+							</hc:EventTrigger>
+						</hc:Interaction.Triggers>
+						<Grid>
+							<Path
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Data="{StaticResource BroomGeometry}"
+								Fill="#d9d9d9"
+								RenderTransformOrigin="0.5, 0.5">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="3"
+										ScaleY="3" />
+								</UIElement.RenderTransform>
+							</Path>
+							<TextBlock
+								Margin="0,0,0,20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Bottom"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="16"
+								Text="{DynamicResource l_RemoveDuplicates}" />
+						</Grid>
+					</Border>
+				</Grid>
+			</hc:FlexPanel>
+		</ScrollViewer>
+		<Frame
+			Name="ContentFrame"
+			Margin="0"
+			Padding="0"
+			BorderThickness="0"
+			NavigationUIVisibility="Hidden" />
+	</Grid>
+</UserControl>

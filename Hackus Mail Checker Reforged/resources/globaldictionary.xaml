@@ -1,0 +1,126 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:convertes="clr-namespace:Hackus_Mail_Checker_Reforged.Resources.Converters" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:helpers="clr-namespace:Hackus_Mail_Checker_Reforged.Helpers">
+	<FontFamily
+		x:Key="Roboto-Thin">pack://application:,,,/Resources/Fonts/#Roboto Thin</FontFamily>
+	<FontFamily
+		x:Key="Roboto-Light">pack://application:,,,/Resources/Fonts/#Roboto Light</FontFamily>
+	<FontFamily
+		x:Key="Roboto-Medium">pack://application:,,,/Resources/Fonts/#Roboto Medium</FontFamily>
+	<FontFamily
+		x:Key="Roboto-Regular">pack://application:,,,/Resources/Fonts/#Roboto Regular</FontFamily>
+	<FontFamily
+		x:Key="Roboto-Bold">pack://application:,,,/Resources/Fonts/#Roboto Bold</FontFamily>
+	<convertes:EnumToBooleanConverter
+		x:Key="EnumToBooleanConverter" />
+	<convertes:EnumToVisibilityConverter
+		x:Key="EnumToVisibilityConverter" />
+	<convertes:CheckerStateToVisibilityConverter
+		x:Key="CheckerStateToVisibilityConverter" />
+	<convertes:StatisticsToProgressTextConverter
+		x:Key="StatisticsToProgressTextConverter" />
+	<convertes:StatisticsToProgressValueConverter
+		x:Key="StatisticsToProgressValueConverter" />
+	<convertes:StatisticsToSpeedValueConverter
+		x:Key="StatisticsToSpeedValueConverter" />
+	<convertes:StringToBooleanConverter
+		x:Key="StringToBooleanConverter" />
+	<convertes:EnvelopeToAttachmentsConverter
+		x:Key="EnvelopeToAttachmentsConverter" />
+	<convertes:IntToBooleanConverter
+		x:Key="IntToBooleanConverter" />
+	<convertes:ContentTypeConverter
+		x:Key="ContentTypeConverter" />
+	<Style
+		TargetType="{x:Type TextBlock}"
+		x:Key="StandartTextStyle">
+		<Setter
+			Property="FontSize"
+			Value="13" />
+		<Setter
+			Property="FontFamily"
+			Value="{StaticResource Roboto-Regular}" />
+		<Setter
+			Property="Foreground"
+			Value="#d9d9d9" />
+	</Style>
+	<Style
+		BasedOn="{StaticResource {x:Type hc:MessageBox}}"
+		TargetType="{x:Type hc:MessageBox}"
+		x:Key="MessageBoxCustom">
+		<Setter
+			Property="hc:Window.NonClientAreaBackground"
+			Value="#2C2C2C" />
+		<Setter
+			Property="hc:Window.OtherButtonHoverBackground"
+			Value="#AEE3D7" />
+		<Setter
+			Property="hc:Window.OtherButtonForeground"
+			Value="#FFFFFFFF" />
+		<Setter
+			Property="hc:Window.OtherButtonHoverForeground"
+			Value="#FFFFFFFF" />
+		<Setter
+			Property="hc:Window.NonClientAreaForeground"
+			Value="#FFFFFFFF" />
+		<Setter
+			Property="hc:Window.CloseButtonForeground"
+			Value="#FFFFFFFF" />
+		<Setter
+			Property="Background"
+			Value="#272727" />
+		<Setter
+			Property="Foreground"
+			Value="#d6d6d6" />
+		<Setter
+			Property="hc:Window.OtherButtonBackground"
+			Value="#FFFF0000" />
+		<Setter
+			Property="hc:Window.OtherButtonHoverBackground"
+			Value="#FFFF0000" />
+	</Style>
+	<ControlTemplate
+		TargetType="{x:Type RadioButton}"
+		x:Key="CustomRadioButtonTemplate">
+		<StackPanel
+			VerticalAlignment="Center"
+			Orientation="Horizontal">
+			<Grid>
+				<Ellipse
+					Name="BorderRadioButton"
+					Width="16"
+					Height="16"
+					Fill="#202020"
+					RenderOptions.BitmapScalingMode="HighQuality"
+					Stroke="#424248"
+					StrokeThickness="1" />
+				<Ellipse
+					Name="Checked"
+					Width="8"
+					Height="8"
+					Fill="#64FFD1"
+					Visibility="Collapsed" />
+			</Grid>
+			<Label
+				Margin="0,0,0,0"
+				Background="#00FFFFFF"
+				BorderThickness="0"
+				Content="{TemplateBinding Content}"
+				FontSize="13"
+				Foreground="#d9d9d9"
+				FontFamily="{StaticResource Roboto-Regular}" />
+		</StackPanel>
+		<ControlTemplate.Triggers>
+			<Trigger
+				Property="ToggleButton.IsChecked"
+				Value="True">
+				<Setter
+					TargetName="Checked"
+					Property="Visibility"
+					Value="Visible" />
+				<Setter
+					TargetName="BorderRadioButton"
+					Property="Stroke"
+					Value="#64FFDA" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+</ResourceDictionary>

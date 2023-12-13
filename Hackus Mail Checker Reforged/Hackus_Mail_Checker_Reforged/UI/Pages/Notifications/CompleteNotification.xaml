@@ -1,0 +1,52 @@
+<UserControl
+	x:Class="Hackus_Mail_Checker_Reforged.UI.Pages.Notifications.CompleteNotification" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Pages.Notifications" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+	<Border
+		Width="300"
+		Height="140"
+		Margin="0,0,20,20"
+		Background="{DynamicResource BlockBackgroundBrush}"
+		CornerRadius="10"
+		Cursor="Hand"
+		Effect="{StaticResource EffectShadow3}"
+		MouseDown="Show">
+		<hc:SimplePanel>
+			<hc:AnimationPath
+				Width="50"
+				Margin="0,30,0,0"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Top"
+				Stretch="Uniform"
+				Stroke="#64FFD1"
+				StrokeThickness="1"
+				Duration="00:00:50">
+				<hc:AnimationPath.Data>
+					<GeometryGroup>
+						<Geometry>M289.45,368.45c-15.7,1.71-28-18-26.28-26.25,0-6.8,0-315.35,0-316A26.22,26.22,0,0,1,289.45.38Z</Geometry>
+						<Geometry>M342.17,368.45h0V.24C354.71-1,368,2.61,368.4,17.46V342A26.18,26.18,0,0,1,342.17,368.45Z</Geometry>
+						<Geometry>M79.09,368.45h0V.24h0a26.21,26.21,0,0,1,26.26,26.15V342A26.17,26.17,0,0,1,79.09,368.45Z</Geometry>
+						<Geometry>M26.43,368.45c-15.69,1.7-28-18-26.26-26.25,0-6.8,0-315.35,0-316A26.21,26.21,0,0,1,26.43.38Z</Geometry>
+						<Geometry>M79.09.38C85.5,274.67,326.33,39.66,342.17,368.59h0a24.72,24.72,0,0,0,24.68-24.73C360,280.07,369.7,106.12,184.27,132,70.89,144.63,141.94,3.76,79.09.38Z</Geometry>
+						<Geometry>M52.83.38c11.36,303,251.53,65.16,262.88,368.21H342C325.67,38.84,85.74,275.34,79,.38Z</Geometry>
+						<Geometry>M26.43.38c16.3,329.74,256.24,93.25,263,368.21h26.26C304.35,65.53,64.17,303.41,52.83.38Z</Geometry>
+						<Geometry>M26.43.38A24.7,24.7,0,0,0,1.75,25.1C8.47,88.91-1.15,262.81,184.27,237c113.42-12.71,42.31,128.62,105.18,131.45C283,94.06,42.28,329.33,26.43.38Z</Geometry>
+						<RectangleGeometry
+							Rect="26.26,0,26.26,368.21" />
+						<RectangleGeometry
+							Rect="52.52,0,26.26,368.21" />
+						<RectangleGeometry
+							Rect="289.45,0,26.26,368.21" />
+						<RectangleGeometry
+							Rect="315.71,0,26.26,368.21" />
+					</GeometryGroup>
+				</hc:AnimationPath.Data>
+			</hc:AnimationPath>
+			<TextBlock
+				Margin="0,100,0,0"
+				HorizontalAlignment="Center"
+				FontFamily="{StaticResource Roboto-Regular}"
+				FontSize="20"
+				Foreground="#d9d9d9"
+				Text="Check Is Completed!" />
+		</hc:SimplePanel>
+	</Border>
+</UserControl>

@@ -1,0 +1,1197 @@
+<Window
+	x:Class="Hackus_Mail_Checker_Reforged.Components.Scheduler.Views.SchedulerWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.Components.Scheduler.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+	Title="SCHEDULER"
+	Width="800"
+	MinWidth="800"
+	MinHeight="550">
+	<WindowChrome.WindowChrome>
+		<WindowChrome
+			CaptionHeight="30"
+			CornerRadius="2"
+			GlassFrameThickness="0"
+			NonClientFrameEdges="None"
+			ResizeBorderThickness="3" />
+	</WindowChrome.WindowChrome>
+	<Grid
+		Background="{DynamicResource WindowBackgroundBrush}">
+		<Grid.RowDefinitions>
+			<RowDefinition
+				Height="30" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Border
+			Margin="0"
+			Padding="0"
+			Background="{DynamicResource WindowHeaderBrush}"
+			BorderThickness="0">
+			<Grid>
+				<Path
+					Height="15"
+					Margin="10,0,0,0"
+					HorizontalAlignment="Left"
+					Data="{StaticResource ClockGeometry}"
+					Fill="#64FFD1"
+					Stretch="Uniform" />
+				<TextBlock
+					Margin="35,0,0,0"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#bfbfbf"
+					Text="SCHEDULER" />
+				<StackPanel
+					HorizontalAlignment="Right"
+					Orientation="Horizontal"
+					WindowChrome.IsHitTestVisibleInChrome="True">
+					<Button
+						Width="40"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Command="{Binding OpenResultsFolderCommand}">
+						<Button
+							hc:IconElement.Geometry="{StaticResource FolderGeometry}"
+							hc:IconElement.Height="13"
+							Background="#00FFFFFF"
+							BorderThickness="0"
+							Foreground="{DynamicResource Text2}"
+							IsHitTestVisible="False" />
+					</Button>
+					<Button
+						Width="40"
+						Height="30"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Content="—"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Click="OnHide" />
+					<Button
+						Width="40"
+						Height="30"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#e53333"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#ff3b3b"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						Style="{StaticResource ButtonCustom}"
+						Click="OnClose">
+						<Path
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Fill="{DynamicResource Text2}"
+							RenderTransformOrigin="0.2, 0.2"
+							Style="{StaticResource SmallCrossIcon}">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.7"
+									ScaleY="0.7" />
+							</UIElement.RenderTransform>
+						</Path>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
+		<Grid
+			Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="270" />
+				<ColumnDefinition
+					Width="2*" />
+			</Grid.ColumnDefinitions>
+			<Grid
+				Margin="10,10,5,10">
+				<Grid.RowDefinitions>
+					<RowDefinition
+						Height="30" />
+					<RowDefinition
+						Height="200" />
+					<RowDefinition />
+					<RowDefinition
+						Height="118" />
+				</Grid.RowDefinitions>
+				<Button
+					HorizontalAlignment="Stretch"
+					hc:BorderElement.CornerRadius="4"
+					BorderBrush="#64FFD1"
+					Content="{DynamicResource l_START}"
+					Cursor="Hand"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Command="{Binding StartCommand}"
+					Visibility="{Binding IsWorking, Converter={StaticResource Boolean2VisibilityReConverter}}" />
+				<Button
+					HorizontalAlignment="Stretch"
+					hc:BorderElement.CornerRadius="4"
+					BorderBrush="#ff7070"
+					Content="{DynamicResource l_STOP}"
+					Cursor="Hand"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Command="{Binding StopCommand}"
+					Visibility="{Binding IsWorking, Converter={StaticResource Boolean2VisibilityConverter}}" />
+				<Grid
+					Row="1">
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="40" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Border
+						Margin="0,10,0,0"
+						Background="#2c2c2c"
+						CornerRadius="4 4 0 0">
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="13"
+							Foreground="#d9d9d9"
+							Text="{DynamicResource l_Settings}" />
+					</Border>
+					<Border
+						Grid.Row="1"
+						Background="#242424"
+						CornerRadius="0 0 4 4">
+						<StackPanel>
+							<Grid
+								Margin="10,10,10,0">
+								<TextBlock
+									VerticalAlignment="Center"
+									Style="{StaticResource StandartTextStyle}"
+									Text="{DynamicResource l_Threads}" />
+								<hc:NumericUpDown
+									Width="80"
+									HorizontalAlignment="Right"
+									VerticalAlignment="Center"
+									ThemeManager.RequestedAccentColor="#64FFD1"
+									ThemeManager.RequestedTheme="Dark"
+									BorderThickness="0"
+									Maximum="100"
+									Minimum="1"
+									Value="{Binding SchedulerSettings.MaxThreads}" />
+							</Grid>
+							<Grid
+								Margin="10,10,10,0"
+								ToolTip="{DynamicResource l_DelayDescription}"
+								ToolTipService.ShowDuration="20000">
+								<TextBlock
+									VerticalAlignment="Center"
+									Style="{StaticResource StandartTextStyle}"
+									Text="{DynamicResource l_DelayMin}" />
+								<hc:NumericUpDown
+									Width="80"
+									HorizontalAlignment="Right"
+									VerticalAlignment="Center"
+									ThemeManager.RequestedAccentColor="#64FFD1"
+									ThemeManager.RequestedTheme="Dark"
+									BorderThickness="0"
+									Maximum="100"
+									Minimum="1"
+									Value="{Binding SchedulerSettings.Delay}" />
+							</Grid>
+							<Grid
+								Margin="10,15,0,0">
+								<CheckBox
+									hc:ThemeManager.RequestedAccentColor="#64FFD1"
+									hc:ThemeManager.RequestedTheme="Dark"
+									Background="#202020"
+									Content="{DynamicResource l_UseProxy}"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="#d9d9d9"
+									IsChecked="{Binding SchedulerSettings.UseProxy}" />
+							</Grid>
+							<Grid
+								Margin="10,15,0,0">
+								<CheckBox
+									hc:ThemeManager.RequestedAccentColor="#64FFD1"
+									hc:ThemeManager.RequestedTheme="Dark"
+									Background="#202020"
+									Content="{DynamicResource l_EnableNotifications}"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="#d9d9d9"
+									IsChecked="{Binding SchedulerSettings.EnableNotifications}" />
+							</Grid>
+						</StackPanel>
+					</Border>
+				</Grid>
+				<Grid
+					Row="2">
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="40" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Border
+						Margin="0,10,0,0"
+						Background="#2c2c2c"
+						CornerRadius="4 4 0 0">
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="13"
+							Foreground="#d9d9d9"
+							Text="{DynamicResource l_Requests}" />
+					</Border>
+					<Border
+						Grid.Row="1"
+						Background="#242424"
+						CornerRadius="0 0 4 4">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition
+									Height="30" />
+								<RowDefinition />
+							</Grid.RowDefinitions>
+							<Button
+								HorizontalAlignment="Stretch"
+								hc:BorderElement.CornerRadius="0"
+								BorderThickness="0"
+								Content="{DynamicResource l_AddRequest}"
+								Cursor="Hand"
+								FontFamily="{StaticResource Roboto-Regular}"
+								Foreground="#d9d9d9"
+								Command="{Binding OpenRequestsPopupCommand}" />
+							<hc:ScrollViewer
+								Grid.Row="1"
+								Width="230"
+								Margin="0,5,0,0"
+								VerticalAlignment="Stretch"
+								IsInertiaEnabled="True"
+								VerticalScrollBarVisibility="Auto">
+								<ItemsControl
+									Name="RequestItemsControl"
+									VerticalAlignment="Stretch"
+									ItemsSource="{Binding SchedulerSettings.Requests}">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<StackPanel
+												Margin="0,0,0,5">
+												<hc:TransitioningContentControl
+													TransitionMode="Right2LeftWithFade">
+													<Grid>
+														<Border
+															Name="MainRequestBorder"
+															Margin="0,5,0,0">
+															<FrameworkElement.Style>
+																<Style
+																	TargetType="{x:Type Border}">
+																	<Setter
+																		Property="Border.CornerRadius"
+																		Value="4" />
+																	<Style.Triggers>
+																		<DataTrigger
+																			Value="True"
+																			Binding="{Binding CheckDate}">
+																			<Setter
+																				Property="Border.CornerRadius"
+																				Value="4 4 0 0" />
+																		</DataTrigger>
+																	</Style.Triggers>
+																</Style>
+															</FrameworkElement.Style>
+															<Grid>
+																<StackPanel
+																	Margin="0,5,30,5"
+																	HorizontalAlignment="Left">
+																	<Grid
+																		Margin="10,5,20,5"
+																		Visibility="{Binding Sender, Converter={StaticResource String2VisibilityConverter}}">
+																		<Ellipse
+																			Width="7"
+																			Height="7"
+																			HorizontalAlignment="Left"
+																			VerticalAlignment="Center"
+																			Fill="#64FFD1" />
+																		<TextBlock
+																			Margin="20,0,0,0"
+																			VerticalAlignment="Center"
+																			FontFamily="{StaticResource Roboto-Regular}"
+																			FontSize="13"
+																			TextWrapping="Wrap">
+																			<Run
+																				Foreground="#d9d9d9"
+																				Text="{Binding Sender}" />
+																		</TextBlock>
+																	</Grid>
+																	<Grid
+																		Margin="10,5,5,5"
+																		Visibility="{Binding Subject, Converter={StaticResource String2VisibilityConverter}}">
+																		<Ellipse
+																			Width="7"
+																			Height="7"
+																			HorizontalAlignment="Left"
+																			VerticalAlignment="Center"
+																			Fill="#f8ff63" />
+																		<TextBlock
+																			Margin="20,0,0,0"
+																			VerticalAlignment="Center"
+																			FontFamily="{StaticResource Roboto-Regular}"
+																			FontSize="13"
+																			TextWrapping="Wrap">
+																			<Run
+																				Foreground="#d9d9d9"
+																				Text="{Binding Subject}" />
+																		</TextBlock>
+																	</Grid>
+																	<Grid
+																		Margin="10,5,5,5"
+																		Visibility="{Binding Body, Converter={StaticResource String2VisibilityConverter}}">
+																		<Ellipse
+																			Width="7"
+																			Height="7"
+																			HorizontalAlignment="Left"
+																			VerticalAlignment="Center"
+																			Fill="#FF7070" />
+																		<TextBlock
+																			Margin="20,0,0,0"
+																			VerticalAlignment="Center"
+																			FontFamily="{StaticResource Roboto-Regular}"
+																			FontSize="13"
+																			TextWrapping="Wrap">
+																			<Run
+																				Foreground="#d9d9d9"
+																				Text="{Binding Body}" />
+																		</TextBlock>
+																	</Grid>
+																</StackPanel>
+																<Border
+																	Name="DeleteSearchRequestOverlay"
+																	HorizontalAlignment="Right"
+																	VerticalAlignment="Stretch"
+																	CornerRadius="0 4 4 0"
+																	Opacity="0.3">
+																	<Border.Background>
+																		<LinearGradientBrush
+																			StartPoint="0, 0.5"
+																			EndPoint="1, 0.5">
+																			<GradientStop
+																				Offset="0"
+																				Color="#2c2c2c" />
+																			<GradientStop
+																				Offset="1.0"
+																				Color="#FF7070" />
+																		</LinearGradientBrush>
+																	</Border.Background>
+																	<hc:Interaction.Triggers>
+																		<hc:EventTrigger
+																			EventName="MouseDown">
+																			<hc:EventToCommand
+																				Command="{Binding DataContext.RemoveRequestCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+																				CommandParameter="{Binding}" />
+																		</hc:EventTrigger>
+																	</hc:Interaction.Triggers>
+																</Border>
+															</Grid>
+														</Border>
+													</Grid>
+												</hc:TransitioningContentControl>
+												<Border
+													Height="30"
+													HorizontalAlignment="Stretch"
+													Background="#282828"
+													CornerRadius="0 0 4 4"
+													Visibility="{Binding CheckDate, Converter={StaticResource Boolean2VisibilityConverter}}">
+													<Grid>
+														<Grid.ColumnDefinitions>
+															<ColumnDefinition />
+															<ColumnDefinition />
+														</Grid.ColumnDefinitions>
+														<hc:DatePicker
+															HorizontalAlignment="Stretch"
+															BorderElement.CornerRadius="0 0 0 4"
+															InfoElement.Placeholder="{DynamicResource l_From}"
+															ThemeManager.RequestedAccentColor="#64FFD1"
+															ThemeManager.RequestedTheme="Dark"
+															FontFamily="{StaticResource Roboto-Regular}"
+															Foreground="#d9d9d9"
+															SelectedDate="{Binding DateFrom}" />
+														<hc:DatePicker
+															Grid.Column="1"
+															HorizontalAlignment="Stretch"
+															BorderElement.CornerRadius="0 0 4 0"
+															InfoElement.Placeholder="{DynamicResource l_To}"
+															ThemeManager.RequestedAccentColor="#64FFD1"
+															ThemeManager.RequestedTheme="Dark"
+															FontFamily="{StaticResource Roboto-Regular}"
+															Foreground="#d9d9d9"
+															SelectedDate="{Binding DateTo}" />
+													</Grid>
+												</Border>
+											</StackPanel>
+											<DataTemplate.Triggers>
+												<Trigger
+													SourceName="MainRequestBorder"
+													Property="UIElement.IsMouseOver"
+													Value="True">
+													<Setter
+														TargetName="MainRequestBorder"
+														Property="Background"
+														Value="#303030" />
+													<Setter
+														Property="FrameworkElement.Cursor"
+														Value="Hand" />
+													<Setter
+														TargetName="DeleteSearchRequestOverlay"
+														Property="Visibility"
+														Value="Visible" />
+													<TriggerBase.EnterActions>
+														<BeginStoryboard>
+															<Storyboard>
+																<DoubleAnimation
+																	Storyboard.TargetName="DeleteSearchRequestOverlay"
+																	Storyboard.TargetProperty="Width"
+																	From="0"
+																	To="230"
+																	Duration="0:0:0.1" />
+															</Storyboard>
+														</BeginStoryboard>
+													</TriggerBase.EnterActions>
+												</Trigger>
+												<Trigger
+													SourceName="MainRequestBorder"
+													Property="UIElement.IsMouseOver"
+													Value="False">
+													<Setter
+														TargetName="MainRequestBorder"
+														Property="Background"
+														Value="#2c2c2c" />
+													<Setter
+														TargetName="DeleteSearchRequestOverlay"
+														Property="Visibility"
+														Value="Collapsed" />
+												</Trigger>
+											</DataTemplate.Triggers>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</hc:ScrollViewer>
+						</Grid>
+					</Border>
+				</Grid>
+				<Grid
+					Row="3">
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="40" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Border
+						Margin="0,10,0,0"
+						Background="#2c2c2c"
+						CornerRadius="4 4 0 0">
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="13"
+							Foreground="#d9d9d9"
+							Text="{DynamicResource l_Actions}" />
+					</Border>
+					<Border
+						Grid.Row="1"
+						Background="#242424"
+						CornerRadius="0 0 4 4">
+						<StackPanel>
+							<Grid
+								Margin="10,15,0,0">
+								<CheckBox
+									hc:ThemeManager.RequestedAccentColor="#64FFD1"
+									hc:ThemeManager.RequestedTheme="Dark"
+									Background="#202020"
+									Content="{DynamicResource l_DownloadFoundMails}"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="#d9d9d9"
+									IsChecked="{Binding SchedulerSettings.DownloadMails}" />
+							</Grid>
+							<Grid
+								Margin="10,15,0,0">
+								<CheckBox
+									hc:ThemeManager.RequestedAccentColor="#64FFD1"
+									hc:ThemeManager.RequestedTheme="Dark"
+									Background="#202020"
+									Content="{DynamicResource l_DeleteWhenDownloaded}"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="#d9d9d9"
+									ToolTip="{DynamicResource l_DeleteOnServerDescription2}"
+									ToolTipService.ShowDuration="20000"
+									IsChecked="{Binding SchedulerSettings.DeleteMails}" />
+							</Grid>
+						</StackPanel>
+					</Border>
+				</Grid>
+			</Grid>
+			<Grid
+				Column="1"
+				Margin="5,10,10,10">
+				<Grid.RowDefinitions>
+					<RowDefinition
+						Height="30" />
+					<RowDefinition
+						Height="2*" />
+					<RowDefinition
+						Height="*" />
+				</Grid.RowDefinitions>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition />
+						<ColumnDefinition
+							Width="40" />
+						<ColumnDefinition
+							Width="35" />
+					</Grid.ColumnDefinitions>
+					<hc:TextBox
+						Margin="0,0,5,0"
+						InfoElement.Placeholder="{DynamicResource l_Address}"
+						ThemeManager.RequestedAccentColor="#64FFD1"
+						FontFamily="{StaticResource Roboto-Regular}"
+						Foreground="#d9d9d9"
+						Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+						<UIElement.InputBindings>
+							<KeyBinding
+								Key="Enter"
+								Command="{Binding AddMailCommand}" />
+						</UIElement.InputBindings>
+					</hc:TextBox>
+					<hc:TextBox
+						Grid.Column="1"
+						Margin="5,0,5,0"
+						InfoElement.Placeholder="{DynamicResource l_Password}"
+						ThemeManager.RequestedAccentColor="#64FFD1"
+						FontFamily="{StaticResource Roboto-Regular}"
+						Foreground="#d9d9d9"
+						Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+						<UIElement.InputBindings>
+							<KeyBinding
+								Key="Enter"
+								Command="{Binding AddMailCommand}" />
+						</UIElement.InputBindings>
+					</hc:TextBox>
+					<Button
+						Grid.Column="2"
+						Margin="5,0,5,0"
+						Padding="0"
+						HorizontalAlignment="Stretch"
+						VerticalContentAlignment="Center"
+						hc:IconElement.Geometry="{StaticResource AddGeometry}"
+						hc:IconElement.Height="10"
+						Cursor="Hand"
+						Foreground="#64FFD1"
+						Command="{Binding AddMailCommand}" />
+					<Button
+						Grid.Column="3"
+						Margin="5,0,0,0"
+						Padding="0"
+						HorizontalAlignment="Stretch"
+						VerticalContentAlignment="Center"
+						hc:IconElement.Geometry="{StaticResource PageModeGeometry}"
+						hc:IconElement.Height="10"
+						Cursor="Hand"
+						Foreground="#64FFD1"
+						Command="{Binding LoadMailsFromBaseCommand}" />
+				</Grid>
+				<Grid
+					Row="1"
+					Margin="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="30" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Border
+						Margin="0"
+						Padding="0"
+						Background="#2c2c2c"
+						CornerRadius="4 4 0 0">
+						<Grid>
+							<TextBlock
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="#d9d9d9"
+								Text="{DynamicResource l_Processes}" />
+							<Button
+								Name="RemoveAllMailsCommand"
+								Margin="0"
+								HorizontalAlignment="Right"
+								hc:BorderElement.CornerRadius="0 4 0 0"
+								Background="#343434"
+								BorderThickness="0"
+								Content="Clear"
+								Cursor="Hand"
+								Foreground="#ff5e5e"
+								Command="{Binding RemoveAllMailsCommand}"
+								Visibility="{Binding ElementName=RemoveAllMailsCommand, Path=IsEnabled, Converter={StaticResource Boolean2VisibilityConverter}}" />
+						</Grid>
+					</Border>
+					<Border
+						Grid.Row="1"
+						Background="#242424"
+						CornerRadius="0 0 4 4">
+						<Grid>
+							<Border
+								Name="ResultsDataGridMaskBorder"
+								Background="{DynamicResource BlockBackgroundBrush}"
+								CornerRadius="4" />
+							<DataGrid
+								Name="ResultsDataGrid"
+								Margin="5,0,5,5"
+								hc:ThemeManager.RequestedAccentColor="#64FFD1"
+								hc:ThemeManager.RequestedTheme="Dark"
+								AlternationCount="2"
+								AutoGenerateColumns="False"
+								Background="#00FFFFFF"
+								CanUserAddRows="False"
+								CanUserReorderColumns="False"
+								CanUserResizeColumns="False"
+								ColumnHeaderHeight="40"
+								FontSize="12"
+								HeadersVisibility="Column"
+								HorizontalScrollBarVisibility="Disabled"
+								MinRowHeight="30"
+								RowHeight="{x:Static sys:Double.NaN}"
+								SelectionMode="Single"
+								ItemsSource="{Binding Scheduler.Mails}">
+								<UIElement.OpacityMask>
+									<VisualBrush
+										Visual="{Binding ElementName=ResultsDataGridMaskBorder}" />
+								</UIElement.OpacityMask>
+								<DataGrid.Columns>
+									<DataGridTextColumn
+										Width="*"
+										MinWidth="90"
+										FontFamily="{StaticResource Roboto-Regular}"
+										Header="Address"
+										IsReadOnly="True"
+										Binding="{Binding Address}">
+										<DataGridColumn.CellStyle>
+											<Style
+												BasedOn="{StaticResource DataGridCellStyle}"
+												TargetType="{x:Type DataGridCell}">
+												<Setter
+													Property="Padding"
+													Value="10,0,10,0" />
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="Focusable"
+													Value="False" />
+												<Style.Triggers>
+													<Trigger
+														Property="DataGridCell.IsSelected"
+														Value="True">
+														<Setter
+															Property="Background"
+															Value="{DynamicResource Background7}" />
+													</Trigger>
+												</Style.Triggers>
+											</Style>
+										</DataGridColumn.CellStyle>
+										<DataGridColumn.HeaderStyle>
+											<Style
+												BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+												TargetType="{x:Type DataGridColumnHeader}">
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="FontFamily"
+													Value="{StaticResource Roboto-Regular}" />
+											</Style>
+										</DataGridColumn.HeaderStyle>
+									</DataGridTextColumn>
+									<DataGridTextColumn
+										Width="*"
+										MinWidth="90"
+										FontFamily="{StaticResource Roboto-Regular}"
+										Header="Password"
+										IsReadOnly="True"
+										Binding="{Binding Password}">
+										<DataGridColumn.CellStyle>
+											<Style
+												BasedOn="{StaticResource DataGridCellStyle}"
+												TargetType="{x:Type DataGridCell}">
+												<Setter
+													Property="Padding"
+													Value="10,0,10,0" />
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="Focusable"
+													Value="False" />
+												<Style.Triggers>
+													<Trigger
+														Property="DataGridCell.IsSelected"
+														Value="True">
+														<Setter
+															Property="Background"
+															Value="{DynamicResource Background7}" />
+													</Trigger>
+												</Style.Triggers>
+											</Style>
+										</DataGridColumn.CellStyle>
+										<DataGridColumn.HeaderStyle>
+											<Style
+												BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+												TargetType="{x:Type DataGridColumnHeader}">
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="FontFamily"
+													Value="{StaticResource Roboto-Regular}" />
+											</Style>
+										</DataGridColumn.HeaderStyle>
+									</DataGridTextColumn>
+									<DataGridTextColumn
+										Width="100"
+										FontFamily="{StaticResource Roboto-Regular}"
+										Header="Status"
+										IsReadOnly="True"
+										Binding="{Binding Status}">
+										<DataGridColumn.CellStyle>
+											<Style
+												BasedOn="{StaticResource DataGridCellStyle}"
+												TargetType="{x:Type DataGridCell}">
+												<Setter
+													Property="Padding"
+													Value="10,0,10,0" />
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="Focusable"
+													Value="False" />
+												<Style.Triggers>
+													<Trigger
+														Property="DataGridCell.IsSelected"
+														Value="True">
+														<Setter
+															Property="Background"
+															Value="{DynamicResource Background7}" />
+													</Trigger>
+												</Style.Triggers>
+											</Style>
+										</DataGridColumn.CellStyle>
+										<DataGridColumn.HeaderStyle>
+											<Style
+												BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+												TargetType="{x:Type DataGridColumnHeader}">
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="FontFamily"
+													Value="{StaticResource Roboto-Regular}" />
+											</Style>
+										</DataGridColumn.HeaderStyle>
+									</DataGridTextColumn>
+									<DataGridTextColumn
+										Width="100"
+										FontFamily="{StaticResource Roboto-Regular}"
+										Header="Executed"
+										IsReadOnly="True"
+										Binding="{Binding LastExecuted, StringFormat=hh:mm}">
+										<DataGridColumn.CellStyle>
+											<Style
+												BasedOn="{StaticResource DataGridCellStyle}"
+												TargetType="{x:Type DataGridCell}">
+												<Setter
+													Property="Padding"
+													Value="10,0,10,0" />
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="Focusable"
+													Value="False" />
+												<Style.Triggers>
+													<Trigger
+														Property="DataGridCell.IsSelected"
+														Value="True">
+														<Setter
+															Property="Background"
+															Value="{DynamicResource Background7}" />
+													</Trigger>
+												</Style.Triggers>
+											</Style>
+										</DataGridColumn.CellStyle>
+										<DataGridColumn.HeaderStyle>
+											<Style
+												BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+												TargetType="{x:Type DataGridColumnHeader}">
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="FontFamily"
+													Value="{StaticResource Roboto-Regular}" />
+											</Style>
+										</DataGridColumn.HeaderStyle>
+									</DataGridTextColumn>
+									<DataGridTemplateColumn
+										Width="60"
+										MinWidth="40"
+										CanUserResize="False">
+										<DataGridColumn.CellStyle>
+											<Style
+												BasedOn="{StaticResource DataGridCellStyle}"
+												TargetType="{x:Type DataGridCell}">
+												<Setter
+													Property="Template">
+													<Setter.Value>
+														<ControlTemplate>
+															<Grid>
+																<Grid.ColumnDefinitions>
+																	<ColumnDefinition />
+																	<ColumnDefinition />
+																</Grid.ColumnDefinitions>
+																<Button
+																	Name="RemoveScheduledMailButton"
+																	Width="30"
+																	Height="30"
+																	Padding="0"
+																	HorizontalAlignment="Right"
+																	hc:BorderElement.CornerRadius="0"
+																	hc:IconElement.Geometry="{StaticResource SearchGeometry}"
+																	hc:IconElement.Height="12"
+																	Background="#343434"
+																	BorderBrush="#d9d9d9"
+																	BorderThickness="0,0,0,0"
+																	Cursor="Hand"
+																	Focusable="False"
+																	Foreground="#d9d9d9"
+																	Command="{Binding DataContext.OpenThroughEmailViewerCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+																	CommandParameter="{Binding}" />
+																<Button
+																	Name="OpenWithViewerButton"
+																	Grid.Column="1"
+																	Width="30"
+																	Height="30"
+																	Padding="0"
+																	HorizontalAlignment="Right"
+																	hc:BorderElement.CornerRadius="0 4 4 0"
+																	hc:IconElement.Geometry="{StaticResource CloseGeometry}"
+																	hc:IconElement.Height="12"
+																	Background="#343434"
+																	BorderBrush="#d9d9d9"
+																	BorderThickness="0,0,0,0"
+																	Cursor="Hand"
+																	Focusable="False"
+																	Foreground="#ff5e5e"
+																	Command="{Binding DataContext.RemoveMailCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+																	CommandParameter="{Binding}">
+																	<FrameworkElement.Style>
+																		<Style
+																			BasedOn="{StaticResource Button}"
+																			TargetType="{x:Type Button}">
+																			<Setter
+																				Property="IsEnabled"
+																				Value="True" />
+																			<Style.Triggers>
+																				<DataTrigger
+																					Value="Waiting"
+																					Binding="{Binding Status}">
+																					<DataTrigger.Setters>
+																						<Setter
+																							Property="IsEnabled"
+																							Value="False" />
+																					</DataTrigger.Setters>
+																				</DataTrigger>
+																				<DataTrigger
+																					Value="Processing"
+																					Binding="{Binding Status}">
+																					<DataTrigger.Setters>
+																						<Setter
+																							Property="IsEnabled"
+																							Value="False" />
+																					</DataTrigger.Setters>
+																				</DataTrigger>
+																			</Style.Triggers>
+																		</Style>
+																	</FrameworkElement.Style>
+																</Button>
+															</Grid>
+														</ControlTemplate>
+													</Setter.Value>
+												</Setter>
+											</Style>
+										</DataGridColumn.CellStyle>
+									</DataGridTemplateColumn>
+								</DataGrid.Columns>
+								<DataGrid.RowStyle>
+									<Style
+										BasedOn="{StaticResource DataGridRowStyle}"
+										TargetType="{x:Type DataGridRow}">
+										<Setter
+											Property="Background"
+											Value="{DynamicResource Background4}" />
+										<Style.Triggers>
+											<Trigger
+												Property="UIElement.IsMouseOver"
+												Value="True">
+												<Setter
+													Property="Background"
+													Value="#333333" />
+											</Trigger>
+											<Trigger
+												Property="DataGridRow.IsSelected"
+												Value="True">
+												<Setter
+													Property="Background"
+													Value="{DynamicResource Background7}" />
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+								</DataGrid.RowStyle>
+							</DataGrid>
+						</Grid>
+					</Border>
+				</Grid>
+				<Grid
+					Row="2">
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="40" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Border
+						Margin="0,10,0,0"
+						Background="#2c2c2c"
+						CornerRadius="4 4 0 0">
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="13"
+							Foreground="#d9d9d9"
+							Text="{DynamicResource l_Messages}" />
+					</Border>
+					<Border
+						Grid.Row="1"
+						Background="#242424"
+						CornerRadius="0 0 4 4">
+						<Grid>
+							<Border
+								Name="NotificationsDataGridMaskBorder"
+								Background="{DynamicResource BlockBackgroundBrush}"
+								CornerRadius="4" />
+							<DataGrid
+								Margin="0"
+								hc:ThemeManager.RequestedAccentColor="#64FFD1"
+								hc:ThemeManager.RequestedTheme="Dark"
+								AlternationCount="2"
+								AutoGenerateColumns="False"
+								Background="#00FFFFFF"
+								CanUserAddRows="False"
+								CanUserReorderColumns="False"
+								CanUserResizeColumns="False"
+								FontSize="12"
+								HeadersVisibility="None"
+								HorizontalScrollBarVisibility="Disabled"
+								MinRowHeight="30"
+								RowHeight="{x:Static sys:Double.NaN}"
+								SelectionMode="Single"
+								ItemsSource="{Binding Scheduler.Notifications}">
+								<UIElement.OpacityMask>
+									<VisualBrush
+										Visual="{Binding ElementName=NotificationsDataGridMaskBorder}" />
+								</UIElement.OpacityMask>
+								<DataGrid.Columns>
+									<DataGridTextColumn
+										Width="130"
+										FontFamily="{StaticResource Roboto-Regular}"
+										Header="Address"
+										IsReadOnly="True"
+										Binding="{Binding Address}">
+										<DataGridColumn.CellStyle>
+											<Style
+												BasedOn="{StaticResource DataGridCellStyle}"
+												TargetType="{x:Type DataGridCell}">
+												<Setter
+													Property="Padding"
+													Value="10,0,10,0" />
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="Focusable"
+													Value="False" />
+												<Style.Triggers>
+													<Trigger
+														Property="DataGridCell.IsSelected"
+														Value="True">
+														<Setter
+															Property="Background"
+															Value="{DynamicResource Background7}" />
+													</Trigger>
+												</Style.Triggers>
+											</Style>
+										</DataGridColumn.CellStyle>
+										<DataGridColumn.HeaderStyle>
+											<Style
+												BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+												TargetType="{x:Type DataGridColumnHeader}">
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="FontFamily"
+													Value="{StaticResource Roboto-Regular}" />
+											</Style>
+										</DataGridColumn.HeaderStyle>
+									</DataGridTextColumn>
+									<DataGridTextColumn
+										Width="2*"
+										MinWidth="90"
+										FontFamily="{StaticResource Roboto-Regular}"
+										Header="Password"
+										IsReadOnly="True"
+										Binding="{Binding Message}">
+										<DataGridColumn.CellStyle>
+											<Style
+												BasedOn="{StaticResource DataGridCellStyle}"
+												TargetType="{x:Type DataGridCell}">
+												<Setter
+													Property="Padding"
+													Value="10,0,10,0" />
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="Focusable"
+													Value="False" />
+												<Style.Triggers>
+													<Trigger
+														Property="DataGridCell.IsSelected"
+														Value="True">
+														<Setter
+															Property="Background"
+															Value="{DynamicResource Background7}" />
+													</Trigger>
+												</Style.Triggers>
+											</Style>
+										</DataGridColumn.CellStyle>
+										<DataGridColumn.HeaderStyle>
+											<Style
+												BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+												TargetType="{x:Type DataGridColumnHeader}">
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="FontFamily"
+													Value="{StaticResource Roboto-Regular}" />
+											</Style>
+										</DataGridColumn.HeaderStyle>
+									</DataGridTextColumn>
+									<DataGridTextColumn
+										Width="80"
+										FontFamily="{StaticResource Roboto-Regular}"
+										Header="Status"
+										IsReadOnly="True"
+										Binding="{Binding Time, StringFormat=hh:mm}">
+										<DataGridColumn.CellStyle>
+											<Style
+												BasedOn="{StaticResource DataGridCellStyle}"
+												TargetType="{x:Type DataGridCell}">
+												<Setter
+													Property="Padding"
+													Value="10,0,10,0" />
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="Focusable"
+													Value="False" />
+												<Style.Triggers>
+													<Trigger
+														Property="DataGridCell.IsSelected"
+														Value="True">
+														<Setter
+															Property="Background"
+															Value="{DynamicResource Background7}" />
+													</Trigger>
+												</Style.Triggers>
+											</Style>
+										</DataGridColumn.CellStyle>
+										<DataGridColumn.HeaderStyle>
+											<Style
+												BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+												TargetType="{x:Type DataGridColumnHeader}">
+												<Setter
+													Property="Foreground"
+													Value="{DynamicResource Text3}" />
+												<Setter
+													Property="FontFamily"
+													Value="{StaticResource Roboto-Regular}" />
+											</Style>
+										</DataGridColumn.HeaderStyle>
+									</DataGridTextColumn>
+								</DataGrid.Columns>
+								<DataGrid.RowStyle>
+									<Style
+										BasedOn="{StaticResource DataGridRowStyle}"
+										TargetType="{x:Type DataGridRow}">
+										<Setter
+											Property="Background"
+											Value="{DynamicResource Background4}" />
+										<Style.Triggers>
+											<Trigger
+												Property="UIElement.IsMouseOver"
+												Value="True">
+												<Setter
+													Property="Background"
+													Value="#333333" />
+											</Trigger>
+											<Trigger
+												Property="DataGridRow.IsSelected"
+												Value="True">
+												<Setter
+													Property="Background"
+													Value="{DynamicResource Background7}" />
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+								</DataGrid.RowStyle>
+							</DataGrid>
+						</Grid>
+					</Border>
+				</Grid>
+			</Grid>
+		</Grid>
+	</Grid>
+</Window>

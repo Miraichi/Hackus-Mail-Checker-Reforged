@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Brush
+		x:Key="Text1">#aeaeae</Brush>
+	<Brush
+		x:Key="Text2">#d9d9d9</Brush>
+	<Brush
+		x:Key="Text3">#eaeaea</Brush>
+	<Brush
+		x:Key="Background1">#0C0C0C</Brush>
+	<Brush
+		x:Key="Background2">#181818</Brush>
+	<Brush
+		x:Key="Background3">#242424</Brush>
+	<Brush
+		x:Key="Background4">#2c2c2c</Brush>
+	<Brush
+		x:Key="Background5">#303030</Brush>
+	<Brush
+		x:Key="Background6">#343434</Brush>
+	<Brush
+		x:Key="Background7">#383838</Brush>
+	<Brush
+		x:Key="WindowHeaderBrush">#0C0C0C</Brush>
+	<Brush
+		x:Key="WindowBackgroundBrush">#181818</Brush>
+	<Brush
+		x:Key="BlockBackgroundBrush">#242424</Brush>
+</ResourceDictionary>

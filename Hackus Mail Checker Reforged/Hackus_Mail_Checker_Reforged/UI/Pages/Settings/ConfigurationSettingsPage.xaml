@@ -1,0 +1,161 @@
+<Page
+	x:Class="Hackus_Mail_Checker_Reforged.UI.Pages.Settings.ConfigurationSettingsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Pages.Settings" xmlns:main="clr-namespace:Hackus_Mail_Checker_Reforged" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="ConfigurationSettingsPage">
+	<hc:TransitioningContentControl
+		TransitionMode="Right2LeftWithFade">
+		<StackPanel
+			Margin="5,0,5,0">
+			<Border
+				Height="30"
+				Background="#202020"
+				CornerRadius="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_ServerSearching}" />
+			</Border>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_SearchServerDescription}">
+				<CheckBox
+					Name="SearchServerCheckBox"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_SearchServer}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.SearchServer}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_UseProxyToSearchServerDescription}">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_UseProxy}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.UseProxyToSearchServer}"
+					IsEnabled="{Binding ElementName=SearchServerCheckBox, Path=IsChecked}" />
+			</Grid>
+			<Border
+				Height="30"
+				Margin="0,20,0,0"
+				Background="#202020"
+				CornerRadius="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_MatchingSubdomainsMethods}" />
+			</Border>
+			<StackPanel
+				IsEnabled="{Binding ElementName=SearchServerCheckBox, Path=IsChecked}">
+				<Grid
+					Margin="0,15,0,0"
+					ToolTip="{DynamicResource l_SearchServerByMXDescription}">
+					<CheckBox
+						Name="SearchByMxCheckBox"
+						hc:ThemeManager.RequestedAccentColor="#64FFD1"
+						hc:ThemeManager.RequestedTheme="Dark"
+						Background="#202020"
+						Content="{DynamicResource l_SearchByMxRecords}"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						IsChecked="{Binding CheckerSettings.SearchServerByMX}"
+						IsEnabled="{Binding ElementName=SearchServerCheckBox, Path=IsChecked}" />
+				</Grid>
+				<Grid
+					Margin="0,20,0,0"
+					ToolTip="{DynamicResource l_MatchSubdomainByDomainDescription}">
+					<CheckBox
+						hc:ThemeManager.RequestedAccentColor="#64FFD1"
+						hc:ThemeManager.RequestedTheme="Dark"
+						Background="#202020"
+						Content="{DynamicResource l_MatchSubdomainByDomain}"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						IsChecked="{Binding CheckerSettings.GuessSubdomainByDomain}" />
+				</Grid>
+				<Grid
+					Margin="0,20,0,0"
+					ToolTip="{DynamicResource l_MatchSubdomainByMxDescription}">
+					<CheckBox
+						hc:ThemeManager.RequestedAccentColor="#64FFD1"
+						hc:ThemeManager.RequestedTheme="Dark"
+						Background="#202020"
+						Content="{DynamicResource l_MatchSubdomainByMx}"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						IsChecked="{Binding CheckerSettings.GuessSubdomainByMX}"
+						IsEnabled="{Binding ElementName=SearchByMxCheckBox, Path=IsChecked}" />
+				</Grid>
+			</StackPanel>
+			<Border
+				Height="30"
+				Margin="0,20,0,0"
+				Background="#202020"
+				CornerRadius="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_SearchByWebMethods}" />
+			</Border>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_SearchInAutoConfigDescription}">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_SearchByAutoConfig}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.SearchServerByAutoConfig}"
+					IsEnabled="{Binding ElementName=SearchServerCheckBox, Path=IsChecked}" />
+			</Grid>
+			<Grid
+				Margin="0,20,0,0"
+				ToolTip="{DynamicResource l_SearchInAutoDiscoveryDescription}">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_SearchByAutoDiscover}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.SearchServerByAutoDiscover}"
+					IsEnabled="{Binding ElementName=SearchServerCheckBox, Path=IsChecked}" />
+			</Grid>
+			<Button
+				Height="32"
+				Margin="0,15,0,0"
+				HorizontalAlignment="Stretch"
+				BorderBrush="#64FFD1"
+				Content="{DynamicResource l_EditConfiguration}"
+				Cursor="Hand"
+				FontFamily="{StaticResource Roboto-Regular}"
+				FontSize="13"
+				Foreground="#d9d9d9"
+				Style="{StaticResource ButtonDashed}"
+				Command="{Binding EditConfigurationCommand}" />
+		</StackPanel>
+	</hc:TransitioningContentControl>
+</Page>

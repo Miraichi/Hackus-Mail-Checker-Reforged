@@ -1,0 +1,314 @@
+<UserControl
+	x:Class="Hackus_Mail_Checker_Reforged.UI.Pages.Popups.AddRequestsPopup" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Pages.Popups" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	hc:ThemeManager.RequestedAccentColor="#64FFD1">
+	<Grid
+		hc:WindowAttach.IsDragElement="True">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Border
+			Width="300"
+			Background="#242424"
+			CornerRadius="4">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition
+						Height="25" />
+					<RowDefinition
+						Height="30" />
+					<RowDefinition
+						Height="30" />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Border
+					Background="#181818"
+					CornerRadius="4 4 0 0">
+					<Grid>
+						<TextBlock
+							Margin="10,0,0,0"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="12"
+							Foreground="#d9d9d9"
+							Text="{DynamicResource l_CreateRequest}" />
+						<Button
+							Width="25"
+							Height="25"
+							Padding="0"
+							HorizontalAlignment="Right"
+							VerticalAlignment="Center"
+							hc:BorderElement.CornerRadius="0 4 0 0"
+							hc:IconElement.Geometry="{StaticResource CloseGeometry}"
+							hc:IconElement.Height="8"
+							Background="#00FFFFFF"
+							BorderThickness="0"
+							Cursor="Hand"
+							Foreground="#ff3b3b"
+							Click="Close" />
+					</Grid>
+				</Border>
+				<Grid
+					Row="1">
+					<hc:TextBox
+						Padding="10,0,30,0"
+						BorderElement.CornerRadius="0"
+						InfoElement.Placeholder="{DynamicResource l_Request}"
+						BorderThickness="0,0,0,1"
+						Text="{Binding CreateRequestField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+						<UIElement.InputBindings>
+							<KeyBinding
+								Key="Enter"
+								Command="{Binding CreateRequestCommand}" />
+						</UIElement.InputBindings>
+					</hc:TextBox>
+					<Button
+						Grid.Column="1"
+						Width="30"
+						Height="29"
+						Padding="0,0,0,1"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Center"
+						hc:BorderElement.CornerRadius="0 4 0 0"
+						BorderThickness="0"
+						Content="+"
+						Cursor="Hand"
+						FontSize="15"
+						Foreground="#64FFD1"
+						Command="{Binding CreateRequestCommand}" />
+				</Grid>
+				<hc:ComboBox
+					Grid.Row="2"
+					BorderElement.CornerRadius="4"
+					ThemeManager.RequestedAccentColor="#303030"
+					ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Cursor="Hand"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="12"
+					Foreground="#d9d9d9"
+					SelectedIndex="{Binding SelectedRequestTypeIndex}">
+					<ComboBoxItem
+						Content="{DynamicResource l_BySender}"
+						Tag="Subject" />
+					<ComboBoxItem
+						Content="{DynamicResource l_BySubject}"
+						Tag="Subject" />
+					<ComboBoxItem
+						Content="{DynamicResource l_ByContent}"
+						Tag="Content" />
+					<ComboBoxItem
+						Content="{DynamicResource l_BySenderAndSubject}"
+						Tag="SenderAndSubject" />
+					<ComboBoxItem
+						Content="{DynamicResource l_BySenderAndContent}"
+						Tag="SenderAndContent" />
+					<ComboBoxItem
+						Content="{DynamicResource l_BySubjectAndContent}"
+						Tag="SubjectAndContent" />
+					<ComboBoxItem
+						Content="{DynamicResource l_BySenderAndSubjectAndContent}"
+						Tag="SenderAndSubjectAndContent" />
+				</hc:ComboBox>
+			</Grid>
+		</Border>
+		<Border
+			Grid.Row="1"
+			Width="300"
+			Height="400"
+			Margin="0,20,0,0"
+			Background="#242424"
+			CornerRadius="4">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition
+						Height="25" />
+					<RowDefinition
+						Height="30" />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Border
+					Background="#181818"
+					CornerRadius="4 4 0 0">
+					<Grid>
+						<TextBlock
+							Margin="10,0,0,0"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="12"
+							Foreground="#d9d9d9"
+							Text="{DynamicResource l_AddExistedRequest}" />
+					</Grid>
+				</Border>
+				<hc:SearchBar
+					Grid.Row="1"
+					BorderElement.CornerRadius="0"
+					InfoElement.Placeholder="{DynamicResource l_Search}"
+					InfoElement.Symbol="#"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					BorderThickness="0,0,0,1"
+					Style="{StaticResource SearchBarPlus}"
+					Command="{Binding SearchCommand}"
+					Text="{Binding FindRequestField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+					<UIElement.InputBindings>
+						<KeyBinding
+							Key="Enter"
+							Command="{Binding SearchCommand}" />
+					</UIElement.InputBindings>
+				</hc:SearchBar>
+				<hc:ScrollViewer
+					Grid.Row="2"
+					IsInertiaEnabled="True"
+					VerticalScrollBarVisibility="Auto">
+					<ItemsControl
+						HorizontalAlignment="Stretch"
+						BorderThickness="0"
+						ItemsSource="{Binding ExistedRequests}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition />
+										<ColumnDefinition
+											Width="30" />
+									</Grid.ColumnDefinitions>
+									<Border
+										BorderBrush="#7D7D7D"
+										BorderThickness="0,0,0,1">
+										<StackPanel>
+											<Border
+												Height="30"
+												Background="#1C1C1C"
+												Visibility="{Binding Sender, Converter={StaticResource String2VisibilityConverter}}">
+												<Grid>
+													<Label
+														MaxWidth="250"
+														Margin="10,0,0,0"
+														Padding="0,0,6,0"
+														HorizontalAlignment="Left"
+														hc:BorderElement.CornerRadius="0"
+														Background="#00FFFFFF"
+														BorderBrush="#d9d9d9"
+														BorderThickness="0,0,1,0">
+														<TextBlock
+															FontFamily="{StaticResource Roboto-Regular}"
+															FontSize="12"
+															Foreground="#d9d9d9"
+															Text="FROM"
+															TextTrimming="CharacterEllipsis" />
+													</Label>
+													<Label
+														MaxWidth="250"
+														Margin="55,0,0,0"
+														Padding="0"
+														HorizontalAlignment="Left"
+														Background="#00FFFFFF"
+														BorderThickness="0">
+														<TextBlock
+															FontFamily="{StaticResource Roboto-Regular}"
+															FontSize="12"
+															Foreground="#d9d9d9"
+															TextTrimming="CharacterEllipsis"
+															Text="{Binding Sender}" />
+													</Label>
+												</Grid>
+											</Border>
+											<Border
+												Height="30"
+												Background="#1C1C1C"
+												Visibility="{Binding Subject, Converter={StaticResource String2VisibilityConverter}}">
+												<Grid>
+													<Label
+														MaxWidth="250"
+														Margin="10,0,0,0"
+														Padding="0,0,6,0"
+														HorizontalAlignment="Left"
+														hc:BorderElement.CornerRadius="0"
+														Background="#00FFFFFF"
+														BorderBrush="#d9d9d9"
+														BorderThickness="0,0,1,0">
+														<TextBlock
+															FontFamily="{StaticResource Roboto-Regular}"
+															FontSize="12"
+															Foreground="#d9d9d9"
+															Text="SUBJECT"
+															TextTrimming="CharacterEllipsis" />
+													</Label>
+													<Label
+														MaxWidth="250"
+														Margin="74,0,0,0"
+														Padding="0"
+														HorizontalAlignment="Left"
+														Background="#00FFFFFF"
+														BorderThickness="0">
+														<TextBlock
+															FontFamily="{StaticResource Roboto-Regular}"
+															FontSize="12"
+															Foreground="#d9d9d9"
+															TextTrimming="CharacterEllipsis"
+															Text="{Binding Subject}" />
+													</Label>
+												</Grid>
+											</Border>
+											<Border
+												Height="30"
+												Background="#1C1C1C"
+												Visibility="{Binding Body, Converter={StaticResource String2VisibilityConverter}}">
+												<Grid>
+													<Label
+														MaxWidth="250"
+														Margin="10,0,0,0"
+														Padding="0,0,6,0"
+														HorizontalAlignment="Left"
+														hc:BorderElement.CornerRadius="0"
+														Background="#00FFFFFF"
+														BorderBrush="#d9d9d9"
+														BorderThickness="0,0,1,0">
+														<TextBlock
+															FontFamily="{StaticResource Roboto-Regular}"
+															FontSize="12"
+															Foreground="#d9d9d9"
+															Text="BODY"
+															TextTrimming="CharacterEllipsis" />
+													</Label>
+													<Label
+														MaxWidth="250"
+														Margin="52,0,0,0"
+														Padding="0"
+														HorizontalAlignment="Left"
+														Background="#00FFFFFF"
+														BorderThickness="0">
+														<TextBlock
+															FontFamily="{StaticResource Roboto-Regular}"
+															FontSize="12"
+															Foreground="#d9d9d9"
+															TextTrimming="CharacterEllipsis"
+															Text="{Binding Body}" />
+													</Label>
+												</Grid>
+											</Border>
+										</StackPanel>
+									</Border>
+									<Button
+										Grid.Column="1"
+										Width="30"
+										Height="Auto"
+										Padding="0"
+										VerticalAlignment="Stretch"
+										hc:BorderElement.CornerRadius="0"
+										hc:IconElement.Geometry="{StaticResource DownloadGeometry}"
+										hc:IconElement.Height="13"
+										hc:Poptip.Content="{DynamicResource l_AddToCurrentSearchRequests}"
+										BorderThickness="1,1,0,1"
+										Cursor="Hand"
+										Command="{Binding DataContext.FetchRequestCommand, RelativeSource={RelativeSource AncestorType=hc:ScrollViewer}}"
+										CommandParameter="{Binding}" />
+								</Grid>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</hc:ScrollViewer>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

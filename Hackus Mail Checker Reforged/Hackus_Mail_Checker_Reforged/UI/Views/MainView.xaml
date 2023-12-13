@@ -1,0 +1,1643 @@
+<Window
+	x:Class="Hackus_Mail_Checker_Reforged.UI.Views.MainView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:uimodels="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Models"
+	Title="HMC 2.2"
+	Width="1000"
+	Height="689"
+	MinWidth="1000"
+	MinHeight="716"
+	MaxHeight="717"
+	WindowStartupLocation="CenterScreen">
+	<FrameworkElement.Resources>
+		<ResourceDictionary>
+			<Style
+				TargetType="{x:Type Control}"
+				x:Key="{x:Type Control}">
+				<Setter
+					Property="FontSize"
+					Value="13" />
+			</Style>
+			<Storyboard
+				x:Key="AnimateScreenshotIconColor">
+				<ColorAnimation
+					AutoReverse="True"
+					Storyboard.TargetProperty="Fill.Color"
+					To="White"
+					Duration="0:0:0.2" />
+				<DoubleAnimation
+					AutoReverse="True"
+					Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+					To="1.7"
+					Duration="0:0:0.2" />
+				<DoubleAnimation
+					AutoReverse="True"
+					Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+					To="1.7 "
+					Duration="0:0:0.2" />
+			</Storyboard>
+		</ResourceDictionary>
+	</FrameworkElement.Resources>
+	<Window.TaskbarItemInfo>
+		<TaskbarItemInfo />
+	</Window.TaskbarItemInfo>
+	<hc:Interaction.Behaviors>
+		<hc:TaskbarRebuildBehavior
+			Element="{Binding ElementName=NotifyIcon}" />
+	</hc:Interaction.Behaviors>
+	<WindowChrome.WindowChrome>
+		<WindowChrome
+			CaptionHeight="30"
+			CornerRadius="5"
+			GlassFrameThickness="0"
+			NonClientFrameEdges="None"
+			ResizeBorderThickness="3" />
+	</WindowChrome.WindowChrome>
+	<hc:Interaction.Triggers>
+		<hc:EventTrigger
+			EventName="Loaded">
+			<hc:EventToCommand
+				Command="{Binding InitializeCommand}" />
+		</hc:EventTrigger>
+	</hc:Interaction.Triggers>
+	<Grid
+		Background="{DynamicResource WindowBackgroundBrush}">
+		<Grid.RowDefinitions>
+			<RowDefinition
+				Height="30" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<hc:NotifyIcon
+			Name="NotifyIconElement"
+			Icon="../../../../Resources/Images/Logo-Dark.png"
+			Text="Hackus Mail Checker"
+			Visibility="Hidden"
+			Click="ShowFromTray" />
+		<uimodels:PopupExtended
+			Name="CopyPopup"
+			Grid.RowSpan="3"
+			Grid.ColumnSpan="3"
+			AllowsTransparency="True"
+			Placement="Mouse">
+			<hc:TransitioningContentControl
+				TransitionMode="Top2BottomWithFade">
+				<Border
+					Height="30"
+					Padding="5"
+					Background="#1e1e1e"
+					CornerRadius="5">
+					<TextBlock
+						Foreground="#BBBBBB"
+						Text="{DynamicResource l_Copied}" />
+				</Border>
+			</hc:TransitioningContentControl>
+		</uimodels:PopupExtended>
+		<Border
+			Margin="0"
+			Padding="0"
+			Background="{DynamicResource WindowHeaderBrush}"
+			BorderThickness="0">
+			<Grid>
+				<StackPanel
+					Orientation="Horizontal">
+					<Button
+						Width="40"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						Foreground="{DynamicResource Text2}"
+						IsHitTestVisible="False"
+						Style="{StaticResource ButtonCustom}"
+						WindowChrome.IsHitTestVisibleInChrome="True"
+						Click="HideInTray">
+						<Image
+							Width="15"
+							VerticalAlignment="Center"
+							RenderOptions.BitmapScalingMode="HighQuality"
+							Source="../../../../Resources/Images/Logo.png" />
+					</Button>
+					<TextBlock
+						Margin="5,0,0,0"
+						VerticalAlignment="Center"
+						FontFamily="Consolas"
+						FontSize="17"
+						FontWeight="Regular"
+						Foreground="#c0ffe6">
+						<Run>HMC</Run> <Run
+							FontSize="13">2.2 beta</Run></TextBlock>
+				</StackPanel>
+				<StackPanel
+					HorizontalAlignment="Right"
+					Orientation="Horizontal"
+					WindowChrome.IsHitTestVisibleInChrome="True">
+					<Button
+						Width="40"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Command="{Binding SwitchLanguageCommand}">
+						<Image
+							Width="17"
+							RenderOptions.BitmapScalingMode="HighQuality">
+							<FrameworkElement.Style>
+								<Style
+									TargetType="{x:Type Image}">
+									<Setter
+										Property="Source"
+										Value="../../Resources/Images/united-kingdom.png" />
+									<Style.Triggers>
+										<DataTrigger
+											Value="Russian"
+											Binding="{Binding Language}">
+											<Setter
+												Property="Source"
+												Value="../../Resources/Images/russia.png" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</FrameworkElement.Style>
+						</Image>
+					</Button>
+					<Button
+						Width="40"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Command="{Binding OpenToolsCommand}">
+						<Button
+							hc:IconElement.Geometry="{StaticResource AppsAddGeometry}"
+							hc:IconElement.Height="14"
+							Background="#00FFFFFF"
+							BorderThickness="0"
+							Foreground="{DynamicResource Text2}"
+							IsHitTestVisible="False" />
+					</Button>
+					<Button
+						Width="40"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Command="{Binding OpenResultsFolderCommand}">
+						<Button
+							hc:IconElement.Geometry="{StaticResource FolderGeometry}"
+							hc:IconElement.Height="13"
+							Background="#00FFFFFF"
+							BorderThickness="0"
+							Foreground="{DynamicResource Text2}"
+							IsHitTestVisible="False" />
+					</Button>
+					<Button
+						Width="40"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Click="HideInTray">
+						<Button
+							VerticalAlignment="Center"
+							hc:IconElement.Geometry="{StaticResource WindowsGeometry}"
+							hc:IconElement.Height="12"
+							Background="#00FFFFFF"
+							BorderThickness="0"
+							IsHitTestVisible="False" />
+					</Button>
+					<Button
+						Width="40"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Content="—"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Click="OnHide" />
+					<Button
+						Width="40"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#e53333"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#ff3b3b"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						Style="{StaticResource ButtonCustom}"
+						Command="{Binding CloseApplicationCommand}">
+						<Path
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Fill="{DynamicResource Text2}"
+							RenderTransformOrigin="0.2, 0.2"
+							Style="{StaticResource SmallCrossIcon}">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.7"
+									ScaleY="0.7" />
+							</UIElement.RenderTransform>
+						</Path>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
+		<Grid
+			Row="1"
+			Margin="8"
+			AllowDrop="True">
+			<hc:Interaction.Triggers>
+				<hc:EventTrigger
+					EventName="Drop">
+					<hc:EventToCommand
+						PassEventArgsToCommand="True"
+						Command="{Binding DropBaseCommand}" />
+				</hc:EventTrigger>
+			</hc:Interaction.Triggers>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="230" />
+				<ColumnDefinition />
+				<ColumnDefinition
+					Width="300" />
+			</Grid.ColumnDefinitions>
+			<Grid
+				Column="0">
+				<Grid.RowDefinitions>
+					<RowDefinition
+						Height="213" />
+					<RowDefinition
+						Height="210" />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Border
+					Grid.Row="0"
+					Padding="10"
+					Background="{DynamicResource BlockBackgroundBrush}"
+					CornerRadius="4">
+					<hc:SimpleStackPanel>
+						<Grid
+							Margin="0,5,0,0">
+							<hc:CircleProgressBar
+								Width="140"
+								Height="140"
+								Background="{DynamicResource Background4}"
+								Foreground="#00FFB2"
+								RenderOptions.BitmapScalingMode="HighQuality"
+								Text=""
+								Value="{Binding StatisticsManager.CheckedStrings, Converter={StaticResource StatisticsToProgressValueConverter}}" />
+							<TextBlock
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Bold}"
+								FontSize="17"
+								Foreground="{DynamicResource Text3}">
+								<TextBlock.Text>
+									<MultiBinding
+										Converter="{StaticResource StatisticsToProgressTextConverter}">
+										<Binding
+											Path="StatisticsManager.CheckedStrings" />
+										<Binding
+											Path="StatisticsManager.LoadedStrings" />
+									</MultiBinding>
+								</TextBlock.Text>
+							</TextBlock>
+							<TextBlock
+								Margin="0,80,0,0"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Cursor="Hand"
+								FontFamily="{StaticResource Roboto-Bold}"
+								FontSize="13"
+								Foreground="#00FFB2"
+								Text="{Binding StatisticsManager.Speed}"
+								ToolTip="{Binding StatisticsManager.EstimatedCompletionTime}">
+								<TextBlock.TextDecorations>
+									<TextDecoration
+										Location="Underline">
+										<TextDecoration.Pen>
+											<Pen
+												Brush="#00FFB2">
+												<Pen.DashStyle>
+													<DashStyle
+														Dashes="4" />
+												</Pen.DashStyle>
+											</Pen>
+										</TextDecoration.Pen>
+									</TextDecoration>
+								</TextBlock.TextDecorations>
+								<FrameworkElement.Style>
+									<Style
+										TargetType="{x:Type TextBlock}">
+										<Style.Triggers>
+											<DataTrigger
+												Value="0"
+												Binding="{Binding StatisticsManager.Speed}">
+												<Setter
+													Property="Visibility"
+													Value="Hidden" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</FrameworkElement.Style>
+							</TextBlock>
+						</Grid>
+						<Grid
+							Margin="10,15,10,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							<Button
+								Grid.Column="0"
+								Margin="0,0,4,0"
+								HorizontalAlignment="Stretch"
+								Background="{DynamicResource Background4}"
+								BorderThickness="0"
+								Focusable="False"
+								Command="{Binding StartCommand}"
+								Visibility="{Binding ThreadsManager.State, Converter={StaticResource CheckerStateToVisibilityConverter}, ConverterParameter=Start}">
+								<TextBlock
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="14"
+									Foreground="#64FFD1"
+									Text="{DynamicResource l_START}" />
+							</Button>
+							<Button
+								Grid.Column="0"
+								Margin="0,0,4,0"
+								HorizontalAlignment="Stretch"
+								Background="{DynamicResource Background4}"
+								BorderThickness="0"
+								Focusable="False"
+								Command="{Binding PauseCommand}"
+								Visibility="{Binding ThreadsManager.State, Converter={StaticResource CheckerStateToVisibilityConverter}, ConverterParameter=Pause}">
+								<TextBlock
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="14"
+									Foreground="#63dcff"
+									Text="{DynamicResource l_PAUSE}" />
+							</Button>
+							<Button
+								Grid.Column="0"
+								Margin="0,0,4,0"
+								HorizontalAlignment="Stretch"
+								Background="{DynamicResource Background4}"
+								BorderThickness="0"
+								Focusable="False"
+								Command="{Binding ResumeCommand}"
+								Visibility="{Binding ThreadsManager.State, Converter={StaticResource CheckerStateToVisibilityConverter}, ConverterParameter=Resume}">
+								<TextBlock
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="14"
+									Foreground="#64FFD1"
+									Text="{DynamicResource l_RESUME}" />
+							</Button>
+							<Button
+								Grid.Column="1"
+								Margin="4,0,0,0"
+								HorizontalAlignment="Stretch"
+								Background="{DynamicResource Background4}"
+								BorderThickness="0"
+								Focusable="False"
+								Command="{Binding StopCommand}">
+								<TextBlock
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="14"
+									Foreground="#FF7070"
+									Text="{DynamicResource l_STOP}" />
+							</Button>
+						</Grid>
+					</hc:SimpleStackPanel>
+				</Border>
+				<Border
+					Grid.Row="1"
+					Margin="0,8,0,8"
+					Background="{DynamicResource BlockBackgroundBrush}"
+					CornerRadius="4">
+					<hc:SimpleStackPanel>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							<Button
+								Height="50"
+								HorizontalAlignment="Stretch"
+								hc:BorderElement.CornerRadius="4 0 0 4"
+								Background="{DynamicResource Background4}"
+								BorderBrush="{DynamicResource Background4}"
+								BorderThickness="1"
+								Content="{DynamicResource l_BASE}"
+								Focusable="False"
+								FontFamily="{StaticResource Roboto-Medium}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Command="{Binding LoadBaseCommand}" />
+							<Button
+								Grid.Column="1"
+								Height="50"
+								HorizontalAlignment="Stretch"
+								hc:BorderElement.CornerRadius="0 4 4 0"
+								Background="{DynamicResource Background4}"
+								BorderBrush="{DynamicResource Background4}"
+								BorderThickness="1"
+								Content="{DynamicResource l_PROXY}"
+								Focusable="False"
+								FontFamily="{StaticResource Roboto-Medium}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Command="{Binding OpenProxyLoaderPageCommand}" />
+						</Grid>
+						<hc:SimpleStackPanel
+							Margin="15,10,20,0">
+							<Grid
+								Margin="0,6,0,0">
+								<Path
+									HorizontalAlignment="Left"
+									VerticalAlignment="Center"
+									Style="{StaticResource DocumentIcon}" />
+								<TextBlock
+									Margin="33,0,0,0"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="{DynamicResource Text3}"
+									Text="{DynamicResource l_TotalLines}" />
+								<TextBlock
+									HorizontalAlignment="Right"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="{DynamicResource Text3}"
+									Text="{Binding StatisticsManager.LoadedStrings}" />
+							</Grid>
+							<Grid
+								Margin="0,6,0,0">
+								<Path
+									HorizontalAlignment="Left"
+									VerticalAlignment="Center"
+									Style="{StaticResource FileCheckIcon}" />
+								<TextBlock
+									Margin="33,0,0,0"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="{DynamicResource Text3}"
+									Text="{DynamicResource l_Checked}" />
+								<TextBlock
+									HorizontalAlignment="Right"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="{DynamicResource Text3}"
+									Text="{Binding StatisticsManager.CheckedStrings}" />
+							</Grid>
+							<Grid
+								Margin="0,6,0,0">
+								<Path
+									HorizontalAlignment="Left"
+									VerticalAlignment="Center"
+									Style="{StaticResource GlobeIcon}" />
+								<TextBlock
+									Margin="33,0,0,0"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="{DynamicResource Text3}"
+									Text="{DynamicResource l_Proxy}" />
+								<TextBlock
+									HorizontalAlignment="Right"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="{DynamicResource Text3}"
+									Text="{Binding StatisticsManager.LoadedProxy}" />
+							</Grid>
+							<Grid
+								Margin="0,6,0,0">
+								<Path
+									HorizontalAlignment="Left"
+									VerticalAlignment="Center"
+									Style="{StaticResource LayersIcon}" />
+								<TextBlock
+									Margin="33,0,0,0"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="{DynamicResource Text3}"
+									Text="{DynamicResource l_Threads}" />
+								<TextBlock
+									HorizontalAlignment="Right"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Roboto-Regular}"
+									FontSize="13"
+									Foreground="{DynamicResource Text3}"
+									Text="{Binding ThreadsManager.ThreadsCount}" />
+							</Grid>
+						</hc:SimpleStackPanel>
+					</hc:SimpleStackPanel>
+				</Border>
+				<Border
+					Name="ResultStatisticsBorder"
+					Grid.Row="2"
+					Padding="15,13,20,0"
+					Background="{DynamicResource BlockBackgroundBrush}"
+					CornerRadius="4">
+					<hc:SimpleStackPanel
+						VerticalAlignment="Top">
+						<Grid>
+							<Path
+								HorizontalAlignment="Left"
+								VerticalAlignment="Center"
+								Style="{StaticResource CheckIcon}" />
+							<TextBlock
+								Margin="33,0,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="{DynamicResource l_Good}" />
+							<TextBlock
+								Name="GoodMailsCount"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="0" />
+						</Grid>
+						<Grid
+							Margin="0,7,0,0">
+							<Path
+								HorizontalAlignment="Left"
+								VerticalAlignment="Center"
+								Style="{StaticResource EnvelopeIcon}" />
+							<TextBlock
+								Margin="33,0,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="{DynamicResource l_Found}" />
+							<TextBlock
+								Name="FoundMailsCount"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="0" />
+						</Grid>
+						<Grid
+							Margin="0,7,0,0">
+							<Path
+								HorizontalAlignment="Left"
+								VerticalAlignment="Center"
+								RenderTransformOrigin="0.5, -0.5"
+								Style="{StaticResource SmallCrossIcon}">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="0.9"
+										ScaleY="0.9" />
+								</UIElement.RenderTransform>
+							</Path>
+							<TextBlock
+								Margin="33,0,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="{DynamicResource l_Bad}" />
+							<TextBlock
+								Name="BadMailsCount"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="0" />
+						</Grid>
+						<Grid
+							Margin="0,7,0,0">
+							<Path
+								HorizontalAlignment="Left"
+								VerticalAlignment="Center"
+								Style="{StaticResource LockIcon}" />
+							<TextBlock
+								Margin="33,0,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="{DynamicResource l_Blocked}" />
+							<TextBlock
+								Name="BlockedMailsCount"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="0" />
+						</Grid>
+						<Grid
+							Margin="0,9,0,0">
+							<Label
+								Height="17"
+								Margin="3,0,0,0"
+								Padding="5,0,5,0"
+								HorizontalAlignment="Left"
+								VerticalContentAlignment="Center"
+								Background="#00FFFFFF"
+								BorderBrush="{DynamicResource Text1}"
+								Content="C"
+								FontSize="10"
+								Foreground="{DynamicResource Text1}" />
+							<TextBlock
+								Margin="33,0,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="{DynamicResource l_Captcha}" />
+							<TextBlock
+								Name="CaptchaMailsCount"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="0" />
+						</Grid>
+						<Grid
+							Margin="0,9,0,0">
+							<Path
+								HorizontalAlignment="Left"
+								VerticalAlignment="Center"
+								Style="{StaticResource ExclamationIcon}" />
+							<TextBlock
+								Margin="33,0,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="{DynamicResource l_Errors}" />
+							<TextBlock
+								Name="ErrorMailsCount"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="0" />
+						</Grid>
+						<Grid
+							Margin="0,5,0,0">
+							<Path
+								HorizontalAlignment="Left"
+								VerticalAlignment="Center"
+								Style="{StaticResource DatabaseIcon}" />
+							<TextBlock
+								Margin="33,0,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="{DynamicResource l_HostNotFound}" />
+							<TextBlock
+								Name="NoHostMailsCount"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="0" />
+						</Grid>
+						<Grid
+							Margin="0,5,0,0">
+							<Path
+								HorizontalAlignment="Left"
+								VerticalAlignment="Center"
+								Style="{StaticResource LayersIcon}" />
+							<TextBlock
+								Margin="33,0,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="{DynamicResource l_Multipasswords}" />
+							<TextBlock
+								Name="MultipasswordMailsCount"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								Foreground="{DynamicResource Text3}"
+								Text="0" />
+						</Grid>
+					</hc:SimpleStackPanel>
+				</Border>
+				<Grid
+					Row="2">
+					<Grid.RowDefinitions>
+						<RowDefinition />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Border
+						Name="CameraBorder"
+						Grid.Row="0"
+						Padding="15,0,20,0"
+						BorderBrush="#64FFD1"
+						BorderThickness="0,0,0,3"
+						CornerRadius="4 4 0 0"
+						Cursor="Hand"
+						MouseDown="OnScreenshot">
+						<Border.Background>
+							<SolidColorBrush
+								Opacity="0.1"
+								Color="White" />
+						</Border.Background>
+						<FrameworkElement.Style>
+							<Style
+								TargetType="{x:Type Border}">
+								<Setter
+									Property="BorderBrush"
+									Value="#64FFD1" />
+								<Setter
+									Property="Visibility"
+									Value="Hidden" />
+								<Style.Triggers>
+									<Trigger
+										Property="UIElement.IsMouseOver"
+										Value="True">
+										<Setter
+											Property="Visibility"
+											Value="Visible" />
+									</Trigger>
+									<DataTrigger
+										Value="True"
+										Binding="{Binding IsMouseOver, ElementName=ResultStatisticsBorder}">
+										<Setter
+											Property="Visibility"
+											Value="Visible" />
+									</DataTrigger>
+									<EventTrigger
+										RoutedEvent="MouseDown">
+										<EventTrigger.Actions>
+											<BeginStoryboard>
+												<Storyboard
+													TargetProperty="BorderBrush.Color">
+													<ColorAnimation
+														AutoReverse="True"
+														To="Black"
+														Duration="0:0:0.2" />
+												</Storyboard>
+											</BeginStoryboard>
+											<BeginStoryboard>
+												<Storyboard
+													TargetProperty="Background.Color">
+													<ColorAnimation
+														AutoReverse="True"
+														To="Black"
+														Duration="0:0:0.2" />
+												</Storyboard>
+											</BeginStoryboard>
+										</EventTrigger.Actions>
+									</EventTrigger>
+								</Style.Triggers>
+							</Style>
+						</FrameworkElement.Style>
+						<Path
+							Name="ScreenshotIconElement"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Fill="#64FFD1"
+							RenderTransformOrigin="0.5, 0.5"
+							Style="{StaticResource CameraIcon}">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="2"
+									ScaleY="2" />
+							</UIElement.RenderTransform>
+						</Path>
+					</Border>
+					<Border
+						Name="DetailsBorder"
+						Grid.Row="1"
+						Padding="15,0,20,0"
+						BorderBrush="#64FFD1"
+						BorderThickness="0,3,0,0"
+						CornerRadius="0 0 4 4"
+						Cursor="Hand">
+						<hc:Interaction.Triggers>
+							<hc:EventTrigger
+								EventName="MouseDown">
+								<hc:EventToCommand
+									Command="{Binding ShowStatisticDetailsCommand}" />
+							</hc:EventTrigger>
+						</hc:Interaction.Triggers>
+						<Border.Background>
+							<SolidColorBrush
+								Opacity="0.1"
+								Color="White" />
+						</Border.Background>
+						<FrameworkElement.Style>
+							<Style
+								TargetType="{x:Type Border}">
+								<Setter
+									Property="BorderBrush"
+									Value="#64FFD1" />
+								<Setter
+									Property="Visibility"
+									Value="Hidden" />
+								<Style.Triggers>
+									<Trigger
+										Property="UIElement.IsMouseOver"
+										Value="True">
+										<Setter
+											Property="Visibility"
+											Value="Visible" />
+									</Trigger>
+									<DataTrigger
+										Value="True"
+										Binding="{Binding IsMouseOver, ElementName=ResultStatisticsBorder}">
+										<Setter
+											Property="Visibility"
+											Value="Visible" />
+									</DataTrigger>
+									<EventTrigger
+										RoutedEvent="MouseDown">
+										<EventTrigger.Actions>
+											<BeginStoryboard>
+												<Storyboard
+													TargetProperty="BorderBrush.Color">
+													<ColorAnimation
+														AutoReverse="True"
+														To="Black"
+														Duration="0:0:0.2" />
+												</Storyboard>
+											</BeginStoryboard>
+											<BeginStoryboard>
+												<Storyboard
+													TargetProperty="Background.Color">
+													<ColorAnimation
+														AutoReverse="True"
+														To="Black"
+														Duration="0:0:0.2" />
+												</Storyboard>
+											</BeginStoryboard>
+										</EventTrigger.Actions>
+									</EventTrigger>
+								</Style.Triggers>
+							</Style>
+						</FrameworkElement.Style>
+						<Path
+							Name="DetailsIconElement"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Data="{StaticResource InfoGeometry}"
+							Fill="#64FFD1"
+							RenderTransformOrigin="0.5, 0.5"
+							Stretch="Uniform">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.3"
+									ScaleY="0.3" />
+							</UIElement.RenderTransform>
+						</Path>
+					</Border>
+				</Grid>
+			</Grid>
+			<Grid
+				Column="1"
+				Margin="8,0,8,0">
+				<Grid.RowDefinitions>
+					<RowDefinition
+						Height="40" />
+					<RowDefinition />
+					<RowDefinition
+						Height="75" />
+				</Grid.RowDefinitions>
+				<Border
+					Background="{DynamicResource BlockBackgroundBrush}"
+					CornerRadius="4">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition
+								Width="40" />
+							<ColumnDefinition />
+							<ColumnDefinition
+								Width="40" />
+						</Grid.ColumnDefinitions>
+						<Path
+							Margin="10,0,0,0"
+							VerticalAlignment="Center"
+							RenderTransformOrigin="0.5, 0.5"
+							Style="{StaticResource SearchIcon}">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.6"
+									ScaleY="0.6" />
+							</UIElement.RenderTransform>
+						</Path>
+						<hc:TextBox
+							Name="SearchInput"
+							Grid.Column="1"
+							Height="20"
+							InfoElement.Placeholder="{DynamicResource l_MainDataGridSearchPlaceholder}"
+							ThemeManager.RequestedTheme="Default"
+							Background="{DynamicResource BlockBackgroundBrush}"
+							BorderThickness="0"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="13"
+							Foreground="{DynamicResource Text3}"
+							Text="{Binding MailManager.SearchQuery, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+							<UIElement.InputBindings>
+								<KeyBinding
+									Key="Enter"
+									Command="{Binding SearchCommand}" />
+							</UIElement.InputBindings>
+						</hc:TextBox>
+						<Button
+							Grid.Column="2"
+							Width="33"
+							Padding="10"
+							HorizontalAlignment="Center"
+							HorizontalContentAlignment="Center"
+							VerticalContentAlignment="Center"
+							hc:IconElement.Geometry="{StaticResource CloseGeometry}"
+							Background="{DynamicResource Background4}"
+							BorderThickness="0"
+							Focusable="False"
+							Foreground="#FF7070"
+							Command="{Binding ResetSearchCommand}"
+							Visibility="{Binding MailManager.SearchQuery, Converter={StaticResource String2VisibilityConverter}}" />
+					</Grid>
+				</Border>
+				<Grid
+					Row="1"
+					Margin="0,8,0,8">
+					<Border
+						Name="ResultsDataGridMaskBorder"
+						Background="{DynamicResource BlockBackgroundBrush}"
+						CornerRadius="4" />
+					<DataGrid
+						Name="ResultsDataGrid"
+						Margin="5"
+						hc:ThemeManager.RequestedAccentColor="#64FFD1"
+						hc:ThemeManager.RequestedTheme="Dark"
+						AlternationCount="2"
+						AutoGenerateColumns="False"
+						Background="#00FFFFFF"
+						CanUserAddRows="False"
+						ColumnHeaderHeight="50"
+						FontSize="12"
+						HeadersVisibility="Column"
+						HorizontalScrollBarVisibility="Disabled"
+						MinRowHeight="40"
+						RowHeight="{x:Static sys:Double.NaN}"
+						SelectionMode="Single"
+						ItemsSource="{Binding MailManager.FilteredMailboxResults}">
+						<UIElement.OpacityMask>
+							<VisualBrush
+								Visual="{Binding ElementName=ResultsDataGridMaskBorder}" />
+						</UIElement.OpacityMask>
+						<FrameworkElement.Resources>
+							<ResourceDictionary>
+								<uimodels:BindingProxy
+									Data="{Binding}"
+									x:Key="MainDataGridProxy" />
+							</ResourceDictionary>
+						</FrameworkElement.Resources>
+						<DataGrid.Columns>
+							<DataGridTextColumn
+								Width="*"
+								MinWidth="90"
+								FontFamily="{StaticResource Roboto-Regular}"
+								Header="{DynamicResource l_Address}"
+								IsReadOnly="True"
+								Binding="{Binding Address}">
+								<DataGridColumn.CellStyle>
+									<!--Неизвестный ID соединения: 22-->
+									<Style
+										BasedOn="{StaticResource DataGridCellStyle}"
+										TargetType="{x:Type DataGridCell}">
+										<Setter
+											Property="Padding"
+											Value="10,0,10,0" />
+										<Setter
+											Property="Foreground"
+											Value="{DynamicResource Text3}" />
+										<Setter
+											Property="Focusable"
+											Value="False" />
+										<Style.Triggers>
+											<Trigger
+												Property="DataGridCell.IsSelected"
+												Value="True">
+												<Setter
+													Property="Background"
+													Value="{DynamicResource Background7}" />
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+								</DataGridColumn.CellStyle>
+								<DataGridColumn.HeaderStyle>
+									<Style
+										BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+										TargetType="{x:Type DataGridColumnHeader}">
+										<Setter
+											Property="Foreground"
+											Value="{DynamicResource Text3}" />
+										<Setter
+											Property="FontFamily"
+											Value="{StaticResource Roboto-Regular}" />
+									</Style>
+								</DataGridColumn.HeaderStyle>
+							</DataGridTextColumn>
+							<DataGridTextColumn
+								Width="*"
+								MinWidth="90"
+								FontFamily="{StaticResource Roboto-Regular}"
+								Header="{DynamicResource l_Password}"
+								IsReadOnly="True"
+								Binding="{Binding Password}">
+								<DataGridColumn.CellStyle>
+									<!--Неизвестный ID соединения: 23-->
+									<Style
+										BasedOn="{StaticResource DataGridCellStyle}"
+										TargetType="{x:Type DataGridCell}">
+										<Setter
+											Property="Padding"
+											Value="10,0,10,0" />
+										<Setter
+											Property="Foreground"
+											Value="{DynamicResource Text3}" />
+										<Setter
+											Property="Focusable"
+											Value="False" />
+										<Style.Triggers>
+											<Trigger
+												Property="DataGridCell.IsSelected"
+												Value="True">
+												<Setter
+													Property="Background"
+													Value="{DynamicResource Background7}" />
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+								</DataGridColumn.CellStyle>
+								<DataGridColumn.HeaderStyle>
+									<Style
+										BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+										TargetType="{x:Type DataGridColumnHeader}">
+										<Setter
+											Property="Foreground"
+											Value="{DynamicResource Text3}" />
+										<Setter
+											Property="FontFamily"
+											Value="{StaticResource Roboto-Regular}" />
+									</Style>
+								</DataGridColumn.HeaderStyle>
+							</DataGridTextColumn>
+							<DataGridTextColumn
+								Width="*"
+								MinWidth="90"
+								FontFamily="{StaticResource Roboto-Regular}"
+								Header="{DynamicResource l_Request}"
+								IsReadOnly="True"
+								Binding="{Binding Request}"
+								Visibility="{Binding Data.SearchSettings.Search, Converter={StaticResource Boolean2VisibilityConverter}, Source={StaticResource MainDataGridProxy}}">
+								<DataGridColumn.CellStyle>
+									<!--Неизвестный ID соединения: 24-->
+									<Style
+										BasedOn="{StaticResource DataGridCellStyle}"
+										TargetType="{x:Type DataGridCell}">
+										<Setter
+											Property="Padding"
+											Value="10,0,10,0" />
+										<Setter
+											Property="Foreground"
+											Value="{DynamicResource Text3}" />
+										<Setter
+											Property="Focusable"
+											Value="False" />
+										<Style.Triggers>
+											<Trigger
+												Property="DataGridCell.IsSelected"
+												Value="True">
+												<Setter
+													Property="Background"
+													Value="{DynamicResource Background7}" />
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+								</DataGridColumn.CellStyle>
+								<DataGridColumn.HeaderStyle>
+									<Style
+										BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+										TargetType="{x:Type DataGridColumnHeader}">
+										<Setter
+											Property="Foreground"
+											Value="{DynamicResource Text3}" />
+										<Setter
+											Property="FontFamily"
+											Value="{StaticResource Roboto-Regular}" />
+									</Style>
+								</DataGridColumn.HeaderStyle>
+							</DataGridTextColumn>
+							<DataGridTextColumn
+								Width="0.5*"
+								MinWidth="50"
+								FontFamily="{StaticResource Roboto-Regular}"
+								Header="{DynamicResource l_Found}"
+								IsReadOnly="True"
+								Binding="{Binding Count}"
+								Visibility="{Binding Data.SearchSettings.Search, Converter={StaticResource Boolean2VisibilityConverter}, Source={StaticResource MainDataGridProxy}}">
+								<DataGridColumn.CellStyle>
+									<Style
+										BasedOn="{StaticResource DataGridCellStyle}"
+										TargetType="{x:Type DataGridCell}">
+										<Setter
+											Property="Padding"
+											Value="10,0,10,0" />
+										<Setter
+											Property="Foreground"
+											Value="{DynamicResource Text3}" />
+										<Setter
+											Property="Focusable"
+											Value="False" />
+										<Style.Triggers>
+											<Trigger
+												Property="DataGridCell.IsSelected"
+												Value="True">
+												<Setter
+													Property="Background"
+													Value="{DynamicResource Background7}" />
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+								</DataGridColumn.CellStyle>
+								<DataGridColumn.HeaderStyle>
+									<Style
+										BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+										TargetType="{x:Type DataGridColumnHeader}">
+										<Setter
+											Property="Foreground"
+											Value="{DynamicResource Text3}" />
+										<Setter
+											Property="FontFamily"
+											Value="{StaticResource Roboto-Regular}" />
+									</Style>
+								</DataGridColumn.HeaderStyle>
+							</DataGridTextColumn>
+							<DataGridTemplateColumn
+								Width="40"
+								MinWidth="40"
+								CanUserResize="False">
+								<DataGridColumn.CellStyle>
+									<Style
+										BasedOn="{StaticResource DataGridCellStyle}"
+										TargetType="{x:Type DataGridCell}">
+										<Setter
+											Property="Template">
+											<Setter.Value>
+												<ControlTemplate>
+													<Button
+														Name="OpenWithViewerButton"
+														Width="40"
+														Height="40"
+														Padding="0"
+														HorizontalAlignment="Right"
+														hc:BorderElement.CornerRadius="0 4 4 0"
+														hc:IconElement.Geometry="{StaticResource SearchGeometry}"
+														hc:IconElement.Height="12"
+														Background="#343434"
+														BorderBrush="#d9d9d9"
+														BorderThickness="0,0,0,0"
+														Cursor="Hand"
+														Focusable="False"
+														Foreground="#d9d9d9"
+														Command="{Binding Data.OpenThroughEmailViewerCommand, Source={StaticResource MainDataGridProxy}}"
+														CommandParameter="{Binding}" />
+												</ControlTemplate>
+											</Setter.Value>
+										</Setter>
+									</Style>
+								</DataGridColumn.CellStyle>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+						<DataGrid.RowStyle>
+							<Style
+								BasedOn="{StaticResource DataGridRowStyle}"
+								TargetType="{x:Type DataGridRow}">
+								<Setter
+									Property="Background"
+									Value="{DynamicResource Background4}" />
+								<Style.Triggers>
+									<Trigger
+										Property="UIElement.IsMouseOver"
+										Value="True">
+										<Setter
+											Property="Background"
+											Value="#333333" />
+									</Trigger>
+									<Trigger
+										Property="DataGridRow.IsSelected"
+										Value="True">
+										<Setter
+											Property="Background"
+											Value="{DynamicResource Background7}" />
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</DataGrid.RowStyle>
+					</DataGrid>
+				</Grid>
+				<Grid
+					Row="2">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition
+							Width="8" />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+					<Button
+						Height="Auto"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						BorderBrush="#00FFFFFF"
+						BorderThickness="1"
+						Cursor="Hand"
+						Focusable="False"
+						Command="{Binding OpenViewerCommand}">
+						<FrameworkElement.Style>
+							<Style
+								BasedOn="{StaticResource Button}"
+								TargetType="{x:Type Button}">
+								<Style.Triggers>
+									<Trigger
+										Property="UIElement.IsMouseOver"
+										Value="True">
+										<Setter
+											Property="Background">
+											<Setter.Value>
+												<LinearGradientBrush
+													SpreadMethod="Repeat"
+													StartPoint="0, 0"
+													EndPoint="1, 1">
+													<GradientStop
+														Offset="0"
+														Color="#232526" />
+													<GradientStop
+														Offset="1"
+														Color="#414345" />
+												</LinearGradientBrush>
+											</Setter.Value>
+										</Setter>
+									</Trigger>
+									<Trigger
+										Property="UIElement.IsMouseOver"
+										Value="False">
+										<Setter
+											Property="Background"
+											Value="{DynamicResource BlockBackgroundBrush}" />
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</FrameworkElement.Style>
+						<StackPanel
+							Orientation="Horizontal">
+							<Path
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								RenderTransformOrigin="0.5, 0.5"
+								Style="{StaticResource MailViewerIcon}">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="1.2"
+										ScaleY="1.2" />
+								</UIElement.RenderTransform>
+								<Shape.Fill>
+									<LinearGradientBrush
+										SpreadMethod="Repeat"
+										StartPoint="0, 1"
+										EndPoint="1, 0">
+										<GradientStop
+											Offset="0"
+											Color="#8de9d5" />
+										<GradientStop
+											Offset="1"
+											Color="#32c4c0" />
+									</LinearGradientBrush>
+								</Shape.Fill>
+							</Path>
+							<TextBlock
+								Margin="20,00,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="14"
+								Foreground="#d9d9d9"
+								Text="{DynamicResource l_Client}" />
+						</StackPanel>
+					</Button>
+					<Button
+						Grid.Column="2"
+						Height="Auto"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						BorderBrush="#00FFFFFF"
+						BorderThickness="1"
+						Cursor="Hand"
+						Focusable="False"
+						Command="{Binding OpenSchedulerCommand}">
+						<FrameworkElement.Style>
+							<Style
+								BasedOn="{StaticResource Button}"
+								TargetType="{x:Type Button}">
+								<Style.Triggers>
+									<Trigger
+										Property="UIElement.IsMouseOver"
+										Value="True">
+										<Setter
+											Property="Background">
+											<Setter.Value>
+												<LinearGradientBrush
+													SpreadMethod="Repeat"
+													StartPoint="0, 0"
+													EndPoint="1, 1">
+													<GradientStop
+														Offset="0"
+														Color="#232526" />
+													<GradientStop
+														Offset="1"
+														Color="#414345" />
+												</LinearGradientBrush>
+											</Setter.Value>
+										</Setter>
+									</Trigger>
+									<Trigger
+										Property="UIElement.IsMouseOver"
+										Value="False">
+										<Setter
+											Property="Background"
+											Value="{DynamicResource BlockBackgroundBrush}" />
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</FrameworkElement.Style>
+						<StackPanel
+							Orientation="Horizontal">
+							<Path
+								Width="20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Data="{StaticResource ClockGeometry}"
+								RenderTransformOrigin="0.5, 0.5"
+								Stretch="Uniform">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="1.4"
+										ScaleY="1.4" />
+								</UIElement.RenderTransform>
+								<Shape.Fill>
+									<LinearGradientBrush
+										SpreadMethod="Repeat"
+										StartPoint="0, 1"
+										EndPoint="1, 0">
+										<GradientStop
+											Offset="0"
+											Color="#8de9d5" />
+										<GradientStop
+											Offset="1"
+											Color="#32c4c0" />
+									</LinearGradientBrush>
+								</Shape.Fill>
+							</Path>
+							<TextBlock
+								Margin="20,00,0,0"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="14"
+								Foreground="#d9d9d9"
+								Text="{DynamicResource l_Scheduler}" />
+						</StackPanel>
+					</Button>
+				</Grid>
+			</Grid>
+			<Grid
+				Column="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition
+						Width="50" />
+				</Grid.ColumnDefinitions>
+				<Border
+					Name="SideMenuMask"
+					Grid.Column="1"
+					Margin="1"
+					Background="#FF000000"
+					BorderThickness="0"
+					CornerRadius="0 4 4 0" />
+				<Border
+					Background="{DynamicResource BlockBackgroundBrush}"
+					BorderThickness="0"
+					CornerRadius="4 0 0 4">
+					<Frame
+						Name="MainSettingsFrame"
+						Margin="5"
+						Padding="0"
+						BorderThickness="0"
+						NavigationUIVisibility="Hidden" />
+				</Border>
+				<hc:SideMenu
+					Grid.Column="1"
+					ThemeManager.RequestedTheme="Dark"
+					Background="{DynamicResource BlockBackgroundBrush}"
+					BorderBrush="#2b2b2b"
+					BorderThickness="2,0,0,0"
+					SideBrush="#00FFB2"
+					SubSideBrush="#FF7070">
+					<UIElement.OpacityMask>
+						<VisualBrush
+							Visual="{Binding ElementName=SideMenuMask}" />
+					</UIElement.OpacityMask>
+					<hc:SideMenuItem
+						Background="{DynamicResource BlockBackgroundBrush}"
+						IsSelected="True"
+						Selected="GlobalSettings_Selected">
+						<hc:HeaderedSimpleItemsControl.Header>
+							<Path
+								Margin="1,0,0,0"
+								Fill="#c2c2c2"
+								RenderTransformOrigin="0.5, 0.5"
+								Style="{StaticResource SettingsIcon}">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="0.8"
+										ScaleY="0.8" />
+								</UIElement.RenderTransform>
+							</Path>
+						</hc:HeaderedSimpleItemsControl.Header>
+					</hc:SideMenuItem>
+					<hc:SideMenuItem
+						Background="{DynamicResource BlockBackgroundBrush}"
+						Header="GlobalSearchSettings"
+						Selected="GlobalSearchSettings_Selected">
+						<hc:SideMenuItem.Icon>
+							<Path
+								Margin="1,3,0,0"
+								Fill="#c2c2c2"
+								RenderTransformOrigin="0.5, 0.5"
+								StrokeThickness="30"
+								Style="{StaticResource MailIcon}">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="0.8"
+										ScaleY="0.8" />
+								</UIElement.RenderTransform>
+							</Path>
+						</hc:SideMenuItem.Icon>
+						<hc:SideMenuItem
+							Header="SearchSettings"
+							Selected="SearchSettings_Selected">
+							<hc:SideMenuItem.Icon>
+								<Path
+									Margin="1,3,0,0"
+									Fill="#c2c2c2"
+									RenderTransformOrigin="0.5, 0.5"
+									StrokeThickness="30"
+									Style="{StaticResource MailSettingsIcon}">
+									<UIElement.RenderTransform>
+										<ScaleTransform
+											ScaleX="0.7"
+											ScaleY="0.7" />
+									</UIElement.RenderTransform>
+								</Path>
+							</hc:SideMenuItem.Icon>
+						</hc:SideMenuItem>
+						<hc:SideMenuItem
+							Header="RequestsSettings"
+							Selected="RequestsSettings_Selected">
+							<hc:SideMenuItem.Icon>
+								<Path
+									Margin="1,3,0,0"
+									Fill="#c2c2c2"
+									RenderTransformOrigin="0.5, 0.5"
+									StrokeThickness="30"
+									Style="{StaticResource MailSearchIcon}">
+									<UIElement.RenderTransform>
+										<ScaleTransform
+											ScaleX="0.7"
+											ScaleY="0.7" />
+									</UIElement.RenderTransform>
+								</Path>
+							</hc:SideMenuItem.Icon>
+						</hc:SideMenuItem>
+					</hc:SideMenuItem>
+					<hc:SideMenuItem
+						Background="{DynamicResource BlockBackgroundBrush}"
+						IsSelected="True"
+						Selected="ConfigurationSettings_Selected">
+						<hc:SideMenuItem.Icon>
+							<Path
+								Margin="1,0,0,0"
+								Fill="#c2c2c2"
+								RenderTransformOrigin="0.5, 0.5"
+								Style="{StaticResource DatabaseIcon}">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="0.8"
+										ScaleY="0.8" />
+								</UIElement.RenderTransform>
+							</Path>
+						</hc:SideMenuItem.Icon>
+					</hc:SideMenuItem>
+					<hc:SideMenuItem
+						Background="{DynamicResource BlockBackgroundBrush}"
+						IsSelected="True"
+						Selected="WebSettings_Selected">
+						<hc:SideMenuItem.Icon>
+							<Path
+								Margin="1,0,0,0"
+								Fill="#c2c2c2"
+								RenderTransformOrigin="0.5, 0.5"
+								Style="{StaticResource GlobeIcon}">
+								<UIElement.RenderTransform>
+									<ScaleTransform
+										ScaleX="0.8"
+										ScaleY="0.8" />
+								</UIElement.RenderTransform>
+							</Path>
+						</hc:SideMenuItem.Icon>
+					</hc:SideMenuItem>
+				</hc:SideMenu>
+				<Button
+					Grid.Column="1"
+					Height="50"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Bottom"
+					hc:IconElement.Geometry="{StaticResource TelegramGeometry}"
+					hc:IconElement.Height="16"
+					Background="#00FFFFFF"
+					BorderThickness="0"
+					Cursor="Hand"
+					Focusable="False"
+					Foreground="#65d8ff"
+					Command="{Binding OpenTelegramCommand}" />
+			</Grid>
+		</Grid>
+		<Frame
+			Name="MainOverlayFrame"
+			Grid.Row="1"
+			Grid.RowSpan="3"
+			Grid.ColumnSpan="3"
+			Margin="5"
+			Padding="0"
+			BorderThickness="0"
+			NavigationUIVisibility="Hidden" />
+	</Grid>
+</Window>

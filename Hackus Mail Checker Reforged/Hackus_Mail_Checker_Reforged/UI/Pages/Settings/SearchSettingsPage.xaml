@@ -1,0 +1,342 @@
+<Page
+	x:Class="Hackus_Mail_Checker_Reforged.UI.Pages.Settings.SearchSettingsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Pages.Settings" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="SearchSettingsPage">
+	<hc:TransitioningContentControl
+		TransitionMode="Right2LeftWithFade">
+		<StackPanel
+			Margin="5,0,5,0">
+			<Border
+				Height="30"
+				Background="#202020"
+				CornerRadius="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_SearchSettings}" />
+			</Border>
+			<Grid
+				Margin="0,15,0,0">
+				<CheckBox
+					Name="SearchMailsCheckBox"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_SearchLetters}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.Search}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_FromMailsDescription}"
+				ToolTipService.ShowDuration="20000"
+				IsEnabled="{Binding ElementName=SearchMailsCheckBox, Path=IsChecked}">
+				<CheckBox
+					Name="SearchFromCheckBox"
+					VerticalAlignment="Center"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_LettersFrom}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.UseSearchLimit}" />
+				<hc:NumericUpDown
+					Width="80"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Maximum="1000"
+					Minimum="1"
+					IsEnabled="{Binding ElementName=SearchFromCheckBox, Path=IsChecked}"
+					Value="{Binding SearchSettings.SearchLimit}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0">
+				<CheckBox
+					Name="CheckDateCheckBox"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_SearchByDate}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.CheckDate}"
+					IsEnabled="{Binding ElementName=SearchMailsCheckBox, Path=IsChecked}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				IsEnabled="{Binding ElementName=SearchMailsCheckBox, Path=IsChecked}">
+				<hc:DatePicker
+					Width="110"
+					HorizontalAlignment="Left"
+					InfoElement.Placeholder="{DynamicResource l_From}"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					FontFamily="{StaticResource Roboto-Regular}"
+					Foreground="#d9d9d9"
+					IsEnabled="{Binding ElementName=CheckDateCheckBox, Path=IsChecked}"
+					SelectedDate="{Binding SearchSettings.DateFrom}" />
+				<hc:DatePicker
+					Width="110"
+					HorizontalAlignment="Right"
+					InfoElement.Placeholder="{DynamicResource l_To}"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					FontFamily="{StaticResource Roboto-Regular}"
+					Foreground="#d9d9d9"
+					IsEnabled="{Binding ElementName=CheckDateCheckBox, Path=IsChecked}"
+					SelectedDate="{Binding SearchSettings.DateTo}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_AdditionalCheckDescription}"
+				ToolTipService.ShowDuration="20000"
+				IsEnabled="{Binding ElementName=SearchMailsCheckBox, Path=IsChecked}">
+				<CheckBox
+					Name="AdditionalCheckBox"
+					VerticalAlignment="Center"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_AdditionalCheck}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.UseRebruteDomainFilters}" />
+				<Button
+					Width="30"
+					Padding="0"
+					HorizontalAlignment="Right"
+					hc:ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Command="{Binding OpenRebruteDomainsFilterCommand}"
+					IsEnabled="{Binding ElementName=AdditionalCheckBox, Path=IsChecked}">
+					<Path
+						RenderTransformOrigin="0.5, 0.5"
+						Style="{StaticResource SettingsIcon}">
+						<UIElement.RenderTransform>
+							<ScaleTransform
+								ScaleX="0.7"
+								ScaleY="0.7" />
+						</UIElement.RenderTransform>
+					</Path>
+				</Button>
+			</Grid>
+			<Border
+				Height="30"
+				Margin="0,15,0,0"
+				Background="#202020"
+				CornerRadius="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_DownloadingLetters}" />
+			</Border>
+			<StackPanel
+				IsEnabled="{Binding ElementName=SearchMailsCheckBox, Path=IsChecked}">
+				<Grid
+					Margin="0,10,0,0">
+					<CheckBox
+						Name="DownloadLettersCheckBox"
+						VerticalAlignment="Center"
+						hc:ThemeManager.RequestedAccentColor="#64FFD1"
+						hc:ThemeManager.RequestedTheme="Dark"
+						Background="#202020"
+						Content="{DynamicResource l_DownloadLetters}"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						IsChecked="{Binding SearchSettings.DownloadLetters}" />
+					<hc:NumericUpDown
+						Width="80"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Center"
+						ThemeManager.RequestedAccentColor="#64FFD1"
+						ThemeManager.RequestedTheme="Dark"
+						BorderThickness="0"
+						Maximum="5000"
+						Minimum="1"
+						IsEnabled="{Binding ElementName=DownloadLettersCheckBox, Path=IsChecked}"
+						Value="{Binding SearchSettings.DownloadLettersLimit}" />
+				</Grid>
+				<Grid
+					Margin="0,15,0,0"
+					ToolTip="{DynamicResource l_DownloadInSingleFileDescription}"
+					ToolTipService.ShowDuration="20000">
+					<CheckBox
+						hc:ThemeManager.RequestedAccentColor="#64FFD1"
+						hc:ThemeManager.RequestedTheme="Dark"
+						Background="#202020"
+						Content="{DynamicResource l_DownloadInSingleFile}"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						IsChecked="{Binding SearchSettings.DownloadIntoSingleFile}"
+						IsEnabled="{Binding ElementName=DownloadLettersCheckBox, Path=IsChecked}" />
+				</Grid>
+				<Grid
+					Margin="0,20,0,0"
+					ToolTip="{DynamicResource l_DeleteOnServerDescription}"
+					ToolTipService.ShowDuration="10000">
+					<CheckBox
+						hc:ThemeManager.RequestedAccentColor="#64FFD1"
+						hc:ThemeManager.RequestedTheme="Dark"
+						Background="#202020"
+						Content="{DynamicResource l_DeleteWhenDownloaded}"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						IsChecked="{Binding SearchSettings.DeleteWhenDownloaded}"
+						IsEnabled="{Binding ElementName=DownloadLettersCheckBox, Path=IsChecked}" />
+				</Grid>
+				<TextBlock
+					Margin="0,20,0,0"
+					HorizontalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Text="{DynamicResource l_SavedLettersFormat}">
+					<FrameworkElement.Style>
+						<Style
+							TargetType="{x:Type TextBlock}">
+							<Setter
+								Property="Foreground"
+								Value="#6e6e6e" />
+							<Style.Triggers>
+								<DataTrigger
+									Value="True"
+									Binding="{Binding ElementName=DownloadLettersCheckBox, Path=IsChecked}">
+									<Setter
+										Property="Foreground"
+										Value="#d9d9d9" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</FrameworkElement.Style>
+				</TextBlock>
+				<hc:ButtonGroup
+					Margin="0,10,0,0"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					IsEnabled="{Binding ElementName=DownloadLettersCheckBox, Path=IsChecked}">
+					<RadioButton
+						Content="TEXT"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						IsChecked="{Binding SearchSettings.DownloadMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Plain}" />
+					<RadioButton
+						Content="HTML"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						IsChecked="{Binding SearchSettings.DownloadMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Html}" />
+				</hc:ButtonGroup>
+				<Border
+					Height="30"
+					Margin="0,20,0,0"
+					Background="#202020"
+					CornerRadius="4">
+					<TextBlock
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						Text="{DynamicResource l_AdditionalSettings}" />
+				</Border>
+			</StackPanel>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_DownloadAttachmentsDescription}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					Name="SearchAttachmentsCheckBox"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_SearchAttachments}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.SearchAttachments}" />
+			</Grid>
+			<hc:ButtonGroup
+				Margin="0,15,0,0"
+				ThemeManager.RequestedAccentColor="#64FFD1"
+				ThemeManager.RequestedTheme="Dark"
+				IsEnabled="{Binding ElementName=SearchAttachmentsCheckBox, Path=IsChecked}">
+				<RadioButton
+					Content="{DynamicResource l_Everywhere}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.SearchAttachmentsMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Everywhere}" />
+				<RadioButton
+					Content="{DynamicResource l_InDownloaded}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.SearchAttachmentsMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=InDownloaded}" />
+			</hc:ButtonGroup>
+			<Grid
+				Margin="0,10,0,0"
+				ToolTip="{DynamicResource l_AttachmentFilterDescription}"
+				ToolTipService.ShowDuration="20000"
+				IsEnabled="{Binding ElementName=SearchAttachmentsCheckBox, Path=IsChecked}">
+				<CheckBox
+					Name="AttachmentFilterCheckBox"
+					VerticalAlignment="Center"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_AttachmentsFilter}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.UseAttachmentFilters}" />
+				<Button
+					Width="30"
+					Padding="0"
+					HorizontalAlignment="Right"
+					hc:ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Command="{Binding OpenAttachmentsFilterCommand}"
+					IsEnabled="{Binding ElementName=AttachmentFilterCheckBox, Path=IsChecked}">
+					<Path
+						RenderTransformOrigin="0.5, 0.5"
+						Style="{StaticResource SettingsIcon}">
+						<UIElement.RenderTransform>
+							<ScaleTransform
+								ScaleX="0.7"
+								ScaleY="0.7" />
+						</UIElement.RenderTransform>
+					</Path>
+				</Button>
+			</Grid>
+			<Grid
+				Margin="0,10,0,0">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_toParseContacts}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.ParseContacts}" />
+			</Grid>
+		</StackPanel>
+	</hc:TransitioningContentControl>
+</Page>

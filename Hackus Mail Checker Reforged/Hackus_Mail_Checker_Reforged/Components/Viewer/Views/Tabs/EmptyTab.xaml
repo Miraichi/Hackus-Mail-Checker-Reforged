@@ -1,0 +1,186 @@
+<UserControl
+	x:Class="Hackus_Mail_Checker_Reforged.Components.Viewer.Views.Tabs.EmptyTab" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.Components.Viewer.Views.Tabs" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+	<Grid
+		Background="{DynamicResource WindowBackgroundBrush}">
+		<hc:TransitioningContentControl>
+			<hc:TransitioningContentControl.TransitionStoryboard>
+				<Storyboard>
+					<DoubleAnimation
+						Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+						From=".95"
+						To="1"
+						Duration="0:0:0.9">
+						<DoubleAnimation.EasingFunction>
+							<ElasticEase
+								Oscillations="1" />
+						</DoubleAnimation.EasingFunction>
+					</DoubleAnimation>
+					<DoubleAnimation
+						Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+						From=".95"
+						To="1"
+						Duration="0:0:0.9">
+						<DoubleAnimation.EasingFunction>
+							<ElasticEase
+								Oscillations="1" />
+						</DoubleAnimation.EasingFunction>
+					</DoubleAnimation>
+				</Storyboard>
+			</hc:TransitioningContentControl.TransitionStoryboard>
+			<StackPanel
+				VerticalAlignment="Center">
+				<Border
+					Width="340"
+					Height="40"
+					HorizontalAlignment="Center"
+					Background="#ffd2d2"
+					CornerRadius="4 4 0 0"
+					Visibility="{Binding ErrorMessage, Converter={StaticResource StringToBooleanConverter}}">
+					<StackPanel
+						HorizontalAlignment="Center"
+						Orientation="Horizontal">
+						<Path
+							Margin="0,0,10,0"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Fill="#ff4040"
+							RenderTransformOrigin="0.5, 0.5"
+							Style="{StaticResource ExclamationIcon}">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.8"
+									ScaleY="0.8" />
+							</UIElement.RenderTransform>
+						</Path>
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="13"
+							Foreground="#ff4040"
+							Text="{Binding ErrorMessage}" />
+					</StackPanel>
+				</Border>
+				<Border
+					Width="340"
+					Height="400"
+					Background="#242424"
+					CornerRadius="4 4 0 0">
+					<StackPanel
+						Margin="30,0,30,0">
+						<Image
+							Width="100"
+							Margin="0,30,0,30"
+							RenderOptions.BitmapScalingMode="HighQuality"
+							Source="../../../../Resources/Images/logo.png" />
+						<TextBlock
+							HorizontalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="17"
+							Text="{DynamicResource l_LoginMail}" />
+						<StackPanel
+							Visibility="{Binding IsBusy, Converter={StaticResource Boolean2VisibilityReConverter}}">
+							<hc:TextBox
+								Margin="0,20,0,0"
+								InfoElement.Placeholder="mail@yahoo.com"
+								TitleElement.Title="{DynamicResource l_Login}"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								ShowClearButton="True"
+								Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+								<UIElement.InputBindings>
+									<KeyBinding
+										Key="Enter"
+										Command="{Binding LoginCommand}" />
+								</UIElement.InputBindings>
+							</hc:TextBox>
+							<hc:PasswordBox
+								Margin="0,5,0,0"
+								InfoElement.Placeholder="qwerty"
+								TitleElement.Title="{DynamicResource l_Password}"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13"
+								IsSafeEnabled="False"
+								ShowClearButton="True"
+								ShowEyeButton="True"
+								UnsafePassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+								<UIElement.InputBindings>
+									<KeyBinding
+										Key="Enter"
+										Command="{Binding LoginCommand}" />
+								</UIElement.InputBindings>
+							</hc:PasswordBox>
+							<Button
+								Height="35"
+								Margin="0,20,0,0"
+								HorizontalAlignment="Stretch"
+								BorderBrush="#64FFD1"
+								Content="{DynamicResource l_Enter}"
+								FontFamily="{StaticResource Roboto-Regular}"
+								FontSize="13    "
+								Command="{Binding LoginCommand}" />
+						</StackPanel>
+						<hc:CircleProgressBar
+							Width="130"
+							Height="130"
+							Margin="0,40,0,0"
+							IsIndeterminate="True"
+							Visibility="{Binding IsBusy, Converter={StaticResource Boolean2VisibilityConverter}}" />
+					</StackPanel>
+				</Border>
+				<Button
+					Width="340"
+					Height="50"
+					Margin="0,0,0,0"
+					hc:BorderElement.CornerRadius="0 0 4 4"
+					BorderThickness="0"
+					Cursor="Hand"
+					Command="{Binding OpenToolsCommand}"
+					IsEnabled="{Binding IsBusy, Converter={StaticResource Boolean2BooleanReConverter}}">
+					<Control.Background>
+						<LinearGradientBrush
+							StartPoint="0, 0"
+							EndPoint="1, 1">
+							<GradientStop
+								Offset="0"
+								Color="#3a283b" />
+							<GradientStop
+								Offset="1"
+								Color="#604861" />
+						</LinearGradientBrush>
+					</Control.Background>
+					<Grid
+						Width="340"
+						HorizontalAlignment="Stretch">
+						<Path
+							Margin="30,0,0,0"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"
+							Fill="#d9d9d9"
+							RenderTransformOrigin="0.5, 0.5"
+							Style="{StaticResource MailSettingsIcon}">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.8"
+									ScaleY="0.8" />
+							</UIElement.RenderTransform>
+						</Path>
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="14"
+							Foreground="#d9d9d9"
+							Text="{DynamicResource l_Tools}" />
+						<Path
+							Height="15"
+							Margin="0,0,30,0"
+							HorizontalAlignment="Right"
+							Fill="#d9d9d9"
+							Style="{StaticResource RightPathStyle}" />
+					</Grid>
+				</Button>
+			</StackPanel>
+		</hc:TransitioningContentControl>
+	</Grid>
+</UserControl>

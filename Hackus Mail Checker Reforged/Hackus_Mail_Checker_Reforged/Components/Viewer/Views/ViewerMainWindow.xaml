@@ -1,0 +1,173 @@
+<Window
+	x:Class="Hackus_Mail_Checker_Reforged.Components.Viewer.Views.ViewerMainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.Components.Viewer.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="VIEWER"
+	Width="1000"
+	Height="650"
+	MinWidth="800"
+	MinHeight="650">
+	<FrameworkElement.Resources>
+		<ResourceDictionary />
+	</FrameworkElement.Resources>
+	<WindowChrome.WindowChrome>
+		<WindowChrome
+			CaptionHeight="30"
+			CornerRadius="2"
+			GlassFrameThickness="0"
+			NonClientFrameEdges="None"
+			ResizeBorderThickness="3" />
+	</WindowChrome.WindowChrome>
+	<Grid
+		Background="{DynamicResource WindowBackgroundBrush}">
+		<Grid.RowDefinitions>
+			<RowDefinition
+				Height="30" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Border
+			Margin="0"
+			Padding="0"
+			Background="{DynamicResource WindowHeaderBrush}"
+			BorderThickness="0">
+			<Grid>
+				<TextBlock
+					Margin="20,0,0,0"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#bfbfbf"
+					Text="MAIL VIEWER PENGUIN EDITION" />
+				<StackPanel
+					HorizontalAlignment="Right"
+					Orientation="Horizontal"
+					WindowChrome.IsHitTestVisibleInChrome="True">
+					<Button
+						Width="40"
+						Height="30"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Command="{Binding OpenNewTabCommand}">
+						<Path
+							Data="{StaticResource AddGeometry}"
+							Fill="#64FFDA"
+							RenderTransformOrigin="0.5, 0.5">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.7"
+									ScaleY="0.7" />
+							</UIElement.RenderTransform>
+						</Path>
+					</Button>
+					<Button
+						Width="40"
+						Height="30"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Command="{Binding OpenViewerSettingsCommand}">
+						<Path
+							Fill="{DynamicResource Text2}"
+							RenderTransformOrigin="0.5, 0.5"
+							Style="{StaticResource SettingsIcon}">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.65"
+									ScaleY="0.65" />
+							</UIElement.RenderTransform>
+						</Path>
+					</Button>
+					<Button
+						Width="40"
+						Height="30"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#161616"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#212121"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Content="—"
+						Focusable="False"
+						FontSize="8"
+						Foreground="{DynamicResource Text2}"
+						Style="{StaticResource ButtonCustom}"
+						Command="{Binding HideApplicationCommand}"
+						Click="OnHide" />
+					<Button
+						Width="40"
+						Height="30"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						hc:BackgroundSwitchElement.MouseDownBackground="#e53333"
+						hc:BackgroundSwitchElement.MouseHoverBackground="#ff3b3b"
+						hc:BorderElement.CornerRadius="0"
+						hc:ThemeManager.RequestedTheme="Default"
+						Background="{DynamicResource WindowHeaderBrush}"
+						BorderThickness="0"
+						Focusable="False"
+						Style="{StaticResource ButtonCustom}"
+						Click="OnClose">
+						<Path
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Fill="{DynamicResource Text2}"
+							RenderTransformOrigin="0.2, 0.2"
+							Style="{StaticResource SmallCrossIcon}">
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.7"
+									ScaleY="0.7" />
+							</UIElement.RenderTransform>
+						</Path>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
+		<hc:TabControl
+			Name="Tabs"
+			Grid.Row="1"
+			ThemeManager.RequestedAccentColor="#64FFDA"
+			ThemeManager.RequestedTheme="Dark"
+			Background="#2C2C2C"
+			BorderThickness="0"
+			IsAnimationEnabled="True"
+			IsDraggable="True"
+			IsTabFillEnabled="True"
+			ShowCloseButton="True"
+			ShowContextMenu="False"
+			ShowScrollButton="True"
+			ItemsSource="{Binding Tabs}"
+			TabItem.Closed="Tabs_Closed">
+			<FrameworkElement.Resources>
+				<ResourceDictionary>
+					<Style
+						TargetType="{x:Type hc:TabItem}"
+						x:Key="{x:Type hc:TabItem}">
+						<Setter
+							Property="Background"
+							Value="#FFFF0000" />
+					</Style>
+				</ResourceDictionary>
+			</FrameworkElement.Resources>
+		</hc:TabControl>
+	</Grid>
+</Window>

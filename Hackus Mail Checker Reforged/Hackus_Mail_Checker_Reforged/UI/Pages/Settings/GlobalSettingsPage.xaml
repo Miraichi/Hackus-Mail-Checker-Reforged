@@ -1,0 +1,242 @@
+<Page
+	x:Class="Hackus_Mail_Checker_Reforged.UI.Pages.Settings.GlobalSettingsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Pages.Settings" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="GlobalSettingsPage">
+	<hc:TransitioningContentControl
+		TransitionMode="Right2LeftWithFade">
+		<StackPanel
+			Margin="5,0,5,0">
+			<Border
+				Height="30"
+				Background="#202020"
+				CornerRadius="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_GlobalSettings}" />
+			</Border>
+			<Grid
+				Margin="2,10,0,0"
+				ToolTip="{DynamicResource l_ThreadsDescription}"
+				ToolTipService.ShowDuration="20000">
+				<TextBlock
+					VerticalAlignment="Center"
+					Style="{StaticResource StandartTextStyle}"
+					Text="{DynamicResource l_ThreadsNumber}" />
+				<hc:NumericUpDown
+					Width="80"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Maximum="1000"
+					Minimum="1"
+					Value="{Binding CheckerSettings.Threads}" />
+			</Grid>
+			<Grid
+				Margin="2,10,0,0"
+				ToolTip="{DynamicResource l_TimeoutDescription}"
+				ToolTipService.ShowDuration="20000">
+				<TextBlock
+					VerticalAlignment="Center"
+					Style="{StaticResource StandartTextStyle}"
+					Text="{DynamicResource l_Timeout_s}" />
+				<hc:NumericUpDown
+					Width="80"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Maximum="100"
+					Minimum="1"
+					Value="{Binding CheckerSettings.Timeout}" />
+			</Grid>
+			<Grid
+				Margin="2,10,0,0"
+				ToolTip="{DynamicResource l_RebruteDescription}"
+				ToolTipService.ShowDuration="20000">
+				<TextBlock
+					VerticalAlignment="Center"
+					Style="{StaticResource StandartTextStyle}"
+					Text="{DynamicResource l_Rebrute}" />
+				<hc:NumericUpDown
+					Width="80"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Maximum="30"
+					Minimum="0"
+					Value="{Binding CheckerSettings.Rebrute}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_UseProxyDescription}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_UseProxy}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding ProxySettings.UseProxy}" />
+			</Grid>
+			<Grid
+				Margin="0,20,0,0"
+				ToolTip="{DynamicResource l_CheckWebDescription}"
+				ToolTipService.ShowDuration="20000">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition
+						Width="80" />
+				</Grid.ColumnDefinitions>
+				<Grid
+					VerticalAlignment="Center">
+					<CheckBox
+						Name="CheckByWebCheckBox"
+						hc:ThemeManager.RequestedAccentColor="#64FFD1"
+						hc:ThemeManager.RequestedTheme="Dark"
+						Background="#202020"
+						Content="{DynamicResource l_CheckOnWeb}"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#d9d9d9"
+						IsChecked="{Binding WebSettings.CheckWeb}" />
+				</Grid>
+				<Button
+					Grid.Column="1"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Center"
+					BorderThickness="0"
+					Content="{DynamicResource l_Configure}"
+					Cursor="Hand"
+					Foreground="#d9d9d9"
+					Command="{Binding OpenWebSettingsCommand}"
+					IsEnabled="{Binding ElementName=CheckByWebCheckBox, Path=IsChecked}" />
+			</Grid>
+			<Border
+				Height="30"
+				Margin="0,20,0,0"
+				Background="#202020"
+				CornerRadius="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_AdditionalSettings}" />
+			</Border>
+			<Grid
+				Margin="0,10,0,0"
+				ToolTip="{DynamicResource l_SaveRestDescription}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					Name="SaveRestCheckBox"
+					VerticalAlignment="Center"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_SaveRest_m}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.SaveRest}" />
+				<hc:NumericUpDown
+					Width="80"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Maximum="180"
+					Minimum="1"
+					IsEnabled="{Binding ElementName=SaveRestCheckBox, Path=IsChecked}"
+					Value="{Binding CheckerSettings.SaveRestDelay}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_StartOnBaseLoadedDescription}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_StartOnBaseLoaded}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.StartOnLoadedBase}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_IgnoreDomainsDescription}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					Name="IgnoreDomainsFilterCheckBox"
+					VerticalAlignment="Center"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_IgnoreDomains}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.UseIgnoreDomainFilters}" />
+				<Button
+					Width="30"
+					Padding="0"
+					HorizontalAlignment="Right"
+					hc:ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Command="{Binding OpenDomainsFilterCommand}"
+					IsEnabled="{Binding ElementName=IgnoreDomainsFilterCheckBox, Path=IsChecked}">
+					<Path
+						RenderTransformOrigin="0.5, 0.5"
+						Style="{StaticResource SettingsIcon}">
+						<UIElement.RenderTransform>
+							<ScaleTransform
+								ScaleX="0.7"
+								ScaleY="0.7" />
+						</UIElement.RenderTransform>
+					</Path>
+				</Button>
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_ProcessMultipasswordDescription}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_ProcessMultipassword}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.ProcessMultipassword}" />
+			</Grid>
+			<Grid
+				Margin="0,20,0,0">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_NotifyWhenCompleted}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.NotifyOnCompleted}" />
+			</Grid>
+			<Grid
+				Margin="0,10,0,0" />
+		</StackPanel>
+	</hc:TransitioningContentControl>
+</Page>

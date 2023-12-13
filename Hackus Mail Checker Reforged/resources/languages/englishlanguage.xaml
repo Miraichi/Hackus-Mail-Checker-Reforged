@@ -1,0 +1,624 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+	<sys:String
+		x:Key="l_OnCloseProgramWarning">The program is in the process of checking. Are you sure you want to end the process?</sys:String>
+	<sys:String
+		x:Key="l_OnStartProxyWarning">You have loaded proxies but have not enabled their use. Are you sure you want to start a check without using proixes?</sys:String>
+	<sys:String
+		x:Key="l_START">START</sys:String>
+	<sys:String
+		x:Key="l_PAUSE">PAUSE</sys:String>
+	<sys:String
+		x:Key="l_RESUME">RESUME</sys:String>
+	<sys:String
+		x:Key="l_STOP">STOP</sys:String>
+	<sys:String
+		x:Key="l_PROXY">PROXY</sys:String>
+	<sys:String
+		x:Key="l_BASE">BASE</sys:String>
+	<sys:String
+		x:Key="l_TotalLines">Total lines</sys:String>
+	<sys:String
+		x:Key="l_Checked">Checked</sys:String>
+	<sys:String
+		x:Key="l_Proxy">Proxy</sys:String>
+	<sys:String
+		x:Key="l_Threads">Threads</sys:String>
+	<sys:String
+		x:Key="l_Good">Good</sys:String>
+	<sys:String
+		x:Key="l_Found">Found</sys:String>
+	<sys:String
+		x:Key="l_Bad">Bad</sys:String>
+	<sys:String
+		x:Key="l_Blocked">Blocked</sys:String>
+	<sys:String
+		x:Key="l_Captcha">Captcha</sys:String>
+	<sys:String
+		x:Key="l_2FA">2FA</sys:String>
+	<sys:String
+		x:Key="l_Multipasswords">Multipassword</sys:String>
+	<sys:String
+		x:Key="l_Errors">Errors</sys:String>
+	<sys:String
+		x:Key="l_HostNotFound">Host not found</sys:String>
+	<sys:String
+		x:Key="l_EstimatedCompletionTime">Estimated completion time</sys:String>
+	<sys:String
+		x:Key="l_Requests">Requests</sys:String>
+	<sys:String
+		x:Key="l_Bads">Bads</sys:String>
+	<sys:String
+		x:Key="l_Details">Details</sys:String>
+	<sys:String
+		x:Key="l_NotifyWhenCompleted">Notify when completed</sys:String>
+	<sys:String
+		x:Key="l_MainDataGridSearchPlaceholder">Enter search query...</sys:String>
+	<sys:String
+		x:Key="l_Address">Address</sys:String>
+	<sys:String
+		x:Key="l_Password">Password</sys:String>
+	<sys:String
+		x:Key="l_Request">Request</sys:String>
+	<sys:String
+		x:Key="l_Client">Client</sys:String>
+	<sys:String
+		x:Key="l_Scheduler">Scheduler</sys:String>
+	<sys:String
+		x:Key="l_GlobalSettings">Global settings</sys:String>
+	<sys:String
+		x:Key="l_ThreadsNumber">Threads number</sys:String>
+	<sys:String
+		x:Key="l_Timeout_s">Timeout (s)</sys:String>
+	<sys:String
+		x:Key="l_Rebrute">Rebrute</sys:String>
+	<sys:String
+		x:Key="l_UseProxy">Use proxy</sys:String>
+	<sys:String
+		x:Key="l_CheckOnWeb">Check on Web</sys:String>
+	<sys:String
+		x:Key="l_AdditionalSettings">Additional settings</sys:String>
+	<sys:String
+		x:Key="l_SaveRest_m">Save rest (m)</sys:String>
+	<sys:String
+		x:Key="l_StartOnBaseLoaded">Start on base loaded</sys:String>
+	<sys:String
+		x:Key="l_DomainsFilter">Domains filter</sys:String>
+	<sys:String
+		x:Key="l_IgnoreDomainsFilterDescription">Mails with domains from the list will be ignored on base loading</sys:String>
+	<sys:String
+		x:Key="l_IgnoreDomains">Ignore domains</sys:String>
+	<sys:String
+		x:Key="l_ProcessMultipassword">Process multipassword</sys:String>
+	<sys:String
+		x:Key="l_Configure">Configure</sys:String>
+	<sys:String
+		x:Key="l_SearchSettings">Search settings</sys:String>
+	<sys:String
+		x:Key="l_SearchLetters">Search letters</sys:String>
+	<sys:String
+		x:Key="l_LettersFrom">Letters from</sys:String>
+	<sys:String
+		x:Key="l_SearchByDate">Search by date</sys:String>
+	<sys:String
+		x:Key="l_From">From</sys:String>
+	<sys:String
+		x:Key="l_To">To</sys:String>
+	<sys:String
+		x:Key="l_AdditionalCheckDomainsFilterDescription">Letters in mails with domains from the list will be additionally checked</sys:String>
+	<sys:String
+		x:Key="l_AdditionalCheck">Additional check</sys:String>
+	<sys:String
+		x:Key="l_DownloadingLetters">Letters downloading</sys:String>
+	<sys:String
+		x:Key="l_DownloadLetters">Download letters</sys:String>
+	<sys:String
+		x:Key="l_DownloadInSingleFile">Download into single file</sys:String>
+	<sys:String
+		x:Key="l_SavedLettersFormat">Saved letters format</sys:String>
+	<sys:String
+		x:Key="l_Attachments">Attachments</sys:String>
+	<sys:String
+		x:Key="l_SearchAttachments">Search attachments</sys:String>
+	<sys:String
+		x:Key="l_Everywhere">Everywhere</sys:String>
+	<sys:String
+		x:Key="l_InDownloaded">In downloaded</sys:String>
+	<sys:String
+		x:Key="l_AttachmentsFilter">Attachments filter</sys:String>
+	<sys:String
+		x:Key="l_AttachmentsFilterDescription">Download files whose name contains a string from the filter</sys:String>
+	<sys:String
+		x:Key="l_DeleteWhenDownloaded">Delete on the server</sys:String>
+	<sys:String
+		x:Key="l_SearchRequests">Search requests</sys:String>
+	<sys:String
+		x:Key="l_AddSearchRequest">Add search requests</sys:String>
+	<sys:String
+		x:Key="l_BySender">Sender</sys:String>
+	<sys:String
+		x:Key="l_BySubject">Subject</sys:String>
+	<sys:String
+		x:Key="l_ByContent">Body</sys:String>
+	<sys:String
+		x:Key="l_BySenderAndSubject">Sender + subject</sys:String>
+	<sys:String
+		x:Key="l_BySenderAndContent">Sender + body</sys:String>
+	<sys:String
+		x:Key="l_BySubjectAndContent">Subject + body</sys:String>
+	<sys:String
+		x:Key="l_BySenderAndSubjectAndContent">Sender + subject + body</sys:String>
+	<sys:String
+		x:Key="l_Sender">Sender</sys:String>
+	<sys:String
+		x:Key="l_Subject">Subject</sys:String>
+	<sys:String
+		x:Key="l_Content">Body</sys:String>
+	<sys:String
+		x:Key="l_SenderAndSubject">Sender=Subject</sys:String>
+	<sys:String
+		x:Key="l_SenderAndContent">Sender=Body</sys:String>
+	<sys:String
+		x:Key="l_SubjectAndContent">Subject=Body</sys:String>
+	<sys:String
+		x:Key="l_SenderAndSubjectAndContent">Sender=Subject=Body</sys:String>
+	<sys:String
+		x:Key="l_Import">Import</sys:String>
+	<sys:String
+		x:Key="l_Export">Export</sys:String>
+	<sys:String
+		x:Key="l_RequestsManager">Requests Manager</sys:String>
+	<sys:String
+		x:Key="l_ServerSearching">Server searching</sys:String>
+	<sys:String
+		x:Key="l_SearchServer">Search server</sys:String>
+	<sys:String
+		x:Key="l_SearchByMxRecords">Search by MX records</sys:String>
+	<sys:String
+		x:Key="l_MatchSubdomainByDomain">Match subdomain by domain</sys:String>
+	<sys:String
+		x:Key="l_MatchSubdomainByMx">Match subdomain by MX</sys:String>
+	<sys:String
+		x:Key="l_ProtocolsToMatch">Protocols to match</sys:String>
+	<sys:String
+		x:Key="l_SearchByAutoConfig">Search in AutoConfig</sys:String>
+	<sys:String
+		x:Key="l_SearchByAutoDiscover">Search in AutoDiscover</sys:String>
+	<sys:String
+		x:Key="l_MatchingSubdomainsMethods">Matching subdomain methods</sys:String>
+	<sys:String
+		x:Key="l_SearchByWebMethods">Search by Web methods</sys:String>
+	<sys:String
+		x:Key="l_Both">Both</sys:String>
+	<sys:String
+		x:Key="l_Configuration">Configuration</sys:String>
+	<sys:String
+		x:Key="l_EditConfiguration">Edit configuration</sys:String>
+	<sys:String
+		x:Key="l_NoResults">No results</sys:String>
+	<sys:String
+		x:Key="l_Add">Add</sys:String>
+	<sys:String
+		x:Key="l_Edit">Edit</sys:String>
+	<sys:String
+		x:Key="l_Reset">Reset</sys:String>
+	<sys:String
+		x:Key="l_Domain">Domain</sys:String>
+	<sys:String
+		x:Key="l_Port">Port</sys:String>
+	<sys:String
+		x:Key="l_Hostname">Server</sys:String>
+	<sys:String
+		x:Key="l_CheckConnection">Check connection</sys:String>
+	<sys:String
+		x:Key="l_Login">Login</sys:String>
+	<sys:String
+		x:Key="l_Authorize">Authorize</sys:String>
+	<sys:String
+		x:Key="l_ThereIsAlreadyRecord">An entry with this domain already exists</sys:String>
+	<sys:String
+		x:Key="l_ThereIsNoRecord">There is no entry with this domain</sys:String>
+	<sys:String
+		x:Key="l_ConnectionIsSuccessfullyEstablished">Connection is successfully established</sys:String>
+	<sys:String
+		x:Key="l_NeedToRestartForChangeConfiguration">A reboot is required to change the configuration provider. Close now?</sys:String>
+	<sys:String
+		x:Key="l_UnableToLoadConfigurationByPath">Failed to load configuration by path</sys:String>
+	<sys:String
+		x:Key="l_ApplicationWillLoadDefaultConfiguration">The application will be loaded with default txt configuration</sys:String>
+	<sys:String
+		x:Key="l_IMAP|POP3Settings">IMAP | POP3 settings</sys:String>
+	<sys:String
+		x:Key="l_RebruteIMAPIntoPOP3">Rebrute IMAP with POP3</sys:String>
+	<sys:String
+		x:Key="l_POP3Limit">Max mails check</sys:String>
+	<sys:String
+		x:Key="l_RebruteBlocked">Rebrute blocked</sys:String>
+	<sys:String
+		x:Key="l_FoldersToIMAPSearch">Folders to IMAP search</sys:String>
+	<sys:String
+		x:Key="l_All">All</sys:String>
+	<sys:String
+		x:Key="l_WebSettings">Web settings</sys:String>
+	<sys:String
+		x:Key="l_MailRuCheckingMethod">Mail.ru checking method</sys:String>
+	<sys:String
+		x:Key="l_SolveCaptcha">Solve captcha</sys:String>
+	<sys:String
+		x:Key="l_Key">Key</sys:String>
+	<sys:String
+		x:Key="l_CheckFolderAccess">Check folder access</sys:String>
+	<sys:String
+		x:Key="l_UseProtocols">Use protocols</sys:String>
+	<sys:String
+		x:Key="l_RebruteErrors">Rebrute errors</sys:String>
+	<sys:String
+		x:Key="l_ConnectionErrors">Connection errors</sys:String>
+	<sys:String
+		x:Key="l_ConnectionTimeouts">Connection timeouts</sys:String>
+	<sys:String
+		x:Key="l_FillInAllTheFields">Fill in all the fields</sys:String>
+	<sys:String
+		x:Key="l_InvalidUsernameOrPassword">Invalid username or password</sys:String>
+	<sys:String
+		x:Key="l_ConnectionError">Connection error</sys:String>
+	<sys:String
+		x:Key="l_SomethingWentWrong">Something went wrong</sys:String>
+	<sys:String
+		x:Key="l_DownloadingUpdate">Downloading update</sys:String>
+	<sys:String
+		x:Key="l_DownloadingConfiguration">Downloading configuration</sys:String>
+	<sys:String
+		x:Key="l_DownloadingModules">Downloading modules</sys:String>
+	<sys:String
+		x:Key="l_DownloadingFileErrorOccured">An error occured while downloading the configuration. Try to restart application</sys:String>
+	<sys:String
+		x:Key="l_UnpackingFileErrorOccured">An error occured while unpacking the configuration. Try to restart application</sys:String>
+	<sys:String
+		x:Key="l_CheckingForUpdates">Checking for updates</sys:String>
+	<sys:String
+		x:Key="l_CheckingConfiguration">Checking configuration</sys:String>
+	<sys:String
+		x:Key="l_UnpackingConfiguration">Unpacking configuration</sys:String>
+	<sys:String
+		x:Key="l_UnpackingModules">Unpacking modules</sys:String>
+	<sys:String
+		x:Key="l_UnpackConfiguration">Unpacking configuration</sys:String>
+	<sys:String
+		x:Key="l_NewUpdateAvailable">New update available</sys:String>
+	<sys:String
+		x:Key="l_Error">Error</sys:String>
+	<sys:String
+		x:Key="l_Close">Close</sys:String>
+	<sys:String
+		x:Key="l_Skip">Skip</sys:String>
+	<sys:String
+		x:Key="l_Enter">Log in</sys:String>
+	<sys:String
+		x:Key="l_Authorization">Authorization</sys:String>
+	<sys:String
+		x:Key="l_Authorizing">Authorizing</sys:String>
+	<sys:String
+		x:Key="l_Updating">Updating</sys:String>
+	<sys:String
+		x:Key="l_Loading">Loading</sys:String>
+	<sys:String
+		x:Key="l_NewTab">New tab</sys:String>
+	<sys:String
+		x:Key="l_Folders">Folders</sys:String>
+	<sys:String
+		x:Key="l_Extensions">Extensions</sys:String>
+	<sys:String
+		x:Key="l_SelectionMode">Selection mode</sys:String>
+	<sys:String
+		x:Key="l_Refresh">Refresh</sys:String>
+	<sys:String
+		x:Key="l_AttachLetter">Attach letter</sys:String>
+	<sys:String
+		x:Key="l_Mailing">Mailing</sys:String>
+	<sys:String
+		x:Key="l_BackToList">Back to list</sys:String>
+	<sys:String
+		x:Key="l_LoginMail">Mail login</sys:String>
+	<sys:String
+		x:Key="l_Delete">Delete</sys:String>
+	<sys:String
+		x:Key="l_Copied">Copied!</sys:String>
+	<sys:String
+		x:Key="l_Back">Back</sys:String>
+	<sys:String
+		x:Key="l_Forward">Forward</sys:String>
+	<sys:String
+		x:Key="l_ThereIsEmpty">There is empty</sys:String>
+	<sys:String
+		x:Key="l_Save">Save</sys:String>
+	<sys:String
+		x:Key="l_SaveAs">Save as...</sys:String>
+	<sys:String
+		x:Key="l_InvalidDataFormat">Invalid data format</sys:String>
+	<sys:String
+		x:Key="l_ServerNotFound">Server not found</sys:String>
+	<sys:String
+		x:Key="l_ServerIsNotAvailable">Server is not available</sys:String>
+	<sys:String
+		x:Key="l_Settings">Settings</sys:String>
+	<sys:String
+		x:Key="l_LoadingFolders">Loading folders</sys:String>
+	<sys:String
+		x:Key="l_FoldersSuccessfullyLoaded">Folders are successfully loaded</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadFolders">Failed to load folders</sys:String>
+	<sys:String
+		x:Key="l_EstablishingConnectionToTheServer">Establishing connection to the server</sys:String>
+	<sys:String
+		x:Key="l_FailedToEstablishConnectionToTheServer">Failed to establish connection to the server</sys:String>
+	<sys:String
+		x:Key="l_AuthenticationOnTheServer">Authentication on the server</sys:String>
+	<sys:String
+		x:Key="l_LoginSuccessfullyCompleted">Authentication is successfully completed</sys:String>
+	<sys:String
+		x:Key="l_FailedToLogin">Failed to authenticate</sys:String>
+	<sys:String
+		x:Key="l_SearchFieldIsEmpty">Search field is empty</sys:String>
+	<sys:String
+		x:Key="l_SerchingMailsByRequest">Searching mails by request</sys:String>
+	<sys:String
+		x:Key="l_SearchReturnedNoResults">Search returned no results</sys:String>
+	<sys:String
+		x:Key="l_SearchSuccessfullyCompleted">Search is successfully completed [{0} found]</sys:String>
+	<sys:String
+		x:Key="l_UnexpectedErrorWhileSearching">Unexpected error while searching</sys:String>
+	<sys:String
+		x:Key="l_LoadingMessageUID">Loading message [UID:{0}]</sys:String>
+	<sys:String
+		x:Key="l_MessageSuccessfullyLoadedUID">Message is successfully loaded [UID:{0}]</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadMessageUID">Failed to load message [UID:{0}]</sys:String>
+	<sys:String
+		x:Key="l_DeletingMessages">Deleting messages [{0}]</sys:String>
+	<sys:String
+		x:Key="l_MessagesSuccessfullyDeleted">Messages [{0}] are successfully deleted</sys:String>
+	<sys:String
+		x:Key="l_FailedToDeleteMessages">Failed to delete messages [{0}]</sys:String>
+	<sys:String
+		x:Key="l_LoadingFolderMessages">Loading {0} messages</sys:String>
+	<sys:String
+		x:Key="l_FolderMessagesSuccessfullyLoaded">{0} messages are successfully loaded</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadFolderMessages">Failed to load {0} messages</sys:String>
+	<sys:String
+		x:Key="l_OpeningSearchPage">Opening search page [{0}]</sys:String>
+	<sys:String
+		x:Key="l_SearchPageIsSuccessfullyOpened">Search page [{0}] is successfully opened</sys:String>
+	<sys:String
+		x:Key="l_FailedToOpenSearchPage">Failed to open search page [{0}]</sys:String>
+	<sys:String
+		x:Key="l_LoadingMessages">Loading messages</sys:String>
+	<sys:String
+		x:Key="l_MessagesSuccessfullyLoaded">Messages are successfully loaded</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadMessages">Failed to load messages</sys:String>
+	<sys:String
+		x:Key="l_Translate">Translate</sys:String>
+	<sys:String
+		x:Key="l_MessageTranslating">Translating message</sys:String>
+	<sys:String
+		x:Key="l_MessageSuccessfullyTranslated">Message is successfully translated</sys:String>
+	<sys:String
+		x:Key="l_SETTINGS">SETTINGS</sys:String>
+	<sys:String
+		x:Key="l_Global">Global</sys:String>
+	<sys:String
+		x:Key="l_LimitMessagesOnPage">Messages limit per page</sys:String>
+	<sys:String
+		x:Key="l_MaxAttempsNumberRestoreConnection">Max attemps number to restore connection</sys:String>
+	<sys:String
+		x:Key="l_UseProxyInViewerRecommendation">It is recommended to use high quality proxy for MAIL VIEWER</sys:String>
+	<sys:String
+		x:Key="l_UseLoadedProxy">Use loaded proxy</sys:String>
+	<sys:String
+		x:Key="l_UseSpecialProxy">Use special proxy</sys:String>
+	<sys:String
+		x:Key="l_Tools">Tools</sys:String>
+	<sys:String
+		x:Key="l_TOOLS">TOOLS</sys:String>
+	<sys:String
+		x:Key="l_Merge">Merge</sys:String>
+	<sys:String
+		x:Key="l_MERGEBASES">MERGE BASES</sys:String>
+	<sys:String
+		x:Key="l_Normalize">Normalize</sys:String>
+	<sys:String
+		x:Key="l_NORMALIZEBASE">NORMALIZE BASE</sys:String>
+	<sys:String
+		x:Key="l_Shuffle">Shuffle</sys:String>
+	<sys:String
+		x:Key="l_SHUFFLEBASE">SHUFFLE BASE</sys:String>
+	<sys:String
+		x:Key="l_Sort">Sort</sys:String>
+	<sys:String
+		x:Key="l_SORTBASE">SORT BASE</sys:String>
+	<sys:String
+		x:Key="l_RemoveDuplicates">Remove duplicates</sys:String>
+	<sys:String
+		x:Key="l_REMOVEDUPLICATES">REMOVE DUPLICATES</sys:String>
+	<sys:String
+		x:Key="l_BASELOADING">LOADING BASE</sys:String>
+	<sys:String
+		x:Key="l_PROXYLOADING">LOADING PROXY</sys:String>
+	<sys:String
+		x:Key="l_CHECKISFINISHED">CHECK IS FINISHED</sys:String>
+	<sys:String
+		x:Key="l_ERROR">ERROR</sys:String>
+	<sys:String
+		x:Key="l_ErrorWhileLoadingBaseFromFile">Error while loading base from file</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadAnyAccount">Failed to load any account</sys:String>
+	<sys:String
+		x:Key="l_ProxiesAreNotLoaded">Proxies aren't downloaded:</sys:String>
+	<sys:String
+		x:Key="l_ErrorWhileLoadingFromFile">Error while loading from file:</sys:String>
+	<sys:String
+		x:Key="l_ErrorWhileLoadingFromLinks">Error while loading from links:</sys:String>
+	<sys:String
+		x:Key="l_OK">OK</sys:String>
+	<sys:String
+		x:Key="l_Success">Success</sys:String>
+	<sys:String
+		x:Key="l_YouNeedToLoadProxies">You need to load proxies</sys:String>
+	<sys:String
+		x:Key="l_YouNeedToLoadAccounts">You need to load accounts</sys:String>
+	<sys:String
+		x:Key="l_YouNeedToAddRequests">You need to add requests</sys:String>
+	<sys:String
+		x:Key="l_ProxyAutoUpdate">Proxy auto-update</sys:String>
+	<sys:String
+		x:Key="l_min">min</sys:String>
+	<sys:String
+		x:Key="l_Load">Load</sys:String>
+	<sys:String
+		x:Key="l_ThreadsDescription">A thread is the main working unit in a program.
+Each thread processes one mail account at a specific time.
+The optimal number of threads is from 200 to 500.</sys:String>
+	<sys:String
+		x:Key="l_TimeoutDescription">Timeout - the maximum time to wait for a response from the server to the request.
+The longer the timeout, the longer the check.
+The optimal timeout is from 5 to 20.</sys:String>
+	<sys:String
+		x:Key="l_RebruteDescription">Rebrute determines the maximum number of attempts to recheck for a valid/search query.
+The more rebrute, the longer the check, but the better the result.
+The optimal rebrute is from 1 to 3.</sys:String>
+	<sys:String
+		x:Key="l_UseProxyDescription">Using proxies allows you to avoid bans on your IP from mail servers.
+The option activates the use of proxies that have been loaded into the program.</sys:String>
+	<sys:String
+		x:Key="l_CheckWebDescription">In standard mode, all mail is checked using the IMAP and POP3 protocols.
+However, some domains do not allow use of these protocols and then a check is used through the web interface with requests.
+More details about each service can be found in the additional settings for the web.</sys:String>
+	<sys:String
+		x:Key="l_SaveRestDescription">With this option, every N minutes all accounts that have not been checked for validity,
+will be saved in the Rest.txt file</sys:String>
+	<sys:String
+		x:Key="l_StartOnBaseLoadedDescription">Automatic launch of the check after loading the database into the program.
+Used to increase efficiency when working with a large number of bases.</sys:String>
+	<sys:String
+		x:Key="l_IgnoreDomainsDescription">Enables the domain filter when loading the database into the program.
+All accounts with domains from the list will be skipped and not added to the database for the check.</sys:String>
+	<sys:String
+		x:Key="l_ProcessMultipasswordDescription">When the software finds a valid login:password,
+all other accounts with the same login will be added to "Multipassword".</sys:String>
+	<sys:String
+		x:Key="l_FromMailsDescription">The search results will only show those where the number of letters found 
+is equal to or greater than the value to be set.</sys:String>
+	<sys:String
+		x:Key="l_AdditionalCheckDescription">This feature is needed for those domains where
+search function does not work correctly. Often these are Polish and Chinese mail. For example, 21cn.com.
+For mails from the list, another, more expensive, search algorithm will work, therefore it is not recommended to
+use for regular domains</sys:String>
+	<sys:String
+		x:Key="l_DownloadInSingleFileDescription">Normal mode: a separate folder is created for each request, and inside files for each mail account.
+Example: Resuts\request\some@mail.com.html
+       
+"In one file" mode: one file is created for each request, in which all letters from all stored mail accounts.
+Example: Resuts\request.html</sys:String>
+	<sys:String
+		x:Key="l_DeleteOnServerDescription">For all found and downloaded emails a delete operation 
+will be requested on the server where the email was found.</sys:String>
+	<sys:String
+		x:Key="l_DownloadAttachmentsDescription">Search Everywhere: Enables search that is separate from queries. Searches through all letters
+and download their attachments
+Search Downloads: Enables query-based search. Attachments will be downloaded from those letters that have already been
+downloaded on request</sys:String>
+	<sys:String
+		x:Key="l_AttachmentFilterDescription">Only those files from attachments will be downloaded whose names
+contain at least one line from the filters.</sys:String>
+	<sys:String
+		x:Key="l_SearchServerDescription">Enables searching for IMAP and POP3 servers for domains that are not in the database</sys:String>
+	<sys:String
+		x:Key="l_UseProxyToSearchServerDescription">Enables the use of a proxy to find servers. MX records are searched using Google DNS over HTTPS</sys:String>
+	<sys:String
+		x:Key="l_SearchServerByMXDescription">Searching for MX records of domains allows you to determine the host for popular
+mail providers (Microsoft, Gmail, Yahoo, etc.)
+Recommended for use.</sys:String>
+	<sys:String
+		x:Key="l_MatchSubdomainByDomainDescription">Matches a host by iterating over frequently used subdomains under the main domain
+Recommended for use.</sys:String>
+	<sys:String
+		x:Key="l_MatchSubdomainByMxDescription">Matches a host by iterating over frequently used
+subdomains under the MX record domain.</sys:String>
+	<sys:String
+		x:Key="l_SearchInAutoConfigDescription">Requests configuration from the mail service via AutoConfig</sys:String>
+	<sys:String
+		x:Key="l_SearchInAutoDiscoveryDescription">Requests configuration from the mail service via AutoDiscovery</sys:String>
+	<sys:String
+		x:Key="l_RebruteImapIntoPop3Description">Enables errors rebrute from IMAP to POP3.</sys:String>
+	<sys:String
+		x:Key="l_MaxMailsCheckDescription">Limits the maximum number of emails to be scanned in POP3 and IMAP when
+additional verification mode. It is used for optimization.</sys:String>
+	<sys:String
+		x:Key="l_RebruteBlockedDescription">Enables rebrute of mails defined as blocked.
+Helps when proxy is blocked.</sys:String>
+	<sys:String
+		x:Key="l_CheckOnFolderAccess">Includes criteria for determining mail as valid:
+For IMAP: checking for access to the INBOX folder
+For POP3: checking for the number of letters</sys:String>
+	<sys:String
+		x:Key="l_MailRuDescription">Web: check via Mail.Ru API. Email search and other additional features are available.
+Cloud: check via Cloud.Mail.Ru API. Quick validation check. No captcha solution required.</sys:String>
+	<sys:String
+		x:Key="l_SearchMessages">Searching messages</sys:String>
+	<sys:String
+		x:Key="l_SearchAttachment">Searching attachments</sys:String>
+	<sys:String
+		x:Key="l_DeleteMessages">Deleting messages</sys:String>
+	<sys:String
+		x:Key="l_ParseContacts">Parsing contacts</sys:String>
+	<sys:String
+		x:Key="l_toParseContacts">Parse contacts</sys:String>
+	<sys:String
+		x:Key="l_GetBalance">Get balance</sys:String>
+	<sys:String
+		x:Key="l_EnableImapAccess">Enable IMAP access</sys:String>
+	<sys:String
+		x:Key="l_DeleteSuspiciousLoginMessages">Delete suspicious login messages</sys:String>
+	<sys:String
+		x:Key="l_GmxDescription">To enable imap access you need to solve captcha</sys:String>
+	<sys:String
+		x:Key="l_OnetDescription">Search is possible only by Sender or by Subject (not combined)</sys:String>
+	<sys:String
+		x:Key="l_WebAuthentication">Web authentication</sys:String>
+	<sys:String
+		x:Key="l_SearchGroup">Search group</sys:String>
+	<sys:String
+		x:Key="l_CreateGroup">Create group</sys:String>
+	<sys:String
+		x:Key="l_Groups">Groups</sys:String>
+	<sys:String
+		x:Key="l_CreateRequestExtended">Create request (from=subject=body)</sys:String>
+	<sys:String
+		x:Key="l_AddToCurrentSearchRequests">Add to current search requests</sys:String>
+	<sys:String
+		x:Key="l_CreateRequest">Create request</sys:String>
+	<sys:String
+		x:Key="l_AddExistedRequest">Add existed request</sys:String>
+	<sys:String
+		x:Key="l_Search">Search</sys:String>
+	<sys:String
+		x:Key="l_DelayMin">Delay (min)</sys:String>
+	<sys:String
+		x:Key="l_AddRequest">Add request</sys:String>
+	<sys:String
+		x:Key="l_Actions">Actions</sys:String>
+	<sys:String
+		x:Key="l_DownloadFoundMails">Download found mails</sys:String>
+	<sys:String
+		x:Key="l_EnableNotifications">Enable notifications</sys:String>
+	<sys:String
+		x:Key="l_Processes">Processes</sys:String>
+	<sys:String
+		x:Key="l_Messages">Messages</sys:String>
+	<sys:String
+		x:Key="l_DeleteOnServerDescription2">For all found emails a delete operation 
+will be requested on the server where the email was found.</sys:String>
+	<sys:String
+		x:Key="l_DelayDescription">Defines the time interval between mail checks for requests in minutes</sys:String>
+</ResourceDictionary>

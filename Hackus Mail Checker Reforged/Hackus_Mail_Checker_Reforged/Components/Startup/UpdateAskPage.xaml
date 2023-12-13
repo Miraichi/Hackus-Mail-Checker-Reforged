@@ -1,0 +1,54 @@
+<Page
+	x:Class="Hackus_Mail_Checker_Reforged.Components.Startup.UpdateAskPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.Components.Startup" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="UpdateAskPage">
+	<Grid>
+		<hc:TransitioningContentControl
+			TransitionMode="Right2LeftWithFade">
+			<Grid>
+				<TextBlock
+					Margin="0,60,0,60"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Top"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="24"
+					Foreground="#d9d9d9"
+					TextAlignment="Center">
+					<Run
+						Text="{DynamicResource l_NewUpdateAvailable}" />
+					<LineBreak />
+					<LineBreak />
+					<Run
+						FontFamily="{StaticResource Roboto-Medium}"
+						Foreground="#64FFD1"
+						Text="{Binding LastVersion}" />
+				</TextBlock>
+				<Grid
+					Height="130"
+					Margin="0,120,0,0">
+					<Button
+						Width="130"
+						Height="130"
+						Padding="0,0,0,10"
+						hc:IconElement.Geometry="{StaticResource DownloadGeometry}"
+						hc:IconElement.Height="60"
+						Background="#00FFFFFF"
+						BorderBrush="#64FFD1"
+						BorderThickness="3"
+						Cursor="Hand"
+						Focusable="False"
+						Foreground="#64FFD1"
+						Style="{StaticResource ButtonIconCircular}"
+						Command="{Binding DownloadUpdateCommand}" />
+					<Button
+						Width="90"
+						Margin="0,0,80,0"
+						HorizontalAlignment="Right"
+						Content="{DynamicResource l_Skip}"
+						Cursor="Hand"
+						Focusable="False"
+						Command="{Binding SkipUpdateCommand}" />
+				</Grid>
+			</Grid>
+		</hc:TransitioningContentControl>
+	</Grid>
+</Page>

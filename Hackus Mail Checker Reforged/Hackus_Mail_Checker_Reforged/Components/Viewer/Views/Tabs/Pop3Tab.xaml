@@ -1,0 +1,1236 @@
+<UserControl
+	x:Class="Hackus_Mail_Checker_Reforged.Components.Viewer.Views.Tabs.Pop3Tab" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.Components.Viewer.Views.Tabs" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:uiModels="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Models" xmlns:viewerEnums="clr-namespace:Hackus_Mail_Checker_Reforged.Components.Viewer.Models">
+	<hc:Interaction.Triggers>
+		<hc:EventTrigger
+			EventName="Loaded">
+			<hc:EventToCommand
+				Command="{Binding InitializeCommand}" />
+		</hc:EventTrigger>
+	</hc:Interaction.Triggers>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition
+				Height="45" />
+			<RowDefinition
+				Height="35" />
+		</Grid.RowDefinitions>
+		<uiModels:PopupExtended
+			Name="CopyPopup"
+			Grid.RowSpan="3"
+			Grid.ColumnSpan="3"
+			AllowsTransparency="True"
+			Placement="Mouse">
+			<hc:TransitioningContentControl
+				TransitionMode="Top2BottomWithFade">
+				<Border
+					Height="30"
+					Padding="5"
+					Background="#1e1e1e"
+					CornerRadius="5">
+					<TextBlock
+						Foreground="#BBBBBB"
+						Text="{DynamicResource l_Copied}" />
+				</Border>
+			</hc:TransitioningContentControl>
+		</uiModels:PopupExtended>
+		<Grid
+			Row="1">
+			<hc:Pagination
+				HorizontalAlignment="Center"
+				ThemeManager.RequestedAccentColor="#64FFD1"
+				VisualElement.HighlightBackground="{StaticResource BlockBackgroundBrush}"
+				VisualElement.HighlightBorderBrush="#64FFD1"
+				IsEnabled="{Binding IsPop3Busy, Converter={StaticResource Boolean2BooleanReConverter}}"
+				MaxPageCount="{Binding MaxPageCount}"
+				Visibility="{Binding ShowMessageBody, Converter={StaticResource Boolean2VisibilityReConverter}}"
+				PageIndex="{Binding PageIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+				<hc:Interaction.Triggers>
+					<hc:EventTrigger
+						EventName="PageUpdated">
+						<hc:EventToCommand
+							PassEventArgsToCommand="True"
+							Command="{Binding UpdatePageCommand}" />
+					</hc:EventTrigger>
+				</hc:Interaction.Triggers>
+			</hc:Pagination>
+		</Grid>
+		<Border
+			Margin="10"
+			Background="{StaticResource BlockBackgroundBrush}"
+			CornerRadius="4"
+			IsEnabled="{Binding IsPop3Busy, Converter={StaticResource Boolean2BooleanReConverter}}"
+			Visibility="{Binding ShowMessageBody, Converter={StaticResource Boolean2VisibilityReConverter}}">
+			<FrameworkElement.Style>
+				<Style
+					TargetType="{x:Type Border}">
+					<Style.Triggers>
+						<DataTrigger
+							Value="0"
+							Binding="{Binding MaxPageCount}">
+							<Setter
+								Property="RowSpan"
+								Value="2" />
+						</DataTrigger>
+						<DataTrigger
+							Value="1"
+							Binding="{Binding MaxPageCount}">
+							<Setter
+								Property="RowSpan"
+								Value="2" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</FrameworkElement.Style>
+			<Grid>
+				<Border
+					Name="ResultDataGridMask"
+					Margin="1"
+					Background="#FF000000"
+					CornerRadius="4" />
+				<DataGrid
+					Name="ResultDataGrid"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					AutoGenerateColumns="False"
+					Background="{StaticResource BlockBackgroundBrush}"
+					CanUserAddRows="False"
+					IsSynchronizedWithCurrentItem="True"
+					SelectionMode="Single"
+					ItemsSource="{Binding Messages}">
+					<UIElement.OpacityMask>
+						<VisualBrush
+							Visual="{Binding ElementName=ResultDataGridMask}" />
+					</UIElement.OpacityMask>
+					<FrameworkElement.Resources>
+						<ResourceDictionary>
+							<uiModels:BindingProxy
+								Data="{Binding}"
+								x:Key="proxy" />
+						</ResourceDictionary>
+					</FrameworkElement.Resources>
+					<DataGrid.Columns>
+						<DataGridTextColumn
+							Width="*"
+							MinWidth="150"
+							Header="Subject"
+							IsReadOnly="True"
+							Binding="{Binding Subject}">
+							<DataGridColumn.CellStyle>
+								<Style
+									BasedOn="{StaticResource DataGridCellStyle}"
+									TargetType="{x:Type DataGridCell}">
+									<Setter
+										Property="Padding"
+										Value="10,0,10,0" />
+									<Style.Triggers>
+										<Trigger
+											Property="DataGridCell.IsSelected"
+											Value="True">
+											<Setter
+												Property="Background"
+												Value="#383838" />
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</DataGridColumn.CellStyle>
+						</DataGridTextColumn>
+						<DataGridTextColumn
+							Width="*"
+							MinWidth="150"
+							Header="From"
+							IsReadOnly="True"
+							SortMemberPath="From.AsString"
+							Binding="{Binding From}">
+							<DataGridColumn.CellStyle>
+								<Style
+									BasedOn="{StaticResource DataGridCellStyle}"
+									TargetType="{x:Type DataGridCell}">
+									<Setter
+										Property="Padding"
+										Value="10,0,10,0" />
+									<Style.Triggers>
+										<Trigger
+											Property="DataGridCell.IsSelected"
+											Value="True">
+											<Setter
+												Property="Background"
+												Value="#383838" />
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</DataGridColumn.CellStyle>
+						</DataGridTextColumn>
+						<DataGridTextColumn
+							Width="0.6*"
+							MinWidth="100"
+							Header="Date"
+							IsReadOnly="True"
+							Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}">
+							<DataGridColumn.CellStyle>
+								<Style
+									BasedOn="{StaticResource DataGridCellStyle}"
+									TargetType="{x:Type DataGridCell}">
+									<Setter
+										Property="Padding"
+										Value="10,0,10,0" />
+									<Style.Triggers>
+										<Trigger
+											Property="DataGridCell.IsSelected"
+											Value="True">
+											<Setter
+												Property="Background"
+												Value="#383838" />
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</DataGridColumn.CellStyle>
+						</DataGridTextColumn>
+						<DataGridTemplateColumn
+							Width="50"
+							CanUserReorder="False"
+							CanUserResize="False"
+							CanUserSort="False"
+							IsReadOnly="True">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<Path>
+										<UIElement.RenderTransform>
+											<ScaleTransform
+												ScaleX="0.8"
+												ScaleY="0.8" />
+										</UIElement.RenderTransform>
+										<FrameworkElement.Style>
+											<Style
+												BasedOn="{StaticResource FolderIcon}"
+												TargetType="{x:Type Path}">
+												<Style.Triggers>
+													<DataTrigger
+														Value="True"
+														Binding="{Binding HasAttachments}">
+														<Setter
+															Property="Visibility"
+															Value="Visible" />
+													</DataTrigger>
+													<DataTrigger
+														Value="False"
+														Binding="{Binding HasAttachments}">
+														<Setter
+															Property="Visibility"
+															Value="Collapsed" />
+													</DataTrigger>
+												</Style.Triggers>
+											</Style>
+										</FrameworkElement.Style>
+									</Path>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+							<DataGridColumn.CellStyle>
+								<Style
+									BasedOn="{StaticResource DataGridCellStyle}"
+									TargetType="{x:Type DataGridCell}">
+									<Setter
+										Property="Padding"
+										Value="10,0,10,0" />
+									<Style.Triggers>
+										<Trigger
+											Property="DataGridCell.IsSelected"
+											Value="True">
+											<Setter
+												Property="Background"
+												Value="#383838" />
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</DataGridColumn.CellStyle>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+					<DataGrid.RowStyle>
+						<!--Неизвестный ID соединения: 4-->
+						<Style
+							BasedOn="{StaticResource DataGridRowStyle}"
+							TargetType="{x:Type DataGridRow}">
+							<Setter
+								Property="MinHeight"
+								Value="40" />
+							<Setter
+								Property="Height"
+								Value="40" />
+							<Setter
+								Property="Background"
+								Value="#2c2c2c" />
+							<Style.Triggers>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<Setter
+										Property="Background"
+										Value="#333333" />
+								</Trigger>
+								<Trigger
+									Property="DataGridRow.IsSelected"
+									Value="True">
+									<Setter
+										Property="Background"
+										Value="#383838" />
+								</Trigger>
+							</Style.Triggers>
+						</Style>
+					</DataGrid.RowStyle>
+				</DataGrid>
+				<StackPanel
+					VerticalAlignment="Center"
+					Visibility="{Binding Items.IsEmpty, ElementName=ResultDataGrid, Converter={StaticResource Boolean2VisibilityConverter}}">
+					<Image
+						Width="200"
+						Opacity="0.8"
+						RenderOptions.BitmapScalingMode="HighQuality"
+						Source="../../../../Resources/Images/penguin.png" />
+					<TextBlock
+						Margin="0,30,0,0"
+						HorizontalAlignment="Center"
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="20"
+						Foreground="#d0d0d0"
+						Text="{DynamicResource l_ThereIsEmpty}" />
+				</StackPanel>
+			</Grid>
+		</Border>
+		<Grid
+			RowSpan="2"
+			IsEnabled="{Binding IsPop3Busy, Converter={StaticResource Boolean2BooleanReConverter}}"
+			Visibility="{Binding ShowMessageBody, Converter={StaticResource Boolean2VisibilityConverter}}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="0.4*"
+					MinWidth="250"
+					MaxWidth="350" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid
+				Column="0"
+				Visibility="{Binding ShowMessageBody, Converter={StaticResource Boolean2VisibilityConverter}}">
+				<FrameworkElement.Style>
+					<Style
+						TargetType="{x:Type Grid}">
+						<Style.Triggers>
+							<DataTrigger
+								Value="True"
+								Binding="{Binding IsPop3Busy, Converter={StaticResource Boolean2BooleanReConverter}}">
+								<Setter
+									Property="IsEnabled"
+									Value="True" />
+							</DataTrigger>
+							<DataTrigger
+								Value="True"
+								Binding="{Binding ShowAttachments, Converter={StaticResource Boolean2BooleanReConverter}}">
+								<Setter
+									Property="IsEnabled"
+									Value="True" />
+							</DataTrigger>
+							<DataTrigger
+								Value="True"
+								Binding="{Binding IsPop3Busy}">
+								<Setter
+									Property="IsEnabled"
+									Value="False" />
+							</DataTrigger>
+							<DataTrigger
+								Value="True"
+								Binding="{Binding ShowAttachments}">
+								<Setter
+									Property="IsEnabled"
+									Value="False" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</FrameworkElement.Style>
+				<Border
+					Margin="10,10,10,10"
+					Background="{StaticResource BlockBackgroundBrush}"
+					CornerRadius="4">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition
+								Height="40" />
+							<RowDefinition />
+							<RowDefinition
+								Height="40" />
+						</Grid.RowDefinitions>
+						<Button
+							Height="40"
+							Padding="0"
+							HorizontalAlignment="Stretch"
+							HorizontalContentAlignment="Stretch"
+							hc:BorderElement.CornerRadius="4 4 0 0"
+							BorderBrush="#64FFD1"
+							BorderThickness="1"
+							Cursor="Hand"
+							Command="{Binding OpenMessagesListCommand}">
+							<ContentControl.Content>
+								<Grid
+									Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Button}}}">
+									<Path
+										Width="15"
+										Height="15"
+										Margin="15,0,0,0"
+										HorizontalAlignment="Left"
+										Fill="#64FFD1"
+										Style="{StaticResource LeftPathStyle}" />
+									<TextBlock
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										FontFamily="{StaticResource Roboto-Regular}"
+										FontSize="14"
+										Text="{DynamicResource l_BackToList}" />
+								</Grid>
+							</ContentControl.Content>
+						</Button>
+						<ListBox
+							Name="ListBoxResults"
+							Grid.Row="1"
+							Background="{StaticResource BlockBackgroundBrush}"
+							BorderThickness="0"
+							ItemsSource="{Binding Messages}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<StackPanel
+										Margin="10,0,10,0">
+										<Label
+											HorizontalAlignment="Center"
+											Background="#001217">
+											<TextBlock
+												FontFamily="{StaticResource Roboto-Regular}"
+												FontSize="13"
+												TextTrimming="CharacterEllipsis"
+												Text="{Binding Subject}" />
+										</Label>
+										<Label
+											Margin="0,8,0,0"
+											Padding="0"
+											HorizontalAlignment="Center"
+											Background="#00FFFFFF"
+											BorderThickness="0">
+											<TextBlock
+												FontSize="13"
+												TextTrimming="CharacterEllipsis"
+												Text="{Binding From.Email}" />
+										</Label>
+										<Label
+											Padding="0"
+											HorizontalAlignment="Center"
+											Background="#00FFFFFF"
+											BorderThickness="0">
+											<StackPanel
+												Orientation="Horizontal">
+												<Button
+													VerticalAlignment="Center"
+													hc:IconElement.Geometry="{StaticResource CalendarGeometry}"
+													hc:IconElement.Height="15"
+													hc:IconElement.Width="15"
+													Background="#00FFFFFF"
+													BorderThickness="0"
+													IsHitTestVisible="False" />
+												<TextBlock
+													VerticalAlignment="Center"
+													FontSize="13"
+													TextTrimming="CharacterEllipsis"
+													Text="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" />
+											</StackPanel>
+										</Label>
+									</StackPanel>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+							<ItemsControl.ItemContainerStyle>
+								<!--Неизвестный ID соединения: 6-->
+								<Style
+									BasedOn="{StaticResource ListBoxItem}"
+									TargetType="{x:Type ListBoxItem}">
+									<Setter
+										Property="MaxHeight"
+										Value="100" />
+									<Setter
+										Property="Height"
+										Value="100" />
+									<Setter
+										Property="HorizontalContentAlignment"
+										Value="Stretch" />
+									<Setter
+										Property="VerticalAlignment"
+										Value="Top" />
+									<Setter
+										Property="BorderThickness"
+										Value="0,0,0,2" />
+									<Setter
+										Property="BorderBrush"
+										Value="{StaticResource Background7}" />
+									<Setter
+										Property="FrameworkElement.Cursor"
+										Value="Hand" />
+									<Setter
+										Property="Background"
+										Value="#00FFFFFF" />
+									<Style.Triggers>
+										<Trigger
+											Property="UIElement.IsMouseOver"
+											Value="True">
+											<Setter
+												Property="FrameworkElement.ToolTip"
+												Value="{Binding Subject}" />
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</ItemsControl.ItemContainerStyle>
+						</ListBox>
+						<Grid
+							Row="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							<Button
+								Height="40"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								HorizontalContentAlignment="Stretch"
+								hc:BorderElement.CornerRadius="0 0 0 4"
+								BorderBrush="#64FFD1"
+								BorderThickness="1,1,0,1"
+								Cursor="Hand"
+								Command="{Binding GoBackCommand}"
+								IsEnabled="{Binding CanMoveBack}">
+								<ContentControl.Content>
+									<Grid
+										Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Button}}}">
+										<Path
+											Width="15"
+											Height="15"
+											Margin="15,0,0,0"
+											HorizontalAlignment="Left"
+											Fill="#64FFD1"
+											Style="{StaticResource LeftPathStyle}" />
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Text="{DynamicResource l_Back}" />
+									</Grid>
+								</ContentControl.Content>
+							</Button>
+							<Button
+								Grid.Column="1"
+								Height="40"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								HorizontalContentAlignment="Stretch"
+								hc:BorderElement.CornerRadius="0 0 4 0"
+								BorderBrush="#64FFD1"
+								BorderThickness="0,1,1,1"
+								Cursor="Hand"
+								Command="{Binding GoForwardCommand}"
+								IsEnabled="{Binding CanMoveForward}">
+								<ContentControl.Content>
+									<Grid
+										Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Button}}}">
+										<Path
+											Width="15"
+											Height="15"
+											Margin="0,0,15,0"
+											HorizontalAlignment="Right"
+											Fill="#64FFD1"
+											Style="{StaticResource RightPathStyle}" />
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Text="{DynamicResource l_Forward}" />
+									</Grid>
+								</ContentControl.Content>
+							</Button>
+						</Grid>
+					</Grid>
+				</Border>
+			</Grid>
+			<Border
+				Grid.Column="1"
+				Margin="0,10,10,10"
+				Background="{StaticResource BlockBackgroundBrush}"
+				CornerRadius="4">
+				<Grid>
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition
+								Height="Auto" />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+						<Grid>
+							<StackPanel>
+								<hc:Divider
+									Margin="0,20,0,0"
+									Padding="0"
+									LineStroke="#64FFDA"
+									LineStrokeThickness="1">
+									<hc:Divider.Content>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition
+													Width="1*" />
+												<ColumnDefinition
+													Width="4*" />
+											</Grid.ColumnDefinitions>
+											<Label
+												Grid.Column="1"
+												BorderBrush="#64FFDA"
+												BorderThickness="1"
+												hc:Poptip.Content="{Binding Message.Subject}">
+												<TextBlock
+													HorizontalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="16"
+													TextTrimming="CharacterEllipsis"
+													Text="{Binding Message.Subject}" />
+											</Label>
+										</Grid>
+									</hc:Divider.Content>
+								</hc:Divider>
+								<Grid
+									Height="30"
+									Margin="0,10,0,0">
+									<ToggleButton
+										Height="30"
+										Margin="20,0,0,0"
+										Padding="10,5,10,5"
+										HorizontalAlignment="Left"
+										VerticalAlignment="Center"
+										VerticalContentAlignment="Center"
+										Cursor="Hand"
+										Focusable="False"
+										FontFamily="{StaticResource Roboto-Medium}"
+										FontSize="13"
+										Command="{Binding SwitchAttachmentsModeCommand}"
+										Content="{Binding Message.Attachments.Count}"
+										IsEnabled="{Binding Message.HasAttachments}">
+										<FrameworkElement.Style>
+											<Style
+												BasedOn="{StaticResource ToggleButton}"
+												TargetType="{x:Type ToggleButton}">
+												<Style.Triggers>
+													<Trigger
+														Property="ToggleButton.IsChecked"
+														Value="False">
+														<Setter
+															Property="hc:IconElement.Geometry"
+															Value="{StaticResource SaveGeometry}" />
+														<Setter
+															Property="Foreground"
+															Value="#64FFDA" />
+													</Trigger>
+													<Trigger
+														Property="ToggleButton.IsChecked"
+														Value="True">
+														<Setter
+															Property="hc:IconElement.Geometry"
+															Value="{StaticResource CloseGeometry}" />
+														<Setter
+															Property="BorderBrush"
+															Value="#ff5b5b" />
+														<Setter
+															Property="BorderThickness"
+															Value="1" />
+														<Setter
+															Property="Foreground"
+															Value="#ff5b5b" />
+														<Setter
+															Property="hc:IconElement.Width"
+															Value="13" />
+													</Trigger>
+												</Style.Triggers>
+											</Style>
+										</FrameworkElement.Style>
+									</ToggleButton>
+									<StackPanel
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										Orientation="Horizontal">
+										<TextBlock
+											Name="FromHeader"
+											VerticalAlignment="Center"
+											Cursor="Hand"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="14"
+											Foreground="#d9d9d9"
+											Text="{Binding Message.From}"
+											MouseDown="CopyFromHeader" />
+									</StackPanel>
+									<TextBlock
+										Margin="0,0,20,0"
+										HorizontalAlignment="Right"
+										VerticalAlignment="Center"
+										FontFamily="{StaticResource Roboto-Regular}"
+										FontSize="14"
+										Foreground="#d9d9d9"
+										Text="{Binding Message.Date, StringFormat={}{0:dd.MM.yyyy}}" />
+								</Grid>
+							</StackPanel>
+						</Grid>
+						<Grid
+							Row="1"
+							Visibility="{Binding ShowAttachments, Converter={StaticResource Boolean2VisibilityReConverter}}">
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition
+									Height="50" />
+							</Grid.RowDefinitions>
+							<WebBrowser
+								Name="WB"
+								Height="Auto"
+								Margin="20,20,20,0"
+								uiModels:BrowserBehavior.Html="{Binding Message.BodyHtmlText}"
+								Navigated="WB_Navigated"
+								Navigating="WebBrowser_Navigating" />
+							<Grid
+								Row="1"
+								Margin="20,0,20,0"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center">
+								<StackPanel
+									Orientation="Horizontal">
+									<hc:ComboBox
+										Name="TranslateFromComboBox"
+										Width="100"
+										Height="35"
+										ThemeManager.RequestedAccentColor="#303030"
+										ThemeManager.RequestedTheme="Dark"
+										Cursor="Hand">
+										<hc:Interaction.Triggers>
+											<hc:EventTrigger
+												EventName="SelectionChanged">
+												<hc:EventToCommand
+													PassEventArgsToCommand="True"
+													Command="{Binding ChangeTranslationFromLanguageCommand}" />
+											</hc:EventTrigger>
+										</hc:Interaction.Triggers>
+										<ComboBoxItem
+											Content="AUTO"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											IsSelected="True"
+											Tag="Auto" />
+										<ComboBoxItem
+											Tag="English">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/united-kingdom.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="EN" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="Russian">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/russia.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="RU" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="Chinese">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/china.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="ZH" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="German">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/germany.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="DE" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="French">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/france.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="FR" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="Poland">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/poland.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="PL" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="Spanish">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/spain.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="ES" />
+											</StackPanel>
+										</ComboBoxItem>
+									</hc:ComboBox>
+									<Path
+										Data="{StaticResource RightGeometry}"
+										Fill="#FFFFFFFF"
+										RenderTransformOrigin="0.5, 0.5"
+										Stretch="Uniform">
+										<UIElement.RenderTransform>
+											<ScaleTransform
+												ScaleX="0.25"
+												ScaleY="0.25" />
+										</UIElement.RenderTransform>
+									</Path>
+									<hc:ComboBox
+										Name="TranslateToComboBox"
+										Width="100"
+										Height="35"
+										Margin="0,0,20,0"
+										ThemeManager.RequestedAccentColor="#303030"
+										ThemeManager.RequestedTheme="Dark"
+										Cursor="Hand"
+										Foreground="#d9d9d9">
+										<hc:Interaction.Triggers>
+											<hc:EventTrigger
+												EventName="SelectionChanged">
+												<hc:EventToCommand
+													PassEventArgsToCommand="True"
+													Command="{Binding ChangeTranslationToLanguageCommand}" />
+											</hc:EventTrigger>
+										</hc:Interaction.Triggers>
+										<ComboBoxItem
+											Tag="English">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/united-kingdom.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="EN" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="Russian">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/russia.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="RU" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="Chinese">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/china.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="ZH" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="German">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/germany.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="DE" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="French">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/france.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="FR" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="Poland">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/poland.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="PL" />
+											</StackPanel>
+										</ComboBoxItem>
+										<ComboBoxItem
+											Tag="Spanish">
+											<StackPanel
+												Orientation="Horizontal">
+												<Image
+													Width="20"
+													VerticalAlignment="Center"
+													Source="../../../../Resources/Images/spain.png" />
+												<TextBlock
+													Margin="5,0,0,0"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Text="ES" />
+											</StackPanel>
+										</ComboBoxItem>
+									</hc:ComboBox>
+									<Button
+										Width="200"
+										Height="35"
+										hc:IconElement.Geometry="{StaticResource TranslateGeometry}"
+										hc:IconElement.Height="17"
+										BorderBrush="#64FFD1"
+										Content="{StaticResource l_Translate}"
+										Cursor="Hand"
+										FontFamily="{StaticResource Roboto-Regular}"
+										FontSize="13"
+										Command="{Binding TranslateCommand}"
+										IsEnabled="{Binding IsImapBusy, Converter={StaticResource Boolean2BooleanReConverter}}" />
+								</StackPanel>
+							</Grid>
+						</Grid>
+						<DataGrid
+							Grid.Row="1"
+							Height="Auto"
+							Margin="20"
+							Padding="0"
+							AutoGenerateColumns="False"
+							Background="#00FFFFFF"
+							BorderThickness="0"
+							HeadersVisibility="None"
+							RowHeight="80"
+							ItemsSource="{Binding Attachments}"
+							Visibility="{Binding ShowAttachments, Converter={StaticResource Boolean2VisibilityConverter}}">
+							<FrameworkElement.Resources>
+								<ResourceDictionary>
+									<uiModels:BindingProxy
+										Data="{Binding}"
+										x:Key="AttachmentsDataGridProxy" />
+								</ResourceDictionary>
+							</FrameworkElement.Resources>
+							<DataGrid.Columns>
+								<DataGridTemplateColumn
+									Width="*">
+									<DataGridColumn.CellStyle>
+										<Style
+											BasedOn="{StaticResource DataGridCellStyle}"
+											TargetType="{x:Type DataGridCell}">
+											<Setter
+												Property="Template">
+												<Setter.Value>
+													<ControlTemplate>
+														<Grid>
+															<Grid.ColumnDefinitions>
+																<ColumnDefinition
+																	Width="100" />
+																<ColumnDefinition
+																	Width="0.7*" />
+																<ColumnDefinition
+																	Width="0.3*"
+																	MinWidth="200" />
+															</Grid.ColumnDefinitions>
+															<Button
+																Height="100"
+																Padding="0"
+																HorizontalAlignment="Stretch"
+																hc:IconElement.Height="50"
+																hc:IconElement.Width="50"
+																Background="#00FFFFFF"
+																BorderThickness="0"
+																Focusable="False"
+																Foreground="#d9d9d9"
+																IsHitTestVisible="False">
+																<FrameworkElement.Style>
+																	<Style
+																		BasedOn="{StaticResource Button}"
+																		TargetType="{x:Type Button}">
+																		<Setter
+																			Property="hc:IconElement.Geometry"
+																			Value="{StaticResource FileIconGeometry}" />
+																	</Style>
+																</FrameworkElement.Style>
+															</Button>
+															<StackPanel
+																Grid.Column="1">
+																<Label
+																	MaxWidth="600"
+																	Margin="0,10,0,0"
+																	HorizontalAlignment="Left"
+																	VerticalAlignment="Top"
+																	Background="#00FFFFFF"
+																	BorderBrush="#64FFDA"
+																	BorderThickness="0"
+																	Focusable="False"
+																	hc:Poptip.Content="{Binding Message.Subject}">
+																	<TextBlock
+																		HorizontalAlignment="Center"
+																		FontFamily="{StaticResource Roboto-Medium}"
+																		FontSize="16"
+																		Foreground="#ebebeb"
+																		TextTrimming="CharacterEllipsis"
+																		Text="{Binding Filename}" />
+																</Label>
+																<StackPanel
+																	Margin="10,10,0,0"
+																	Orientation="Horizontal">
+																	<TextBlock
+																		VerticalAlignment="Center"
+																		FontFamily="{StaticResource Roboto-Regular}"
+																		FontSize="13"
+																		Foreground="#d9d9d9"
+																		Text="{Binding ContentType, StringFormat=Content-Type: {0}}" />
+																	<TextBlock
+																		Margin="10,0,0,0"
+																		VerticalAlignment="Center"
+																		FontFamily="{StaticResource Roboto-Regular}"
+																		FontSize="13"
+																		Foreground="#d9d9d9"
+																		Text="{Binding Size, StringFormat=Size: {0} bytes}" />
+																</StackPanel>
+															</StackPanel>
+															<StackPanel
+																Grid.Column="2"
+																VerticalAlignment="Center">
+																<Button
+																	Margin="0,0,20,0"
+																	HorizontalAlignment="Stretch"
+																	VerticalAlignment="Top"
+																	hc:BorderElement.CornerRadius="4 4 0 0"
+																	hc:IconElement.Geometry="{StaticResource SaveGeometry}"
+																	Content="{DynamicResource l_Save}"
+																	Cursor="Hand"
+																	Command="{Binding Data.DownloadAttachmentCommand, Source={StaticResource AttachmentsDataGridProxy}}"
+																	CommandParameter="{Binding}"
+																	IsEnabled="{Binding IsSaved, Converter={StaticResource Boolean2BooleanReConverter}}">
+																	<FrameworkElement.Style>
+																		<Style
+																			BasedOn="{StaticResource Button}"
+																			TargetType="{x:Type Button}">
+																			<Style.Triggers>
+																				<EventTrigger
+																					RoutedEvent="Click">
+																					<BeginStoryboard>
+																						<Storyboard>
+																							<BooleanAnimationUsingKeyFrames
+																								Storyboard.TargetProperty="(Button.IsEnabled)">
+																								<DiscreteBooleanKeyFrame
+																									KeyTime="00:00:00"
+																									Value="False" />
+																							</BooleanAnimationUsingKeyFrames>
+																						</Storyboard>
+																					</BeginStoryboard>
+																				</EventTrigger>
+																			</Style.Triggers>
+																		</Style>
+																	</FrameworkElement.Style>
+																</Button>
+																<Button
+																	Margin="0,0,20,0"
+																	HorizontalAlignment="Stretch"
+																	hc:BorderElement.CornerRadius="0 0 4 4"
+																	hc:IconElement.Geometry="{StaticResource SaveGeometry}"
+																	Content="{DynamicResource l_SaveAs}"
+																	Cursor="Hand"
+																	Command="{Binding Data.DownloadAttachmentByPathCommand, Source={StaticResource AttachmentsDataGridProxy}}"
+																	CommandParameter="{Binding}" />
+															</StackPanel>
+														</Grid>
+													</ControlTemplate>
+												</Setter.Value>
+											</Setter>
+											<Setter
+												Property="Padding"
+												Value="10,0,10,0" />
+										</Style>
+									</DataGridColumn.CellStyle>
+								</DataGridTemplateColumn>
+							</DataGrid.Columns>
+							<DataGrid.RowStyle>
+								<Style
+									BasedOn="{StaticResource DataGridRowStyle}"
+									TargetType="{x:Type DataGridRow}">
+									<Setter
+										Property="Background"
+										Value="#00FFFFFF" />
+									<Setter
+										Property="Margin"
+										Value="0,10,0,0" />
+									<Setter
+										Property="Padding"
+										Value="0" />
+									<Setter
+										Property="Background"
+										Value="{StaticResource Background5}" />
+									<Style.Triggers>
+										<Trigger
+											Property="DataGridRow.IsSelected"
+											Value="True">
+											<Setter
+												Property="Background"
+												Value="{StaticResource Background5}" />
+										</Trigger>
+										<Trigger
+											Property="UIElement.IsMouseOver"
+											Value="True">
+											<Setter
+												Property="Background"
+												Value="{StaticResource Background5}" />
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</DataGrid.RowStyle>
+						</DataGrid>
+					</Grid>
+				</Grid>
+			</Border>
+		</Grid>
+		<Grid
+			Row="2"
+			ColumnSpan="2"
+			Background="{StaticResource BlockBackgroundBrush}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<StackPanel
+				Orientation="Horizontal">
+				<hc:CircleProgressBar
+					Width="20"
+					Height="20"
+					Margin="15,0,0,0"
+					HorizontalAlignment="Left"
+					ArcThickness="2"
+					IsIndeterminate="True"
+					Visibility="{Binding IsPop3Busy, Converter={StaticResource Boolean2VisibilityConverter}}" />
+				<TextBlock
+					Margin="15,0,0,0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{Binding Pop3OperationStatus}" />
+			</StackPanel>
+			<StackPanel
+				Orientation="Horizontal"
+				Grid.Column="1"
+				HorizontalAlignment="Right"
+				Margin="0 0 15 0">
+				<TextBlock
+					Margin="15,0,0,0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#9d9d9d"
+					Text="{Binding Server.Hostname}" />
+				<TextBlock
+					Margin="15,0,0,0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#9d9d9d"
+					Text="{Binding Server.Port}" />
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>

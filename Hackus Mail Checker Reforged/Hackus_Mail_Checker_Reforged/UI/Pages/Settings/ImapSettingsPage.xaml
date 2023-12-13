@@ -1,0 +1,294 @@
+<Page
+	x:Class="Hackus_Mail_Checker_Reforged.UI.Pages.Settings.ImapSettingsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Pages.Settings" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="WebSettingsPage">
+	<hc:TransitioningContentControl
+		TransitionMode="Right2LeftWithFade">
+		<StackPanel
+			Margin="5,0,5,0">
+			<Border
+				Height="30"
+				Background="#202020"
+				CornerRadius="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_IMAP|POP3Settings}" />
+			</Border>
+			<TextBlock
+				Margin="0,15,0,0"
+				HorizontalAlignment="Center"
+				FontFamily="{StaticResource Roboto-Regular}"
+				FontSize="13"
+				Foreground="#d9d9d9"
+				Text="{DynamicResource l_UseProtocols}" />
+			<hc:ButtonGroup
+				Margin="0,10,0,0"
+				ThemeManager.RequestedAccentColor="#64FFD1"
+				ThemeManager.RequestedTheme="Dark"
+				Cursor="Hand">
+				<RadioButton
+					Content="IMAP"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.AllowedProtocols, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=IMAP}" />
+				<RadioButton
+					Content="POP3"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.AllowedProtocols, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=POP3}" />
+				<RadioButton
+					Content="{DynamicResource l_Both}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.AllowedProtocols, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Both}" />
+			</hc:ButtonGroup>
+			<Grid
+				Margin="0,20,0,0"
+				ToolTip="{DynamicResource l_RebruteImapIntoPop3Description}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_RebruteIMAPIntoPOP3}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.RebruteImapWithPop3}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_MaxMailsCheckDescription}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					VerticalAlignment="Center"
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_POP3Limit}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.UsePop3Limit}" />
+				<hc:NumericUpDown
+					Width="80"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Maximum="1000"
+					Minimum="1"
+					Value="{Binding CheckerSettings.Pop3Limit}" />
+			</Grid>
+			<Grid
+				Margin="0,15,0,0"
+				ToolTip="{DynamicResource l_RebruteBlockedDescription}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_RebruteBlocked}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.RebruteBlocked}" />
+			</Grid>
+			<Grid
+				Margin="0,20,0,0"
+				ToolTip="{DynamicResource l_CheckOnFolderAccess}"
+				ToolTipService.ShowDuration="20000">
+				<CheckBox
+					hc:ThemeManager.RequestedAccentColor="#64FFD1"
+					hc:ThemeManager.RequestedTheme="Dark"
+					Background="#202020"
+					Content="{DynamicResource l_CheckFolderAccess}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding CheckerSettings.CheckFolderAccess}" />
+			</Grid>
+			<TextBlock
+				Margin="0,20,0,0"
+				HorizontalAlignment="Center"
+				FontFamily="{StaticResource Roboto-Regular}"
+				FontSize="13"
+				Foreground="#d9d9d9"
+				Text="{DynamicResource l_FoldersToIMAPSearch}" />
+			<hc:ButtonGroup
+				Margin="0,10,0,0"
+				ThemeManager.RequestedAccentColor="#64FFD1"
+				ThemeManager.RequestedTheme="Dark">
+				<RadioButton
+					Content="Inbox"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.FoldersMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Inbox}" />
+				<RadioButton
+					Content="{DynamicResource l_All}"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.FoldersMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=All}" />
+				<RadioButton
+					Name="EditFoldersModeRadio"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					IsChecked="{Binding SearchSettings.FoldersMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Custom}">
+					<ContentControl.Content>
+						<Path>
+							<UIElement.RenderTransform>
+								<ScaleTransform
+									ScaleX="0.8"
+									ScaleY="0.8" />
+							</UIElement.RenderTransform>
+							<FrameworkElement.Style>
+								<Style
+									BasedOn="{StaticResource EditIcon}"
+									TargetType="{x:Type Path}">
+									<Style.Triggers>
+										<DataTrigger
+											Value="True"
+											Binding="{Binding Path=IsChecked, ElementName=EditFoldersModeRadio}">
+											<Setter
+												Property="Fill"
+												Value="#64FFD1" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</FrameworkElement.Style>
+						</Path>
+					</ContentControl.Content>
+				</RadioButton>
+			</hc:ButtonGroup>
+			<Grid
+				Margin="0,10,0,0"
+				IsEnabled="{Binding ElementName=EditFoldersModeRadio, Path=IsChecked}">
+				<hc:TextBox
+					Padding="10,0,40,0"
+					BorderElement.CornerRadius="4 4 0 0"
+					InfoElement.Placeholder="TRASH"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{Binding FolderInput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+					<UIElement.InputBindings>
+						<KeyBinding
+							Key="Enter"
+							Command="{Binding AddFolderCommand}" />
+					</UIElement.InputBindings>
+				</hc:TextBox>
+				<Button
+					Width="30"
+					Margin="1"
+					Padding="0"
+					HorizontalAlignment="Right"
+					hc:BorderElement.CornerRadius="0 4 4 0"
+					hc:IconElement.Geometry="{StaticResource AddGeometry}"
+					hc:IconElement.Height="8"
+					hc:IconElement.Width="8"
+					BorderThickness="1,0,0,0"
+					Focusable="False"
+					Foreground="#64FFD1"
+					Command="{Binding AddFolderCommand}" />
+			</Grid>
+			<Border
+				Background="#202020"
+				BorderBrush="#37373c"
+				BorderThickness="1,0,1,1"
+				IsEnabled="{Binding ElementName=EditFoldersModeRadio, Path=IsChecked}">
+				<hc:ScrollViewer
+					Height="140"
+					VerticalScrollBarVisibility="Auto">
+					<ItemsControl
+						HorizontalAlignment="Stretch"
+						ItemsSource="{Binding SearchSettings.Folders}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Grid
+									Margin="15,5,15,5">
+									<TextBlock
+										VerticalAlignment="Center"
+										FontFamily="{StaticResource Roboto-Regular}"
+										FontSize="13"
+										Foreground="#d9d9d9"
+										Text="{Binding Name}" />
+									<Button
+										Width="25"
+										Height="25"
+										Padding="0"
+										HorizontalAlignment="Right"
+										hc:IconElement.Geometry="{StaticResource CloseGeometry}"
+										BorderThickness="0"
+										Command="{Binding DataContext.RemoveFolderCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+										CommandParameter="{Binding}" />
+								</Grid>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</hc:ScrollViewer>
+			</Border>
+			<Border
+				Height="30"
+				Margin="0,10,0,0"
+				Background="#202020"
+				CornerRadius="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="13"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_RebruteErrors}" />
+			</Border>
+			<Grid
+				Margin="2,10,0,0"
+				ToolTip="IOException, SocketException"
+				ToolTipService.ShowDuration="20000">
+				<TextBlock
+					VerticalAlignment="Center"
+					Style="{StaticResource StandartTextStyle}"
+					Text="{DynamicResource l_ConnectionErrors}" />
+				<hc:NumericUpDown
+					Width="80"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Maximum="1000"
+					Minimum="1"
+					Value="{Binding CheckerSettings.ConnectionExceptionRebrute}" />
+			</Grid>
+			<Grid
+				Margin="2,10,0,0"
+				ToolTip="TimeoutException"
+				ToolTipService.ShowDuration="20000">
+				<TextBlock
+					VerticalAlignment="Center"
+					Style="{StaticResource StandartTextStyle}"
+					Text="{DynamicResource l_ConnectionTimeouts}" />
+				<hc:NumericUpDown
+					Width="80"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					ThemeManager.RequestedAccentColor="#64FFD1"
+					ThemeManager.RequestedTheme="Dark"
+					BorderThickness="0"
+					Maximum="1000"
+					Minimum="1"
+					Value="{Binding CheckerSettings.TimeoutExceptionRebrute}" />
+			</Grid>
+		</StackPanel>
+	</hc:TransitioningContentControl>
+</Page>

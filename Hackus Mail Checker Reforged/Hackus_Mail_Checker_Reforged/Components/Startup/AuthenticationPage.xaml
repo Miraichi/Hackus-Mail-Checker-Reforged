@@ -1,0 +1,153 @@
+<Page
+	x:Class="Hackus_Mail_Checker_Reforged.Components.Startup.AuthenticationPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.Components.Startup" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="AuthenticationPage"
+	hc:ThemeManager.RequestedAccentColor="#64FFD1">
+	<Grid
+		IsEnabled="{Binding IsAuthorizing, Converter={StaticResource Boolean2BooleanReConverter}}">
+		<StackPanel>
+			<Grid
+				Height="155">
+				<Image
+					Name="asdsad"
+					Margin="0,10,0,10"
+					VerticalAlignment="Center"
+					Cursor="Hand"
+					RenderOptions.BitmapScalingMode="HighQuality"
+					RenderTransformOrigin="0.5, 0.5"
+					Source="../../Resources/Images/Logo.png">
+					<hc:Interaction.Triggers>
+						<hc:EventTrigger
+							EventName="MouseDown">
+							<hc:EventToCommand
+								Command="{Binding OpenTelegramCommand}" />
+						</hc:EventTrigger>
+					</hc:Interaction.Triggers>
+					<FrameworkElement.Style>
+						<Style
+							TargetType="{x:Type Image}">
+							<Setter
+								Property="Height"
+								Value="125" />
+							<Style.Triggers>
+								<EventTrigger
+									RoutedEvent="Mouse.MouseEnter">
+									<EventTrigger.Actions>
+										<BeginStoryboard>
+											<Storyboard>
+												<DoubleAnimation
+													Storyboard.TargetProperty="Height"
+													To="135"
+													Duration="0:0:0.15" />
+											</Storyboard>
+										</BeginStoryboard>
+									</EventTrigger.Actions>
+								</EventTrigger>
+								<EventTrigger
+									RoutedEvent="Mouse.MouseLeave">
+									<EventTrigger.Actions>
+										<BeginStoryboard>
+											<Storyboard>
+												<DoubleAnimation
+													Storyboard.TargetProperty="Height"
+													To="125"
+													Duration="0:0:0.15" />
+											</Storyboard>
+										</BeginStoryboard>
+									</EventTrigger.Actions>
+								</EventTrigger>
+							</Style.Triggers>
+						</Style>
+					</FrameworkElement.Style>
+				</Image>
+			</Grid>
+			<Grid
+				Height="30"
+				Margin="0,10,0,0">
+				<TextBlock
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontFamily="{StaticResource Roboto-Regular}"
+					FontSize="16"
+					Foreground="#d9d9d9"
+					Text="{DynamicResource l_Authorization}"
+					Visibility="{Binding ErrorMessage, Converter={StaticResource String2VisibilityReConverter}}" />
+				<Label
+					Width="230"
+					Height="28"
+					VerticalAlignment="Center"
+					Background="#242424"
+					BorderBrush="#FF7C7C"
+					Visibility="{Binding ErrorMessage, Converter={StaticResource String2VisibilityConverter}}">
+					<TextBlock
+						FontFamily="{StaticResource Roboto-Regular}"
+						FontSize="13"
+						Foreground="#FF7C7C"
+						TextTrimming="CharacterEllipsis"
+						Text="{Binding ErrorMessage}" />
+				</Label>
+			</Grid>
+			<hc:TextBox
+				Width="230"
+				Height="34"
+				Margin="0,20,0,0"
+				InfoElement.Placeholder="Username"
+				Background="#242424"
+				BorderThickness="0"
+				FontFamily="{StaticResource Roboto-Regular}"
+				FontSize="13"
+				Foreground="#d9d9d9"
+				ShowClearButton="True"
+				Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+			<hc:TextBox
+				Width="230"
+				Height="34"
+				Margin="0,15,0,0"
+				InfoElement.Placeholder="Password"
+				Background="#242424"
+				BorderThickness="0"
+				FontFamily="{StaticResource Roboto-Regular}"
+				FontSize="13"
+				Foreground="#d9d9d9"
+				ShowClearButton="True"
+				Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+			<Button
+				Width="230"
+				Height="35"
+				Margin="0,35,0,0"
+				HorizontalAlignment="Stretch"
+				HorizontalContentAlignment="Stretch"
+				hc:BorderElement.CornerRadius="4"
+				Background="#00FFFFFF"
+				BorderBrush="#64FFD1"
+				Cursor="Hand"
+				Foreground="#64FFD1"
+				Command="{Binding LoginCommand}">
+				<ContentControl.Content>
+					<Grid
+						Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Button}}}">
+						<Path
+							Width="13"
+							Height="13"
+							Margin="0,0,25,0"
+							HorizontalAlignment="Right"
+							Fill="#64FFD1"
+							Style="{StaticResource RightPathStyle}" />
+						<TextBlock
+							Margin="0,0,20,0"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="14"
+							Text="{DynamicResource l_Enter}" />
+					</Grid>
+				</ContentControl.Content>
+			</Button>
+		</StackPanel>
+		<ProgressBar
+			Height="3"
+			VerticalAlignment="Bottom"
+			Foreground="#9effd3"
+			IsIndeterminate="True"
+			Visibility="{Binding IsAuthorizing, Converter={StaticResource Boolean2VisibilityConverter}}" />
+	</Grid>
+</Page>

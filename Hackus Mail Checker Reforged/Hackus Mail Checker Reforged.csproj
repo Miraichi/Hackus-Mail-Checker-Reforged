@@ -1,0 +1,686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{726D8971-BDC6-403E-8DEC-2205DB0F4C3F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Hackus Mail Checker Reforged</RootNamespace>
+    <AssemblyName>Hackus Mail Checker Reforged</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Hackus Mail Checker Reforged.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DnsClient" />
+    <Reference Include="DotNetZip" />
+    <Reference Include="HandyControl">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\HandyControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="MailBee.NET">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\MailBee.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json" />
+    <Reference Include="Notification.Wpf" />
+    <Reference Include="PresentationCore">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\PresentationCore.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\PresentationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\System.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="ToolGood.Words" />
+    <Reference Include="WindowsBase">
+      <HintPath>..\..\..\softwares\MailAccess - Softwares\Mail Checker [Hackus]\v2.2.0\WindowsBase.dll</HintPath>
+    </Reference>
+    <Reference Include="xNet" />
+    <Reference Include="mscorlib" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="-Module-.cs" />
+    <Compile Include="ConfusedByAttribute.cs" />
+    <Compile Include="dummy_ptr\{91d4c6f0-03de-471b-9261-548da6928856}.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\AuthenticatorException.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Handlers\ScheduledImapHandler.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Handlers\ScheduledMailHandler.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Handlers\ScheduledPop3Handler.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Models\Contexts\ImapContext.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Models\Contexts\MailContext.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Models\Contexts\Pop3Context.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Models\MailStatus.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Models\Notification.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Models\ScheduledMail.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\ScheduledWorker.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Scheduler.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\SchedulerController.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\SchedulerFileManager.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\ViewModels\SchedulerViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Views\SchedulerWindow.xaml.cs">
+      <DependentUpon>SchedulerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\AuthenticationPage.xaml.cs">
+      <DependentUpon>AuthenticationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\Authenticator.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\EncryptedLoginResponse.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\EncryptionKeyResponse.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\ErrorResponse.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\HWID.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\LoginResponse.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\Startup.xaml.cs">
+      <DependentUpon>Startup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\StartupViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\TokenResponse.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\UpdateAskPage.xaml.cs">
+      <DependentUpon>UpdateAskPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\VersionResponse.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\WebLoader.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Startup\WebLoadingPage.xaml.cs">
+      <DependentUpon>WebLoadingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\BasePath.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\DistinctTool.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\ITool.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\MergeTool.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\NormalizeTool.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\ShuffleTool.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\SortDomainsTool.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\SortTool.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\SortType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\DistinctPage.xaml.cs">
+      <DependentUpon>DistinctPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\MergePage.xaml.cs">
+      <DependentUpon>MergePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\NormalizePage.xaml.cs">
+      <DependentUpon>NormalizePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\ShufflePage.xaml.cs">
+      <DependentUpon>ShufflePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\SortDomainsPage.xaml.cs">
+      <DependentUpon>SortDomainsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\SortPage.xaml.cs">
+      <DependentUpon>SortPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Models\Attachment.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Models\ImapFolder.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Models\ImapMessage.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Models\LastOperation.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Models\SearchQuery.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Models\SearchType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\TranslationLanguage.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\TranslationLanguageExtensions.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\ViewerController.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\ViewModels\Tabs\EmptyTabViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\ViewModels\Tabs\ImapTabViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\ViewModels\Tabs\Pop3TabViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\ViewModels\Tabs\SettingsTabViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\ViewModels\Tabs\ToolsTabViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\ViewModels\ViewerMainViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\EmptyTab.xaml.cs">
+      <DependentUpon>EmptyTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\ImapTab.xaml.cs">
+      <DependentUpon>ImapTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\Pop3Tab.xaml.cs">
+      <DependentUpon>Pop3Tab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\SettingsTab.xaml.cs">
+      <DependentUpon>SettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\ToolsTab.xaml.cs">
+      <DependentUpon>ToolsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\ViewerMainWindow.xaml.cs">
+      <DependentUpon>ViewerMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\ConfigurationProviderType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\ContactsHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Helpers\CaptchaHelpers.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Helpers\DateHelpers.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Helpers\PasswordHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Helpers\StoryboardHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Helpers\ToolsHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\IConfigurationProvider.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Logger.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\DomainFilter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\AllowedProtocols.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\CaptchaSolvationService.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\CheckerState.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\DownloadMode.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\ExceptionType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\ExtendedProtocolType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\ExtendedSocketType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\FoldersMode.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\FrameType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\HostFinderServer.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\HostFinderStatus.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\MailRuMethod.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\OperationResult.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\ProtocolType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\ProxySourceType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\ProxyTakeType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\ProxyType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\SearchServerType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Enums\SocketType.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\EventArgs\ThreadCancelledEventArgs.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Exceptions\InvalidHostException.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Folder.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Mailbox.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\MailboxResult.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Proxy.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\ProxySource.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Request.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\RequestGroup.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\RequestResult.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\SearchAttachmentsMode.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Server.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Models\Settings.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\MultipasswordHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\AppleClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\AttachmentMessageInfo.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Captcha\AntiCaptcha.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Captcha\ICaptchaClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Captcha\RuCaptcha.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\HostFinder.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\HostFinderContext.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\HostFinderHandler.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\InteriaClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\MailRuClientNew.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\AlternateViewCollection.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Attachment.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Client.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\ConnectionState.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\EncodingHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Folder.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Header.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\HeaderDictionary.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\IMailHandler.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Imap.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\IMAP\Folder.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\IMAP\ImapClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\IMAP\ImapHandler.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\IMAP\ImapHandlerNew.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\MailClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\MailHandler.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\MailMessage.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Message\Attachment.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Message\MailMessage.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Message\MessageBuilder.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Message\Mid.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Message\MimePart.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Message\SearchCondition.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Message\Uid.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\ObjectHeaders.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Pop3.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\POP3\Pop3Client.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\POP3\Pop3Handler.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\SafeDictionary.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\SearchCondition.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utf7Encoding.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utilities\AlertException.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utilities\ArgumentExtensions.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utilities\DisposeHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utilities\EncodingException.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utilities\MailException.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utilities\SslStream.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utilities\StreamHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utilities\StringExtensions.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utilities\SubstringException.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Mail\Utils.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\OnetClientNew.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\ProtonClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\RamblerClientNew.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\RediffmailClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\SeznamClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\UnitedInternetClientNew.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\AolClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\MailRu\AttachmentInfo.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\MailRu\Href.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\MailRu\MoveDestination.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Onet\AttachmentInfo.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Onet\MidsResponse.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Onet\SearchResponse.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Proton\GoSrpInvoker.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Proton\GoSrp\DisposableGoBytes.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Proton\GoSrp\Extensions.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Proton\GoSrp\GoBytes.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Proton\GoSrp\GoProofs.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Proton\GoSrp\GoString.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Proton\GoSrp\PInvoke.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Rambler\AttachmentInfo.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Rambler\MoveDestination.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\UnitedInternet\RequestHelpers\GmxComRequestHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\UnitedInternet\RequestHelpers\GmxNetRequestHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\UnitedInternet\RequestHelpers\RequestHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\UnitedInternet\RequestHelpers\WebDeRequestHelper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\YahooClient.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Yahoo\AttachmentInfo.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Yahoo\From.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Yahoo\Headers.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Yahoo\Message.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Yahoo\MessagePreview.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Yahoo\MessageWrapper.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Yahoo\PreviewFrom.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Yahoo\SimpleBody.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Web\Yandex\AttachmentInfo.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\Worker.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Net\YandexClientNew.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\PlainConfiguration.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Properties\Resources.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\RandomExtensions.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Registry.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\CheckerStateToVisibilityConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\ContentTypeConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\EnumToVisibilityConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\EnvelopeToAttachmentsConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\IntToBooleanConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\StatisticsToProgressTextConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\StatisticsToProgressValueConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\StatisticsToSpeedValueConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Resources\Converters\StringToBooleanConverter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Background\BackgroundAuthenticator.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Background\BackgroundGarbageCollector.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Background\BackgroundProxyLoader.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Background\BackgroundRestSaver.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Background\BackgroundSpeedMeter.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Background\BackgroundStopwatch.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Managers\ConfigurationManager.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Managers\FileManager.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Managers\MailManager.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Managers\PagesManager.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Managers\ProxyManager.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Managers\SettingsManager.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Managers\StatisticsManager.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Managers\ThreadsManager.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Settings\CheckerSettings.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Settings\ProxySettings.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Settings\SchedulerSettings.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Settings\SearchSettings.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Settings\ViewerSettings.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Settings\WebSettings.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Shared\Notifier.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\Services\Shared\ReportService.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\SqlConfiguration.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\StringExtension.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\TranslationService.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Models\BindableObject.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Models\BindingProxy.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Models\BrowserBehavior.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Models\PopupExtended.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Models\RelayCommand.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Notifications\CompleteNotification.xaml.cs">
+      <DependentUpon>CompleteNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\AttachmentsFilterOverlayPage.xaml.cs">
+      <DependentUpon>AttachmentsFilterOverlayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\BaseLoadingProcessPage.xaml.cs">
+      <DependentUpon>BaseLoadingProcessPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\CheckingDurationPage.xaml.cs">
+      <DependentUpon>CheckingDurationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\ConfigurationPage.xaml.cs">
+      <DependentUpon>ConfigurationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\DomainsFilterOverlayPage.xaml.cs">
+      <DependentUpon>DomainsFilterOverlayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\ErrorMessagePage.xaml.cs">
+      <DependentUpon>ErrorMessagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\ProxyLoaderPage.xaml.cs">
+      <DependentUpon>ProxyLoaderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\ProxyLoadingProcessPage.xaml.cs">
+      <DependentUpon>ProxyLoadingProcessPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\RebruteDomainsFilterOverlayPage.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\RequestsManagerPage.xaml.cs">
+      <DependentUpon>RequestsManagerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\StatisticsDetailsPage.xaml.cs">
+      <DependentUpon>StatisticsDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\WebSettingsPage.xaml.cs">
+      <DependentUpon>WebSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Popups\AddRequestsPopup.xaml.cs">
+      <DependentUpon>AddRequestsPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Popups\SearchGroups.xaml.cs">
+      <DependentUpon>SearchGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Popups\ViewModels\SearchGroupsViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\ConfigurationSettingsPage.xaml.cs">
+      <DependentUpon>ConfigurationSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\GlobalSettingsPage.xaml.cs">
+      <DependentUpon>GlobalSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\ImapSettingsPage.xaml.cs">
+      <DependentUpon>ImapSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\RequestsSettingsPage.xaml.cs">
+      <DependentUpon>RequestsSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\SearchSettingsPage.xaml.cs">
+      <DependentUpon>SearchSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\ViewModels\ConfigurationViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\ViewModels\DurationMessageViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\ViewModels\ErrorMessageViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\ViewModels\MainViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\ViewModels\ProxyLoaderViewModel.cs" />
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hackus_Mail_Checker_Reforged\UI\Views\ShortMainView.xaml.cs">
+      <DependentUpon>ShortMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Hackus_Mail_Checker_Reforged\Properties\Resources.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="Hackus_Mail_Checker_Reforged\Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Hackus_Mail_Checker_Reforged\App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Scheduler\Views\SchedulerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Startup\AuthenticationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Startup\LoadingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Startup\Startup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Startup\UpdateAskPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Startup\WebLoadingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\DistinctPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\MergePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\NormalizePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\ShufflePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\SortDomainsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Tools\Views\SortPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\EmptyTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\ImapTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\Pop3Tab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\SettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\Tabs\ToolsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\Components\Viewer\Views\ViewerMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Notifications\CompleteNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\AttachmentsFilterOverlayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\BaseLoadingProcessPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\CheckingDurationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\ConfigurationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\DomainsFilterOverlayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\ErrorMessagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\ProxyLoaderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\ProxyLoadingProcessPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\RequestsManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\StatisticsDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Overlays\WebSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Popups\AddRequestsPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Popups\SearchGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\ConfigurationSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\GlobalSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\ImapSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\RequestsSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Pages\Settings\SearchSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hackus_Mail_Checker_Reforged\UI\Views\ShortMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resources\globaldictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resources\iconsdictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resources\languages\englishlanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resources\languages\russianlanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resources\themes\darktheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resources\themes\lighttheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\Overlays\additionalcheckdomainsfilteroverlaypage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+    <Resource Include="resources\fonts\roboto-bold.ttf" />
+    <Resource Include="resources\fonts\roboto-light.ttf" />
+    <Resource Include="resources\fonts\roboto-medium.ttf" />
+    <Resource Include="resources\fonts\roboto-regular.ttf" />
+    <Resource Include="resources\fonts\roboto-thin.ttf" />
+    <Resource Include="resources\images\apple.png" />
+    <Resource Include="resources\images\captcha.png" />
+    <Resource Include="resources\images\china.png" />
+    <Resource Include="resources\images\france.png" />
+    <Resource Include="resources\images\germany.png" />
+    <Resource Include="resources\images\gmx.png" />
+    <Resource Include="resources\images\interia.png" />
+    <Resource Include="resources\images\logo-dark.png" />
+    <Resource Include="resources\images\logo.png" />
+    <Resource Include="resources\images\mailru.png" />
+    <Resource Include="resources\images\penguin.png" />
+    <Resource Include="resources\images\poland.png" />
+    <Resource Include="resources\images\proton.png" />
+    <Resource Include="resources\images\rambler.png" />
+    <Resource Include="resources\images\russia.png" />
+    <Resource Include="resources\images\seznam.png" />
+    <Resource Include="resources\images\spain.png" />
+    <Resource Include="resources\images\startup_background.jpg" />
+    <Resource Include="resources\images\united-kingdom.png" />
+    <Resource Include="resources\images\webde.png" />
+    <Resource Include="resources\images\yahoo.png" />
+    <Resource Include="resources\images\yandex.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

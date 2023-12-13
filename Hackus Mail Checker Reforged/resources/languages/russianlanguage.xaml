@@ -1,0 +1,625 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+	<sys:String
+		x:Key="l_OnCloseProgramWarning">Программа находится в процессе чека. Вы уверены, что хотите завершить процесс?</sys:String>
+	<sys:String
+		x:Key="l_OnStartProxyWarning">Вы загрузили прокси, но не включили их использование. Вы уверены, что хотите начать чек без использования прокси?</sys:String>
+	<sys:String
+		x:Key="l_START">СТАРТ</sys:String>
+	<sys:String
+		x:Key="l_PAUSE">ПАУЗА</sys:String>
+	<sys:String
+		x:Key="l_RESUME">ДАЛЕЕ</sys:String>
+	<sys:String
+		x:Key="l_STOP">СТОП</sys:String>
+	<sys:String
+		x:Key="l_PROXY">ПРОКСИ</sys:String>
+	<sys:String
+		x:Key="l_BASE">БАЗА</sys:String>
+	<sys:String
+		x:Key="l_TotalLines">Всего строк</sys:String>
+	<sys:String
+		x:Key="l_Checked">Проверено</sys:String>
+	<sys:String
+		x:Key="l_Proxy">Прокси</sys:String>
+	<sys:String
+		x:Key="l_Threads">Потоки</sys:String>
+	<sys:String
+		x:Key="l_Good">Валид</sys:String>
+	<sys:String
+		x:Key="l_Found">Найдено</sys:String>
+	<sys:String
+		x:Key="l_Bad">Невалид</sys:String>
+	<sys:String
+		x:Key="l_Blocked">Блок</sys:String>
+	<sys:String
+		x:Key="l_Captcha">Капча</sys:String>
+	<sys:String
+		x:Key="l_2FA">2FA</sys:String>
+	<sys:String
+		x:Key="l_Multipasswords">Многопарольные</sys:String>
+	<sys:String
+		x:Key="l_Errors">Ошибки</sys:String>
+	<sys:String
+		x:Key="l_HostNotFound">Хост не найден</sys:String>
+	<sys:String
+		x:Key="l_EstimatedCompletionTime">Осталось времени до завершения</sys:String>
+	<sys:String
+		x:Key="l_Requests">Запросы</sys:String>
+	<sys:String
+		x:Key="l_Bads">Невалид</sys:String>
+	<sys:String
+		x:Key="l_Details">Детали</sys:String>
+	<sys:String
+		x:Key="l_MainDataGridSearchPlaceholder">Введите запрос для поиска...</sys:String>
+	<sys:String
+		x:Key="l_Address">Адрес</sys:String>
+	<sys:String
+		x:Key="l_Password">Пароль</sys:String>
+	<sys:String
+		x:Key="l_Request">Запрос</sys:String>
+	<sys:String
+		x:Key="l_Client">Клиент</sys:String>
+	<sys:String
+		x:Key="l_Scheduler">Планировщик</sys:String>
+	<sys:String
+		x:Key="l_GlobalSettings">Основные настройки</sys:String>
+	<sys:String
+		x:Key="l_ThreadsNumber">Кол-во потоков</sys:String>
+	<sys:String
+		x:Key="l_Timeout_s">Таймаут (с)</sys:String>
+	<sys:String
+		x:Key="l_Rebrute">Перебрут</sys:String>
+	<sys:String
+		x:Key="l_UseProxy">Использовать прокси</sys:String>
+	<sys:String
+		x:Key="l_CheckOnWeb">Чекать по Web</sys:String>
+	<sys:String
+		x:Key="l_AdditionalSettings">Дополнительные настройки</sys:String>
+	<sys:String
+		x:Key="l_SaveRest_m">Сохр. остаток (м)</sys:String>
+	<sys:String
+		x:Key="l_StartOnBaseLoaded">Старт после загрузки базы</sys:String>
+	<sys:String
+		x:Key="l_DomainsFilter">Фильтр доменов</sys:String>
+	<sys:String
+		x:Key="l_IgnoreDomainsFilterDescription">Почты, содержащие домены из списка, будут игнорироваться при загрузке базы</sys:String>
+	<sys:String
+		x:Key="l_IgnoreDomains">Игнорировать домены</sys:String>
+	<sys:String
+		x:Key="l_ProcessMultipassword">Обрабатывать многопарольные</sys:String>
+	<sys:String
+		x:Key="l_Configure">Настроить</sys:String>
+	<sys:String
+		x:Key="l_NotifyWhenCompleted">Оповещать о завершении</sys:String>
+	<sys:String
+		x:Key="l_SearchSettings">Настройки поиска</sys:String>
+	<sys:String
+		x:Key="l_SearchLetters">Искать письма</sys:String>
+	<sys:String
+		x:Key="l_LettersFrom">Писем от</sys:String>
+	<sys:String
+		x:Key="l_SearchByDate">Искать по дате</sys:String>
+	<sys:String
+		x:Key="l_From">От</sys:String>
+	<sys:String
+		x:Key="l_To">До</sys:String>
+	<sys:String
+		x:Key="l_AdditionalCheckDomainsFilterDescription">Письма в почтах, содержащих домены из списка, будут дополнительно проверяться</sys:String>
+	<sys:String
+		x:Key="l_AdditionalCheck">Доп. проверка</sys:String>
+	<sys:String
+		x:Key="l_DownloadingLetters">Загрузка писем</sys:String>
+	<sys:String
+		x:Key="l_DownloadLetters">Скачивать письма</sys:String>
+	<sys:String
+		x:Key="l_DownloadInSingleFile">Скачивать в один файл</sys:String>
+	<sys:String
+		x:Key="l_SavedLettersFormat">Формат сохраненных писем</sys:String>
+	<sys:String
+		x:Key="l_Attachments">Вложения</sys:String>
+	<sys:String
+		x:Key="l_SearchAttachments">Искать вложения</sys:String>
+	<sys:String
+		x:Key="l_Everywhere">Везде</sys:String>
+	<sys:String
+		x:Key="l_InDownloaded">В скачанных</sys:String>
+	<sys:String
+		x:Key="l_AttachmentsFilter">Фильтр вложений</sys:String>
+	<sys:String
+		x:Key="l_AttachmentsFilterDescription">Будут скачиваться только те файлы, название которых содержит в себе строку из фильтра</sys:String>
+	<sys:String
+		x:Key="l_DeleteWhenDownloaded">Запрашивать удаление на почте</sys:String>
+	<sys:String
+		x:Key="l_SearchRequests">Запросы на поиск</sys:String>
+	<sys:String
+		x:Key="l_AddSearchRequest">Добавить запрос на поиск</sys:String>
+	<sys:String
+		x:Key="l_BySender">По отправителю</sys:String>
+	<sys:String
+		x:Key="l_BySubject">По теме</sys:String>
+	<sys:String
+		x:Key="l_ByContent">По телу</sys:String>
+	<sys:String
+		x:Key="l_BySenderAndSubject">По отправителю + по теме</sys:String>
+	<sys:String
+		x:Key="l_BySenderAndContent">По отправителю + по телу</sys:String>
+	<sys:String
+		x:Key="l_BySubjectAndContent">По теме + по телу</sys:String>
+	<sys:String
+		x:Key="l_BySenderAndSubjectAndContent">По отправителю + по теме + по телу</sys:String>
+	<sys:String
+		x:Key="l_Sender">Отправитель</sys:String>
+	<sys:String
+		x:Key="l_Subject">Тема</sys:String>
+	<sys:String
+		x:Key="l_Content">Тело</sys:String>
+	<sys:String
+		x:Key="l_SenderAndSubject">Отправитель=Тема</sys:String>
+	<sys:String
+		x:Key="l_SenderAndContent">Отправитель=Тело</sys:String>
+	<sys:String
+		x:Key="l_SubjectAndContent">Тема=Тело</sys:String>
+	<sys:String
+		x:Key="l_SenderAndSubjectAndContent">Отправитель=Тема=Тело</sys:String>
+	<sys:String
+		x:Key="l_Import">Импорт</sys:String>
+	<sys:String
+		x:Key="l_Export">Экспорт</sys:String>
+	<sys:String
+		x:Key="l_RequestsManager">Менеджер Запросов</sys:String>
+	<sys:String
+		x:Key="l_ServerSearching">Поиск сервера</sys:String>
+	<sys:String
+		x:Key="l_SearchServer">Искать сервер</sys:String>
+	<sys:String
+		x:Key="l_SearchByMxRecords">Поиск по MX записям</sys:String>
+	<sys:String
+		x:Key="l_MatchSubdomainByDomain">Подбирать поддомен по домену</sys:String>
+	<sys:String
+		x:Key="l_MatchSubdomainByMx">Подбирать поддомен по MX</sys:String>
+	<sys:String
+		x:Key="l_ProtocolsToMatch">Протоколы для подбора</sys:String>
+	<sys:String
+		x:Key="l_SearchByAutoConfig">Поиск в AutoConfig</sys:String>
+	<sys:String
+		x:Key="l_SearchByAutoDiscover">Поиск в AutoDiscover</sys:String>
+	<sys:String
+		x:Key="l_MatchingSubdomainsMethods">Методы подбора доменов</sys:String>
+	<sys:String
+		x:Key="l_SearchByWebMethods">Методы поиска по Web</sys:String>
+	<sys:String
+		x:Key="l_Both">Оба</sys:String>
+	<sys:String
+		x:Key="l_Configuration">Конфигурация</sys:String>
+	<sys:String
+		x:Key="l_EditConfiguration">Редактировать конфигурацию</sys:String>
+	<sys:String
+		x:Key="l_NoResults">Нет результатов</sys:String>
+	<sys:String
+		x:Key="l_Add">Добавить</sys:String>
+	<sys:String
+		x:Key="l_Edit">Редактировать</sys:String>
+	<sys:String
+		x:Key="l_Reset">Сбросить</sys:String>
+	<sys:String
+		x:Key="l_Domain">Домен</sys:String>
+	<sys:String
+		x:Key="l_Port">Порт</sys:String>
+	<sys:String
+		x:Key="l_Hostname">Сервер</sys:String>
+	<sys:String
+		x:Key="l_CheckConnection">Проверить соединение</sys:String>
+	<sys:String
+		x:Key="l_Login">Логин</sys:String>
+	<sys:String
+		x:Key="l_Authorize">Авторизация</sys:String>
+	<sys:String
+		x:Key="l_ThereIsAlreadyRecord">Запись с таким доменом уже существует</sys:String>
+	<sys:String
+		x:Key="l_ThereIsNoRecord">Записи с таким доменом не существует</sys:String>
+	<sys:String
+		x:Key="l_ConnectionIsSuccessfullyEstablished">Соединение успешно установлено</sys:String>
+	<sys:String
+		x:Key="l_NeedToRestartForChangeConfiguration">Для смены конфигурации необходима перезагрузка. Закрыть приложение сейчас?</sys:String>
+	<sys:String
+		x:Key="l_UnableToLoadConfigurationByPath">Не удалось загрузить конфигурацию по пути</sys:String>
+	<sys:String
+		x:Key="l_ApplicationWillLoadDefaultConfiguration">Загрузка приложения будет произведена со стандартной txt базой</sys:String>
+	<sys:String
+		x:Key="l_IMAP|POP3Settings">Настройки IMAP | POP3</sys:String>
+	<sys:String
+		x:Key="l_RebruteIMAPIntoPOP3">Перебрут IMAP в POP3</sys:String>
+	<sys:String
+		x:Key="l_POP3Limit">Макс. чек писем</sys:String>
+	<sys:String
+		x:Key="l_RebruteBlocked">Перебрут блокировок</sys:String>
+	<sys:String
+		x:Key="l_FoldersToIMAPSearch">Папки для поиска в IMAP</sys:String>
+	<sys:String
+		x:Key="l_All">Все</sys:String>
+	<sys:String
+		x:Key="l_WebSettings">Настройки Web</sys:String>
+	<sys:String
+		x:Key="l_MailRuCheckingMethod">Метод чека Mail.ru</sys:String>
+	<sys:String
+		x:Key="l_SolveCaptcha">Решать капчу</sys:String>
+	<sys:String
+		x:Key="l_Key">Ключ</sys:String>
+	<sys:String
+		x:Key="l_CheckFolderAccess">Проверять на доступ к папке</sys:String>
+	<sys:String
+		x:Key="l_UseProtocols">Использовать протоколы</sys:String>
+	<sys:String
+		x:Key="l_RebruteErrors">Перебрут ошибок</sys:String>
+	<sys:String
+		x:Key="l_ConnectionErrors">Ошибки соединения</sys:String>
+	<sys:String
+		x:Key="l_ConnectionTimeouts">Таймауты соединения</sys:String>
+	<sys:String
+		x:Key="l_FillInAllTheFields">Заполните все поля</sys:String>
+	<sys:String
+		x:Key="l_InvalidUsernameOrPassword">Неверный логин или пароль</sys:String>
+	<sys:String
+		x:Key="l_ConnectionError">Ошибка подключения</sys:String>
+	<sys:String
+		x:Key="l_SomethingWentWrong">Что-то пошло не так</sys:String>
+	<sys:String
+		x:Key="l_DownloadingUpdate">Загрузка обновления</sys:String>
+	<sys:String
+		x:Key="l_DownloadingConfiguration">Загрузка конфигурации</sys:String>
+	<sys:String
+		x:Key="l_DownloadingModules">Загрузка модулей</sys:String>
+	<sys:String
+		x:Key="l_DownloadingFileErrorOccured">Во время загрузки файла произошла ошибка. Попробуйте перезапустить программу</sys:String>
+	<sys:String
+		x:Key="l_UnpackingFileErrorOccured">Во время распаковки файла произошла ошибка. Попробуйте перезапустить программу</sys:String>
+	<sys:String
+		x:Key="l_CheckingForUpdates">Проверка обновлений</sys:String>
+	<sys:String
+		x:Key="l_CheckingConfiguration">Проверка конфигурации</sys:String>
+	<sys:String
+		x:Key="l_UnpackingConfiguration">Распаковка конфигурации</sys:String>
+	<sys:String
+		x:Key="l_UnpackingModules">Распаковка модулей</sys:String>
+	<sys:String
+		x:Key="l_NewUpdateAvailable">Доступно новое обновление</sys:String>
+	<sys:String
+		x:Key="l_Error">Ошибка</sys:String>
+	<sys:String
+		x:Key="l_Close">Закрыть</sys:String>
+	<sys:String
+		x:Key="l_Skip">Пропустить</sys:String>
+	<sys:String
+		x:Key="l_Enter">Войти</sys:String>
+	<sys:String
+		x:Key="l_Authorization">Авторизация</sys:String>
+	<sys:String
+		x:Key="l_Authorizing">Авторизация</sys:String>
+	<sys:String
+		x:Key="l_Updating">Обновление</sys:String>
+	<sys:String
+		x:Key="l_Loading">Загрузка</sys:String>
+	<sys:String
+		x:Key="l_NewTab">Новая вкладка</sys:String>
+	<sys:String
+		x:Key="l_Folders">Каталоги</sys:String>
+	<sys:String
+		x:Key="l_Extensions">Расширения</sys:String>
+	<sys:String
+		x:Key="l_SelectionMode">Режим выделения</sys:String>
+	<sys:String
+		x:Key="l_Refresh">Обновить</sys:String>
+	<sys:String
+		x:Key="l_AttachLetter">Вложить письмо</sys:String>
+	<sys:String
+		x:Key="l_Mailing">Рассылка</sys:String>
+	<sys:String
+		x:Key="l_BackToList">К списку</sys:String>
+	<sys:String
+		x:Key="l_LoginMail">Вход в почту</sys:String>
+	<sys:String
+		x:Key="l_Delete">Удалить</sys:String>
+	<sys:String
+		x:Key="l_Copied">Скопировано!</sys:String>
+	<sys:String
+		x:Key="l_Back">Назад</sys:String>
+	<sys:String
+		x:Key="l_Forward">Вперед</sys:String>
+	<sys:String
+		x:Key="l_ThereIsEmpty">Здесь пусто</sys:String>
+	<sys:String
+		x:Key="l_Save">Сохранить</sys:String>
+	<sys:String
+		x:Key="l_SaveAs">Сохранить как...</sys:String>
+	<sys:String
+		x:Key="l_InvalidDataFormat">Неверный формат данных</sys:String>
+	<sys:String
+		x:Key="l_ServerNotFound">Сервер не найден</sys:String>
+	<sys:String
+		x:Key="l_ServerIsNotAvailable">Сервер недоступен</sys:String>
+	<sys:String
+		x:Key="l_Settings">Настройки</sys:String>
+	<sys:String
+		x:Key="l_LoadingFolders">Загрузка папок</sys:String>
+	<sys:String
+		x:Key="l_FoldersSuccessfullyLoaded">Каталоги успешно загружены</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadFolders">Не удалось загрузить каталоги</sys:String>
+	<sys:String
+		x:Key="l_EstablishingConnectionToTheServer">Установка соединения с сервером</sys:String>
+	<sys:String
+		x:Key="l_FailedToEstablishConnectionToTheServer">Не удалось установить соединение с сервером</sys:String>
+	<sys:String
+		x:Key="l_AuthenticationOnTheServer">Авторизация на сервере</sys:String>
+	<sys:String
+		x:Key="l_LoginSuccessfullyCompleted">Вход выполнен успешно</sys:String>
+	<sys:String
+		x:Key="l_FailedToLogin">Не удалось войти в аккаунт</sys:String>
+	<sys:String
+		x:Key="l_SearchFieldIsEmpty">Поле для поиска пусто</sys:String>
+	<sys:String
+		x:Key="l_SerchingMailsByRequest">Поиск писем по запросу</sys:String>
+	<sys:String
+		x:Key="l_SearchReturnedNoResults">Поиск не дал никаких результатов</sys:String>
+	<sys:String
+		x:Key="l_SearchSuccessfullyCompleted">Поиск завершен успешно [{0} найдено]</sys:String>
+	<sys:String
+		x:Key="l_UnexpectedErrorWhileSearching">Неожиданная ошибка при выполнении поиска</sys:String>
+	<sys:String
+		x:Key="l_LoadingMessageUID">Загрузка сообщения [UID:{0}]</sys:String>
+	<sys:String
+		x:Key="l_MessageSuccessfullyLoadedUID">Сообщение успешно загружено [UID:{0}]</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadMessageUID">Не удалось загрузить сообщение [UID:{0}]</sys:String>
+	<sys:String
+		x:Key="l_DeletingMessages">Удаление сообщений [{0}]</sys:String>
+	<sys:String
+		x:Key="l_MessagesSuccessfullyDeleted">Сообщения [{0}] успешно удалены</sys:String>
+	<sys:String
+		x:Key="l_FailedToDeleteMessages">Не удалось удалить сообщения [{0}]</sys:String>
+	<sys:String
+		x:Key="l_LoadingFolderMessages">Загрузка писем из папки {0}</sys:String>
+	<sys:String
+		x:Key="l_FolderMessagesSuccessfullyLoaded">Письма из папки {0} успешно загружены</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadFolderMessages">Не удалось загрузить письма из папки {0}</sys:String>
+	<sys:String
+		x:Key="l_OpeningSearchPage">Открытие страницы поиска [{0}]</sys:String>
+	<sys:String
+		x:Key="l_SearchPageIsSuccessfullyOpened">Страница поиска [{0}] успешно открыта</sys:String>
+	<sys:String
+		x:Key="l_FailedToOpenSearchPage">Не удалось открыть страницу поиска [{0}]</sys:String>
+	<sys:String
+		x:Key="l_LoadingMessages">Загрузка писем</sys:String>
+	<sys:String
+		x:Key="l_MessagesSuccessfullyLoaded">Письма успешно загружены</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadMessages">Не удалось загрузить письма</sys:String>
+	<sys:String
+		x:Key="l_Translate">Перевести</sys:String>
+	<sys:String
+		x:Key="l_MessageTranslating">Перевод письма</sys:String>
+	<sys:String
+		x:Key="l_MessageSuccessfullyTranslated">Перевод успешно выполнен</sys:String>
+	<sys:String
+		x:Key="l_SETTINGS">НАСТРОЙКИ</sys:String>
+	<sys:String
+		x:Key="l_Global">Общие</sys:String>
+	<sys:String
+		x:Key="l_LimitMessagesOnPage">Ограничение сообщений на страницу</sys:String>
+	<sys:String
+		x:Key="l_MaxAttempsNumberRestoreConnection">Максимальное количество попыток восстановить соединение</sys:String>
+	<sys:String
+		x:Key="l_UseProxyInViewerRecommendation">Для использования MAIL VIEWER рекомундуются прокси высокого качества</sys:String>
+	<sys:String
+		x:Key="l_UseLoadedProxy">Использовать загруженные прокси</sys:String>
+	<sys:String
+		x:Key="l_UseSpecialProxy">Использовать выделенные прокси</sys:String>
+	<sys:String
+		x:Key="l_Tools">Инструменты</sys:String>
+	<sys:String
+		x:Key="l_TOOLS">ИНСТРУМЕНТЫ</sys:String>
+	<sys:String
+		x:Key="l_Merge">Объединить</sys:String>
+	<sys:String
+		x:Key="l_MERGEBASES">ОБЪЕДИНИТЬ БАЗЫ</sys:String>
+	<sys:String
+		x:Key="l_Normalize">Нормализовать</sys:String>
+	<sys:String
+		x:Key="l_NORMALIZEBASE">НОРМАЛИЗОВАТЬ БАЗУ</sys:String>
+	<sys:String
+		x:Key="l_Shuffle">Перемешать</sys:String>
+	<sys:String
+		x:Key="l_SHUFFLEBASE">ПЕРЕМЕШАТЬ БАЗУ</sys:String>
+	<sys:String
+		x:Key="l_Sort">Сортировать</sys:String>
+	<sys:String
+		x:Key="l_SORTBASE">СОРТИРОВАТЬ БАЗУ</sys:String>
+	<sys:String
+		x:Key="l_RemoveDuplicates">Удалить дубликаты</sys:String>
+	<sys:String
+		x:Key="l_REMOVEDUPLICATES">УДАЛИТЬ ДУБЛИКАТЫ</sys:String>
+	<sys:String
+		x:Key="l_BASELOADING">ЗАГРУЗКА БАЗЫ</sys:String>
+	<sys:String
+		x:Key="l_PROXYLOADING">ЗАГРУЗКА ПРОКСИ</sys:String>
+	<sys:String
+		x:Key="l_CHECKISFINISHED">ЧЕК ЗАКОНЧЕН</sys:String>
+	<sys:String
+		x:Key="l_ERROR">ОШИБКА</sys:String>
+	<sys:String
+		x:Key="l_ErrorWhileLoadingBaseFromFile">Ошибка при загрузке базы из файла</sys:String>
+	<sys:String
+		x:Key="l_FailedToLoadAnyAccount">Результирующий набор пуст</sys:String>
+	<sys:String
+		x:Key="l_ProxiesAreNotLoaded">Прокси не загружены:</sys:String>
+	<sys:String
+		x:Key="l_ErrorWhileLoadingFromFile">Ошибка при загрузке из файла:</sys:String>
+	<sys:String
+		x:Key="l_ErrorWhileLoadingFromLinks">Ошибка при загрузке по ссылке:</sys:String>
+	<sys:String
+		x:Key="l_OK">Понятно</sys:String>
+	<sys:String
+		x:Key="l_Success">Успех</sys:String>
+	<sys:String
+		x:Key="l_YouNeedToLoadProxies">Загрузите прокси</sys:String>
+	<sys:String
+		x:Key="l_YouNeedToLoadAccounts">Загрузите аккаунты</sys:String>
+	<sys:String
+		x:Key="l_YouNeedToAddRequests">Добавьте запросы</sys:String>
+	<sys:String
+		x:Key="l_ProxyAutoUpdate">Автообновление прокси</sys:String>
+	<sys:String
+		x:Key="l_min">мин.</sys:String>
+	<sys:String
+		x:Key="l_Load">Загрузить</sys:String>
+	<sys:String
+		x:Key="l_ThreadsDescription">Поток — главная рабочая единица в программе.
+Каждый поток обрабатывает один почтовый аккаунт в определенное время.
+Оптимальное количество потоков — от 200 до 500.</sys:String>
+	<sys:String
+		x:Key="l_TimeoutDescription">Таймаут — максимальное время ожидания ответа от сервера на запрос.
+Чем больше таймаут, тем дольше чек.
+Оптимальный тауймаут — от 5 до 20.</sys:String>
+	<sys:String
+		x:Key="l_RebruteDescription">Перебрут определяет максимальное количество попыток перепроверки на валид/поисковый запрос.
+Чем больше перебрут, тем дольше чек, но лучше результат.
+Оптимальный перебрут — от 1 до 3.</sys:String>
+	<sys:String
+		x:Key="l_UseProxyDescription">Использование прокси позволяет избежать банов по вашему IP от почтовых серверов.
+Опция активирует использование прокси, которые были загружены в программу.</sys:String>
+	<sys:String
+		x:Key="l_CheckWebDescription">В стандартном режиме все почты проверяются по протоколам IMAP и POP3.
+Однако, некоторые домены не позволяют использовать эти протоколы и тогда используется чек через веб интерфейс посредством запросов.
+Более подробно о каждом сервисе можно узнать в настройках чека по вебу</sys:String>
+	<sys:String
+		x:Key="l_SaveRestDescription">С данной опицей каждые N минут все аккаунты, которые не были проверены на валид,
+сохраняются в файле Rest.txt</sys:String>
+	<sys:String
+		x:Key="l_StartOnBaseLoadedDescription">Автоматический запуск чека после загрузки базы в программу.
+Используется для повышения эффективности при работе с большим количеством баз</sys:String>
+	<sys:String
+		x:Key="l_IgnoreDomainsDescription">Включает фильтр доменов при загрузке базы в программу.
+Все аккаунты с доменами из списка буду пропущены и не добавлены в базу для чека.</sys:String>
+	<sys:String
+		x:Key="l_ProcessMultipasswordDescription">Когда софт находит валидный login:password,
+все остальные аккаунты с таким же login будут добавлены в "Многопарольные".
+Часто используется при чеке переделок.</sys:String>
+	<sys:String
+		x:Key="l_FromMailsDescription">В результатах поиска будут появлятся только те, где количество найденных писем равно или 
+превышает устанавливаемое значение.</sys:String>
+	<sys:String
+		x:Key="l_AdditionalCheckDescription">Данная функция нужна для тех доменов, где 
+функция поиска работает некорректно. Часто это польские и китайские почты. Например, 21cn.com.
+Для почт со списка будет работать другой, более затратный, алгоритм поиска, поэтому не рекомендуется
+использовать для обычных доменов</sys:String>
+	<sys:String
+		x:Key="l_DownloadInSingleFileDescription">Обычный режим: на каждый запрос создается своя папка, а внутри файлы на каждый почтовый аккаунт.
+Пример: Resuts\request\some@mail.com.html
+       
+Режим "В один файл": на каждый запрос создается один файл, в котором хранятся все письма со всех почтовых аккаунтов.
+Пример: Resuts\request.html</sys:String>
+	<sys:String
+		x:Key="l_DeleteOnServerDescription">Для всех найденных и скачанных писем будет запрашиваться
+операция удаления на сервере, где это письмо было найдено.
+Данная функция поддерживается не всеми почтовыми серверами.</sys:String>
+	<sys:String
+		x:Key="l_DownloadAttachmentsDescription">Искать везде: включает обособленный от запросов поиск. Ищет по всем письмам
+и скачивает их вложения
+Искать в скачанных: включает зависимый от запросов поиск. Будут скачиваться вложения с тех писем, которые уже
+были скачаны по запросам</sys:String>
+	<sys:String
+		x:Key="l_AttachmentFilterDescription">Будут скачаны только те файлы из вложений, чьи имена
+содержат в себе хотя бы одну строку из фильтров.</sys:String>
+	<sys:String
+		x:Key="l_SearchServerDescription">Включает поиск IMAP и POP3 серверов для доменов, которых нет в базе</sys:String>
+	<sys:String
+		x:Key="l_UseProxyToSearchServerDescription">Включает использование прокси для поиска серверов. Поиск MX записей осуществляется по Google DNS over HTTPS</sys:String>
+	<sys:String
+		x:Key="l_SearchServerByMXDescription">Поиск MX записи доменов позволяет определить хост для популярных
+почтовых провайдеров (Microsoft, Gmail, Yahoo и т.д.)
+Рекомендуется к использованию.</sys:String>
+	<sys:String
+		x:Key="l_MatchSubdomainByDomainDescription">Подбирает хост путем перебора часто используемых поддоменов под основной домен
+Рекомендуется к использованию.</sys:String>
+	<sys:String
+		x:Key="l_MatchSubdomainByMxDescription">Подбирает хост путем перебора часто используемых
+поддоменов под домен MX записи.</sys:String>
+	<sys:String
+		x:Key="l_SearchInAutoConfigDescription">Запрашивание конфигурации у почтового сервиса по AutoConfig.</sys:String>
+	<sys:String
+		x:Key="l_SearchInAutoDiscoveryDescription">Запрашивание конфигурации у почтового сервиса по AutoDiscovery.</sys:String>
+	<sys:String
+		x:Key="l_RebruteImapIntoPop3Description">Включает перебрут ошибок из IMAP в POP3.</sys:String>
+	<sys:String
+		x:Key="l_MaxMailsCheckDescription">Ограничивает максимальное число писем для проверки в POP3, а также в IMAP при включенном 
+режиме дополнительной проверки. Используется для оптимизации.</sys:String>
+	<sys:String
+		x:Key="l_RebruteBlockedDescription">Включает перебрут почт, определенных как заблокированные.
+Помогает при блокировке прокси.</sys:String>
+	<sys:String
+		x:Key="l_CheckOnFolderAccess">Включает критерии по определению почты как валидной:
+Для IMAP: проверка на доступ к папке INBOX
+Для POP3: проверка на количество писем</sys:String>
+	<sys:String
+		x:Key="l_MailRuDescription">Web: чек через API Mail.Ru. Доступен поиск писем и другие дополнительные функции.
+Cloud: чек через API Cloud.Mail.Ru. Быстрая проверка на валид. Решение капчи не требуется.</sys:String>
+	<sys:String
+		x:Key="l_SearchMessages">Поиск писем</sys:String>
+	<sys:String
+		x:Key="l_SearchAttachment">Поиск вложений</sys:String>
+	<sys:String
+		x:Key="l_DeleteMessages">Удаление писем</sys:String>
+	<sys:String
+		x:Key="l_ParseContacts">Парсинг контактов</sys:String>
+	<sys:String
+		x:Key="l_toParseContacts">Парсить контакты</sys:String>
+	<sys:String
+		x:Key="l_GetBalance">Проверить баланс</sys:String>
+	<sys:String
+		x:Key="l_EnableImapAccess">Включать доступ по IMAP</sys:String>
+	<sys:String
+		x:Key="l_DeleteSuspiciousLoginMessages">Удалять сообщения о подозрительном входе</sys:String>
+	<sys:String
+		x:Key="l_GmxDescription">Чтобы включить доступ по Imap, необходимо решать капчу</sys:String>
+	<sys:String
+		x:Key="l_OnetDescription">Поиск возможен только по Отправителю или по Теме (некомбинированный)</sys:String>
+	<sys:String
+		x:Key="l_WebAuthentication">Веб-аутентификация</sys:String>
+	<sys:String
+		x:Key="l_SearchGroup">Поиск группы</sys:String>
+	<sys:String
+		x:Key="l_CreateGroup">Создать группу</sys:String>
+	<sys:String
+		x:Key="l_Groups">Группы</sys:String>
+	<sys:String
+		x:Key="l_CreateRequestExtended">Добавить запрос (from=subject=body)</sys:String>
+	<sys:String
+		x:Key="l_AddToCurrentSearchRequests">Добавить в текущие поисковые запросы</sys:String>
+	<sys:String
+		x:Key="l_CreateRequest">Создать запрос</sys:String>
+	<sys:String
+		x:Key="l_AddExistedRequest">Добавить существующий запрос</sys:String>
+	<sys:String
+		x:Key="l_Search">Поиск</sys:String>
+	<sys:String
+		x:Key="l_DelayMin">Задержка (мин)</sys:String>
+	<sys:String
+		x:Key="l_AddRequest">Добавить запрос</sys:String>
+	<sys:String
+		x:Key="l_Actions">Действия</sys:String>
+	<sys:String
+		x:Key="l_DownloadFoundMails">Скачивать найденные письма</sys:String>
+	<sys:String
+		x:Key="l_EnableNotifications">Включить уведомления</sys:String>
+	<sys:String
+		x:Key="l_Processes">Процессы</sys:String>
+	<sys:String
+		x:Key="l_Messages">Сообщения</sys:String>
+	<sys:String
+		x:Key="l_DeleteOnServerDescription2">Для всех найденных писем будет запрашиваться операция 
+удаления на сервере, где это письмо было найдено.
+Данная функция поддерживается не всеми почтовыми серверами.</sys:String>
+	<sys:String
+		x:Key="l_DelayDescription">Определяет временной промежуток между проверками почты на письма в минутах</sys:String>
+</ResourceDictionary>

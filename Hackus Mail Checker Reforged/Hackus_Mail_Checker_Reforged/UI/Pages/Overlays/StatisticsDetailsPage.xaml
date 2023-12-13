@@ -1,0 +1,614 @@
+<Page
+	x:Class="Hackus_Mail_Checker_Reforged.UI.Pages.Overlays.StatisticsDetailsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Pages.Overlays" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="WebSettingsPage">
+	<Grid>
+		<Border
+			Background="#FF000000"
+			CornerRadius="5"
+			Cursor="Hand"
+			Opacity="0.5">
+			<hc:Interaction.Triggers>
+				<hc:EventTrigger
+					EventName="MouseDown">
+					<hc:EventToCommand
+						Command="{Binding CloseOverlayCommand}" />
+				</hc:EventTrigger>
+			</hc:Interaction.Triggers>
+		</Border>
+		<hc:TransitioningContentControl>
+			<hc:TransitioningContentControl.TransitionStoryboard>
+				<Storyboard>
+					<DoubleAnimation
+						Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+						From=".9"
+						To="1"
+						Duration="0:0:0.4">
+						<DoubleAnimation.EasingFunction>
+							<ElasticEase
+								Oscillations="1" />
+						</DoubleAnimation.EasingFunction>
+					</DoubleAnimation>
+					<DoubleAnimation
+						Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+						From=".9"
+						To="1"
+						Duration="0:0:0.4">
+						<DoubleAnimation.EasingFunction>
+							<ElasticEase
+								Oscillations="1" />
+						</DoubleAnimation.EasingFunction>
+					</DoubleAnimation>
+				</Storyboard>
+			</hc:TransitioningContentControl.TransitionStoryboard>
+			<Border
+				Width="600"
+				Height="500"
+				Background="#242424"
+				BorderBrush="#2c2c2c"
+				BorderThickness="2"
+				CornerRadius="4">
+				<Grid>
+					<Border
+						Height="40"
+						VerticalAlignment="Top"
+						Background="#303030"
+						BorderThickness="0"
+						CornerRadius="4 4 0 0">
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="14"
+							Foreground="#d9d9d9"
+							Text="{DynamicResource l_Details}" />
+					</Border>
+					<hc:TabControl
+						Margin="0,40,0,0"
+						ThemeManager.RequestedAccentColor="#64FFD1"
+						Style="{StaticResource TabControlInLine}">
+						<hc:TabItem
+							Header="{DynamicResource l_Requests}">
+							<Border
+								Background="{DynamicResource BlockBackgroundBrush}">
+								<DataGrid
+									hc:Empty.ShowEmpty="True"
+									hc:ThemeManager.RequestedAccentColor="#64FFD1"
+									hc:ThemeManager.RequestedTheme="Dark"
+									AutoGenerateColumns="False"
+									Background="#00FFFFFF"
+									CanUserAddRows="False"
+									ColumnHeaderHeight="50"
+									FontSize="12"
+									HeadersVisibility="Column"
+									HorizontalScrollBarVisibility="Disabled"
+									IsReadOnly="True"
+									MinRowHeight="40"
+									SelectionMode="Single"
+									ItemsSource="{Binding StatisticsManager.RequestValues}">
+									<DataGrid.Columns>
+										<DataGridTextColumn
+											Width="*"
+											MinWidth="90"
+											Header="Request"
+											IsReadOnly="True"
+											Binding="{Binding Request}">
+											<DataGridColumn.CellStyle>
+												<Style
+													BasedOn="{StaticResource DataGridCellStyle}"
+													TargetType="{x:Type DataGridCell}">
+													<Setter
+														Property="Padding"
+														Value="10,0,10,0" />
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="Focusable"
+														Value="False" />
+													<Style.Triggers>
+														<Trigger
+															Property="DataGridCell.IsSelected"
+															Value="True">
+															<Setter
+																Property="Background"
+																Value="{DynamicResource Background7}" />
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</DataGridColumn.CellStyle>
+											<DataGridColumn.HeaderStyle>
+												<Style
+													BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+													TargetType="{x:Type DataGridColumnHeader}">
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="FontFamily"
+														Value="{StaticResource Roboto-Regular}" />
+												</Style>
+											</DataGridColumn.HeaderStyle>
+										</DataGridTextColumn>
+										<DataGridTextColumn
+											Width="*"
+											MinWidth="90"
+											Header="Value"
+											IsReadOnly="True"
+											Binding="{Binding Count}">
+											<DataGridColumn.CellStyle>
+												<Style
+													BasedOn="{StaticResource DataGridCellStyle}"
+													TargetType="{x:Type DataGridCell}">
+													<Setter
+														Property="Padding"
+														Value="10,0,10,0" />
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="Focusable"
+														Value="False" />
+													<Style.Triggers>
+														<Trigger
+															Property="DataGridCell.IsSelected"
+															Value="True">
+															<Setter
+																Property="Background"
+																Value="{DynamicResource Background7}" />
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</DataGridColumn.CellStyle>
+											<DataGridColumn.HeaderStyle>
+												<Style
+													BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+													TargetType="{x:Type DataGridColumnHeader}">
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="FontFamily"
+														Value="{StaticResource Roboto-Regular}" />
+												</Style>
+											</DataGridColumn.HeaderStyle>
+										</DataGridTextColumn>
+									</DataGrid.Columns>
+									<DataGrid.RowStyle>
+										<Style
+											BasedOn="{StaticResource DataGridRowStyle}"
+											TargetType="{x:Type DataGridRow}">
+											<Setter
+												Property="Background"
+												Value="{DynamicResource Background4}" />
+											<Style.Triggers>
+												<Trigger
+													Property="UIElement.IsMouseOver"
+													Value="True">
+													<Setter
+														Property="Background"
+														Value="#333333" />
+												</Trigger>
+												<Trigger
+													Property="DataGridRow.IsSelected"
+													Value="True">
+													<Setter
+														Property="Background"
+														Value="{DynamicResource Background7}" />
+												</Trigger>
+											</Style.Triggers>
+										</Style>
+									</DataGrid.RowStyle>
+								</DataGrid>
+							</Border>
+						</hc:TabItem>
+						<hc:TabItem
+							Header="{DynamicResource l_Errors}">
+							<Border
+								Background="{DynamicResource BlockBackgroundBrush}">
+								<DataGrid
+									hc:Empty.ShowEmpty="True"
+									hc:ThemeManager.RequestedAccentColor="#64FFD1"
+									hc:ThemeManager.RequestedTheme="Dark"
+									AutoGenerateColumns="False"
+									Background="#00FFFFFF"
+									CanUserAddRows="False"
+									ColumnHeaderHeight="50"
+									FontSize="12"
+									HeadersVisibility="Column"
+									HorizontalScrollBarVisibility="Disabled"
+									IsReadOnly="True"
+									MinRowHeight="40"
+									SelectionMode="Single"
+									ItemsSource="{Binding StatisticsManager.ErrorDetails}">
+									<DataGrid.Columns>
+										<DataGridTextColumn
+											Width="*"
+											MinWidth="90"
+											Header="Address"
+											IsReadOnly="True"
+											Binding="{Binding Key}">
+											<DataGridColumn.CellStyle>
+												<Style
+													BasedOn="{StaticResource DataGridCellStyle}"
+													TargetType="{x:Type DataGridCell}">
+													<Setter
+														Property="Padding"
+														Value="10,0,10,0" />
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="Focusable"
+														Value="False" />
+													<Style.Triggers>
+														<Trigger
+															Property="DataGridCell.IsSelected"
+															Value="True">
+															<Setter
+																Property="Background"
+																Value="{DynamicResource Background7}" />
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</DataGridColumn.CellStyle>
+											<DataGridColumn.HeaderStyle>
+												<Style
+													BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+													TargetType="{x:Type DataGridColumnHeader}">
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="FontFamily"
+														Value="{StaticResource Roboto-Regular}" />
+												</Style>
+											</DataGridColumn.HeaderStyle>
+										</DataGridTextColumn>
+										<DataGridTextColumn
+											Width="*"
+											MinWidth="90"
+											Header="Message"
+											IsReadOnly="True"
+											Binding="{Binding Value}">
+											<DataGridColumn.CellStyle>
+												<Style
+													BasedOn="{StaticResource DataGridCellStyle}"
+													TargetType="{x:Type DataGridCell}">
+													<Setter
+														Property="Padding"
+														Value="10,0,10,0" />
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="Focusable"
+														Value="False" />
+													<Style.Triggers>
+														<Trigger
+															Property="DataGridCell.IsSelected"
+															Value="True">
+															<Setter
+																Property="Background"
+																Value="{DynamicResource Background7}" />
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</DataGridColumn.CellStyle>
+											<DataGridColumn.HeaderStyle>
+												<Style
+													BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+													TargetType="{x:Type DataGridColumnHeader}">
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="FontFamily"
+														Value="{StaticResource Roboto-Regular}" />
+												</Style>
+											</DataGridColumn.HeaderStyle>
+										</DataGridTextColumn>
+									</DataGrid.Columns>
+									<DataGrid.RowStyle>
+										<Style
+											BasedOn="{StaticResource DataGridRowStyle}"
+											TargetType="{x:Type DataGridRow}">
+											<Setter
+												Property="Background"
+												Value="{DynamicResource Background4}" />
+											<Style.Triggers>
+												<Trigger
+													Property="UIElement.IsMouseOver"
+													Value="True">
+													<Setter
+														Property="Background"
+														Value="#333333" />
+												</Trigger>
+												<Trigger
+													Property="DataGridRow.IsSelected"
+													Value="True">
+													<Setter
+														Property="Background"
+														Value="{DynamicResource Background7}" />
+												</Trigger>
+											</Style.Triggers>
+										</Style>
+									</DataGrid.RowStyle>
+								</DataGrid>
+							</Border>
+						</hc:TabItem>
+						<hc:TabItem
+							Header="{DynamicResource l_Bads}">
+							<Border
+								Background="{DynamicResource BlockBackgroundBrush}">
+								<DataGrid
+									hc:Empty.ShowEmpty="True"
+									hc:ThemeManager.RequestedAccentColor="#64FFD1"
+									hc:ThemeManager.RequestedTheme="Dark"
+									AutoGenerateColumns="False"
+									Background="#00FFFFFF"
+									CanUserAddRows="False"
+									ColumnHeaderHeight="50"
+									FontSize="12"
+									HeadersVisibility="Column"
+									HorizontalScrollBarVisibility="Disabled"
+									IsReadOnly="True"
+									MinRowHeight="40"
+									SelectionMode="Single"
+									ItemsSource="{Binding StatisticsManager.BadDetails}">
+									<DataGrid.Columns>
+										<DataGridTextColumn
+											Width="*"
+											MinWidth="90"
+											Header="Address"
+											IsReadOnly="True"
+											Binding="{Binding Key}">
+											<DataGridColumn.CellStyle>
+												<Style
+													BasedOn="{StaticResource DataGridCellStyle}"
+													TargetType="{x:Type DataGridCell}">
+													<Setter
+														Property="Padding"
+														Value="10,0,10,0" />
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="Focusable"
+														Value="False" />
+													<Style.Triggers>
+														<Trigger
+															Property="DataGridCell.IsSelected"
+															Value="True">
+															<Setter
+																Property="Background"
+																Value="{DynamicResource Background7}" />
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</DataGridColumn.CellStyle>
+											<DataGridColumn.HeaderStyle>
+												<Style
+													BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+													TargetType="{x:Type DataGridColumnHeader}">
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="FontFamily"
+														Value="{StaticResource Roboto-Regular}" />
+												</Style>
+											</DataGridColumn.HeaderStyle>
+										</DataGridTextColumn>
+										<DataGridTextColumn
+											Width="*"
+											MinWidth="90"
+											Header="Message"
+											IsReadOnly="True"
+											Binding="{Binding Value}">
+											<DataGridColumn.CellStyle>
+												<Style
+													BasedOn="{StaticResource DataGridCellStyle}"
+													TargetType="{x:Type DataGridCell}">
+													<Setter
+														Property="Padding"
+														Value="10,0,10,0" />
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="Focusable"
+														Value="False" />
+													<Style.Triggers>
+														<Trigger
+															Property="DataGridCell.IsSelected"
+															Value="True">
+															<Setter
+																Property="Background"
+																Value="{DynamicResource Background7}" />
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</DataGridColumn.CellStyle>
+											<DataGridColumn.HeaderStyle>
+												<Style
+													BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+													TargetType="{x:Type DataGridColumnHeader}">
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="FontFamily"
+														Value="{StaticResource Roboto-Regular}" />
+												</Style>
+											</DataGridColumn.HeaderStyle>
+										</DataGridTextColumn>
+									</DataGrid.Columns>
+									<DataGrid.RowStyle>
+										<Style
+											BasedOn="{StaticResource DataGridRowStyle}"
+											TargetType="{x:Type DataGridRow}">
+											<Setter
+												Property="Background"
+												Value="{DynamicResource Background4}" />
+											<Style.Triggers>
+												<Trigger
+													Property="UIElement.IsMouseOver"
+													Value="True">
+													<Setter
+														Property="Background"
+														Value="#333333" />
+												</Trigger>
+												<Trigger
+													Property="DataGridRow.IsSelected"
+													Value="True">
+													<Setter
+														Property="Background"
+														Value="{DynamicResource Background7}" />
+												</Trigger>
+											</Style.Triggers>
+										</Style>
+									</DataGrid.RowStyle>
+								</DataGrid>
+							</Border>
+						</hc:TabItem>
+						<hc:TabItem
+							Header="{DynamicResource l_Blocked}">
+							<Border
+								Background="{DynamicResource BlockBackgroundBrush}">
+								<DataGrid
+									hc:Empty.ShowEmpty="True"
+									hc:ThemeManager.RequestedAccentColor="#64FFD1"
+									hc:ThemeManager.RequestedTheme="Dark"
+									AutoGenerateColumns="False"
+									Background="#00FFFFFF"
+									CanUserAddRows="False"
+									ColumnHeaderHeight="50"
+									FontSize="12"
+									HeadersVisibility="Column"
+									HorizontalScrollBarVisibility="Disabled"
+									IsReadOnly="True"
+									MinRowHeight="40"
+									SelectionMode="Single"
+									ItemsSource="{Binding StatisticsManager.BlockedDetails}">
+									<DataGrid.Columns>
+										<DataGridTextColumn
+											Width="*"
+											MinWidth="90"
+											Header="Address"
+											IsReadOnly="True"
+											Binding="{Binding Key}">
+											<DataGridColumn.CellStyle>
+												<Style
+													BasedOn="{StaticResource DataGridCellStyle}"
+													TargetType="{x:Type DataGridCell}">
+													<Setter
+														Property="Padding"
+														Value="10,0,10,0" />
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="Focusable"
+														Value="False" />
+													<Style.Triggers>
+														<Trigger
+															Property="DataGridCell.IsSelected"
+															Value="True">
+															<Setter
+																Property="Background"
+																Value="{DynamicResource Background7}" />
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</DataGridColumn.CellStyle>
+											<DataGridColumn.HeaderStyle>
+												<Style
+													BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+													TargetType="{x:Type DataGridColumnHeader}">
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="FontFamily"
+														Value="{StaticResource Roboto-Regular}" />
+												</Style>
+											</DataGridColumn.HeaderStyle>
+										</DataGridTextColumn>
+										<DataGridTextColumn
+											Width="*"
+											MinWidth="90"
+											Header="Message"
+											IsReadOnly="True"
+											Binding="{Binding Value}">
+											<DataGridColumn.CellStyle>
+												<Style
+													BasedOn="{StaticResource DataGridCellStyle}"
+													TargetType="{x:Type DataGridCell}">
+													<Setter
+														Property="Padding"
+														Value="10,0,10,0" />
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="Focusable"
+														Value="False" />
+													<Style.Triggers>
+														<Trigger
+															Property="DataGridCell.IsSelected"
+															Value="True">
+															<Setter
+																Property="Background"
+																Value="{DynamicResource Background7}" />
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</DataGridColumn.CellStyle>
+											<DataGridColumn.HeaderStyle>
+												<Style
+													BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+													TargetType="{x:Type DataGridColumnHeader}">
+													<Setter
+														Property="Foreground"
+														Value="{DynamicResource Text3}" />
+													<Setter
+														Property="FontFamily"
+														Value="{StaticResource Roboto-Regular}" />
+												</Style>
+											</DataGridColumn.HeaderStyle>
+										</DataGridTextColumn>
+									</DataGrid.Columns>
+									<DataGrid.RowStyle>
+										<Style
+											BasedOn="{StaticResource DataGridRowStyle}"
+											TargetType="{x:Type DataGridRow}">
+											<Setter
+												Property="Background"
+												Value="{DynamicResource Background4}" />
+											<Style.Triggers>
+												<Trigger
+													Property="UIElement.IsMouseOver"
+													Value="True">
+													<Setter
+														Property="Background"
+														Value="#333333" />
+												</Trigger>
+												<Trigger
+													Property="DataGridRow.IsSelected"
+													Value="True">
+													<Setter
+														Property="Background"
+														Value="{DynamicResource Background7}" />
+												</Trigger>
+											</Style.Triggers>
+										</Style>
+									</DataGrid.RowStyle>
+								</DataGrid>
+							</Border>
+						</hc:TabItem>
+					</hc:TabControl>
+				</Grid>
+			</Border>
+		</hc:TransitioningContentControl>
+	</Grid>
+</Page>

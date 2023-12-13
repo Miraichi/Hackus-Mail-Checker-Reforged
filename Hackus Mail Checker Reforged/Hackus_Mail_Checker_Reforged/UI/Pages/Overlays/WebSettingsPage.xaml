@@ -1,0 +1,1723 @@
+<Page
+	x:Class="Hackus_Mail_Checker_Reforged.UI.Pages.Overlays.WebSettingsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Hackus_Mail_Checker_Reforged.UI.Pages.Overlays" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="WebSettingsPage">
+	<Grid>
+		<Border
+			Background="#FF000000"
+			CornerRadius="5"
+			Cursor="Hand"
+			Opacity="0.5">
+			<hc:Interaction.Triggers>
+				<hc:EventTrigger
+					EventName="MouseDown">
+					<hc:EventToCommand
+						Command="{Binding CloseOverlayCommand}" />
+				</hc:EventTrigger>
+			</hc:Interaction.Triggers>
+		</Border>
+		<hc:TransitioningContentControl>
+			<hc:TransitioningContentControl.TransitionStoryboard>
+				<Storyboard>
+					<DoubleAnimation
+						Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+						From=".9"
+						To="1"
+						Duration="0:0:0.4">
+						<DoubleAnimation.EasingFunction>
+							<ElasticEase
+								Oscillations="1" />
+						</DoubleAnimation.EasingFunction>
+					</DoubleAnimation>
+					<DoubleAnimation
+						Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+						From=".9"
+						To="1"
+						Duration="0:0:0.4">
+						<DoubleAnimation.EasingFunction>
+							<ElasticEase
+								Oscillations="1" />
+						</DoubleAnimation.EasingFunction>
+					</DoubleAnimation>
+				</Storyboard>
+			</hc:TransitioningContentControl.TransitionStoryboard>
+			<Border
+				Width="600"
+				Height="500"
+				Background="#242424"
+				BorderBrush="#2c2c2c"
+				BorderThickness="2"
+				CornerRadius="4">
+				<Grid>
+					<Border
+						Height="40"
+						VerticalAlignment="Top"
+						Background="#303030"
+						BorderThickness="0"
+						CornerRadius="4 4 0 0">
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Roboto-Regular}"
+							FontSize="14"
+							Foreground="#d9d9d9"
+							Text="{DynamicResource l_WebSettings}" />
+					</Border>
+					<hc:ScrollViewer
+						Margin="0,40,0,0"
+						IsInertiaEnabled="True">
+						<StackPanel>
+							<StackPanel
+								Margin="10,10,10,0">
+								<Border
+									Height="50"
+									Background="#2c2c2c"
+									CornerRadius="4 4 0 0">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.SolveCaptcha}">
+													<Setter
+														Property="Visibility"
+														Value="Collapsed" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<StackPanel
+										Margin="20,0,0,0"
+										VerticalAlignment="Center"
+										Orientation="Horizontal"
+										ToolTip="{DynamicResource l_MaxMailsCheckDescription}"
+										ToolTipService.ShowDuration="20000">
+										<CheckBox
+											VerticalAlignment="Center"
+											hc:ThemeManager.RequestedAccentColor="#64FFD1"
+											hc:ThemeManager.RequestedTheme="Dark"
+											Background="#202020"
+											Content="Перебрут капчи"
+											Cursor="Hand"
+											Focusable="False"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											IsChecked="{Binding WebSettings.RebruteCaptcha}" />
+										<hc:NumericUpDown
+											Width="80"
+											Margin="20,0,0,0"
+											VerticalAlignment="Center"
+											ThemeManager.RequestedAccentColor="#64FFD1"
+											ThemeManager.RequestedTheme="Dark"
+											BorderThickness="0"
+											Maximum="1000"
+											Minimum="1"
+											Value="{Binding WebSettings.RebruteCaptchaLimit}" />
+									</StackPanel>
+								</Border>
+								<Border
+									Height="40"
+									Background="#323232"
+									BorderBrush="#64FFD1">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="0 0 4 4" />
+											<Setter
+												Property="BorderThickness"
+												Value="0" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.SolveCaptcha}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+													<Setter
+														Property="BorderThickness"
+														Value="1" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="{DynamicResource l_SolveCaptcha}" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.SolveCaptcha}" />
+										<Image
+											Height="30"
+											Margin="0,0,5,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Source="../../../../Resources/Images/captcha.png" />
+									</Grid>
+								</Border>
+								<Border
+									Height="150"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.SolveCaptcha, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition
+												Width="150" />
+											<ColumnDefinition />
+										</Grid.ColumnDefinitions>
+										<Grid
+											Width="150"
+											Height="150"
+											HorizontalAlignment="Left">
+											<Image
+												Height="130"
+												HorizontalAlignment="Center"
+												VerticalAlignment="Center"
+												RenderOptions.BitmapScalingMode="HighQuality"
+												Source="../../../../Resources/Images/captcha.png" />
+										</Grid>
+										<Grid
+											Column="1">
+											<StackPanel>
+												<hc:ButtonGroup
+													Width="400"
+													Margin="0,20,0,0"
+													ThemeManager.RequestedAccentColor="#64FFD1"
+													ThemeManager.RequestedTheme="Dark"
+													Cursor="Hand">
+													<RadioButton
+														hc:BorderElement.CornerRadius="4 0 0 4"
+														Content="AntiCaptcha"
+														FontFamily="{StaticResource Roboto-Regular}"
+														FontSize="13"
+														Foreground="#d9d9d9"
+														IsChecked="{Binding WebSettings.CaptchaSolvationService, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=AntiCaptcha}" />
+													<RadioButton
+														hc:BorderElement.CornerRadius="0 4 4 0"
+														Content="RuCaptcha"
+														FontFamily="{StaticResource Roboto-Regular}"
+														FontSize="13"
+														Foreground="#d9d9d9"
+														IsChecked="{Binding WebSettings.CaptchaSolvationService, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=RuCaptcha}" />
+												</hc:ButtonGroup>
+												<hc:TextBox
+													Width="400"
+													Margin="0,10,0,0"
+													BorderElement.CornerRadius="4"
+													InfoElement.Placeholder="{DynamicResource l_Key}"
+													ThemeManager.RequestedAccentColor="#64FFD1"
+													ThemeManager.RequestedTheme="Dark"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Foreground="#d9d9d9"
+													Text="{Binding WebSettings.CaptchaSolvationKey, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+												<Button
+													Margin="0,10,15,0"
+													HorizontalAlignment="Right"
+													Content="{DynamicResource l_GetBalance}"
+													Cursor="Hand"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Foreground="#d9d9d9"
+													Command="{Binding GetCaptchaBalanceCommand}" />
+											</StackPanel>
+										</Grid>
+										<Grid
+											ColumnSpan="2"
+											Visibility="{Binding IsAnticaptchaLoading, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<Border
+												Background="#FF000000"
+												Opacity="0.4" />
+											<hc:CircleProgressBar
+												Width="60"
+												Height="60"
+												ThemeManager.RequestedAccentColor="#64FFD1"
+												IsIndeterminate="True" />
+										</Grid>
+									</Grid>
+								</Border>
+							</StackPanel>
+							<StackPanel
+								Margin="0,0,0,10">
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckMailRu}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Mail.Ru" />
+										<Image
+											Height="20"
+											Margin="0,0,10,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Source="../../../../Resources/Images/MailRu.png" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckMailRu}" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,0"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckMailRu, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition
+													Width="150" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Grid
+												Width="150"
+												Height="150"
+												HorizontalAlignment="Left">
+												<Image
+													Height="70"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													RenderOptions.BitmapScalingMode="HighQuality"
+													Source="../../../../Resources/Images/MailRu.png" />
+												<ToggleButton
+													Name="MailRuDescriptionSwitch"
+													Height="20"
+													Margin="0,0,0,6"
+													VerticalAlignment="Bottom"
+													Background="#00FFFFFF"
+													BorderBrush="#64FFD1"
+													BorderThickness="0"
+													Cursor="Hand"
+													Focusable="False"
+													IsChecked="True">
+													<FrameworkElement.Style>
+														<Style
+															BasedOn="{StaticResource ToggleButton}"
+															TargetType="{x:Type ToggleButton}">
+															<Setter
+																Property="hc:IconElement.Geometry"
+																Value="{StaticResource DownGeometry}" />
+															<Style.Triggers>
+																<Trigger
+																	Property="ToggleButton.IsChecked"
+																	Value="True">
+																	<Setter
+																		Property="hc:IconElement.Geometry"
+																		Value="{StaticResource UpGeometry}" />
+																</Trigger>
+															</Style.Triggers>
+														</Style>
+													</FrameworkElement.Style>
+												</ToggleButton>
+											</Grid>
+											<Grid
+												Column="1">
+												<StackPanel>
+													<TextBlock
+														Margin="0,25,0,0"
+														HorizontalAlignment="Center"
+														FontFamily="{StaticResource Roboto-Regular}"
+														FontSize="13"
+														Foreground="#d9d9d9"
+														Text="{DynamicResource l_MailRuCheckingMethod}" />
+													<hc:ButtonGroup
+														Width="400"
+														Margin="0,10,0,0"
+														ThemeManager.RequestedAccentColor="#64FFD1"
+														ThemeManager.RequestedTheme="Dark"
+														Cursor="Hand">
+														<RadioButton
+															Content="Web"
+															FontFamily="{StaticResource Roboto-Regular}"
+															FontSize="13"
+															Foreground="#d9d9d9"
+															IsChecked="{Binding WebSettings.MailRuMethod, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Web}" />
+														<RadioButton
+															Content="Cloud"
+															FontFamily="{StaticResource Roboto-Regular}"
+															FontSize="13"
+															Foreground="#d9d9d9"
+															IsChecked="{Binding WebSettings.MailRuMethod, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Cloud}" />
+													</hc:ButtonGroup>
+													<CheckBox
+														Grid.Column="1"
+														Margin="15,15,0,0"
+														hc:ThemeManager.RequestedAccentColor="#64FFD1"
+														hc:ThemeManager.RequestedTheme="Dark"
+														Background="#202020"
+														Content="{DynamicResource l_DeleteSuspiciousLoginMessages}"
+														Cursor="Hand"
+														FontFamily="{StaticResource Roboto-Regular}"
+														FontSize="13"
+														Foreground="#d9d9d9"
+														IsChecked="{Binding WebSettings.DeleteMailRuWarningMessages}" />
+												</StackPanel>
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=MailRuDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<TextBlock
+													Margin="15,15,15,5"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Foreground="#d9d9d9"
+													LineHeight="20"
+													Text="{DynamicResource l_MailRuDescription}"
+													TextWrapping="Wrap" />
+												<hc:TagContainer
+													Margin="20,0,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="Text Captcha"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="ReCaptcha"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchAttachment}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_DeleteMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_ParseContacts}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,0,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckYandex}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Yandex" />
+										<Image
+											Height="10"
+											Margin="0,0,10,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Source="../../../../Resources/Images/yandex.png" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckYandex}" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,00"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckYandex, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition
+													Width="150" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Grid
+												Width="150"
+												Height="100"
+												HorizontalAlignment="Left">
+												<Image
+													Height="20"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													RenderOptions.BitmapScalingMode="HighQuality"
+													Source="../../../../Resources/Images/yandex.png" />
+												<ToggleButton
+													Name="YandexDescriptionSwitch"
+													Height="20"
+													Margin="0,0,0,6"
+													VerticalAlignment="Bottom"
+													Background="#00FFFFFF"
+													BorderBrush="#64FFD1"
+													BorderThickness="0"
+													Cursor="Hand"
+													Focusable="False"
+													IsChecked="True">
+													<FrameworkElement.Style>
+														<Style
+															BasedOn="{StaticResource ToggleButton}"
+															TargetType="{x:Type ToggleButton}">
+															<Setter
+																Property="hc:IconElement.Geometry"
+																Value="{StaticResource DownGeometry}" />
+															<Style.Triggers>
+																<Trigger
+																	Property="ToggleButton.IsChecked"
+																	Value="True">
+																	<Setter
+																		Property="hc:IconElement.Geometry"
+																		Value="{StaticResource UpGeometry}" />
+																</Trigger>
+															</Style.Triggers>
+														</Style>
+													</FrameworkElement.Style>
+												</ToggleButton>
+											</Grid>
+											<Grid
+												Column="1">
+												<StackPanel
+													VerticalAlignment="Center">
+													<CheckBox
+														Grid.Column="1"
+														Margin="15,0,0,0"
+														hc:ThemeManager.RequestedAccentColor="#64FFD1"
+														hc:ThemeManager.RequestedTheme="Dark"
+														Background="#202020"
+														Content="{DynamicResource l_DeleteSuspiciousLoginMessages}"
+														Cursor="Hand"
+														FontFamily="{StaticResource Roboto-Regular}"
+														FontSize="13"
+														Foreground="#d9d9d9"
+														IsChecked="{Binding WebSettings.DeleteYandexWarningMessages}" />
+													<StackPanel
+														Orientation="Horizontal">
+														<CheckBox
+															Margin="15,15,0,0"
+															hc:ThemeManager.RequestedAccentColor="#64FFD1"
+															hc:ThemeManager.RequestedTheme="Dark"
+															Background="#202020"
+															Content="{DynamicResource l_EnableImapAccess}"
+															Cursor="Hand"
+															FontFamily="{StaticResource Roboto-Regular}"
+															FontSize="13"
+															Foreground="#d9d9d9"
+															IsChecked="{Binding WebSettings.EnableYandexImapAccess}" />
+													</StackPanel>
+												</StackPanel>
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=YandexDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<hc:TagContainer
+													Margin="20,10,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="Text Captcha"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchAttachment}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_DeleteMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_ParseContacts}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="IMAP"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckRambler}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Rambler" />
+										<Image
+											Height="12"
+											Margin="0,0,8,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Source="../../../../Resources/Images/rambler.png" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckRambler}" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,0"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckRambler, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition
+													Width="150" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Grid
+												Width="150"
+												Height="100"
+												HorizontalAlignment="Left">
+												<Image
+													Height="23"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													RenderOptions.BitmapScalingMode="HighQuality"
+													Source="../../../../Resources/Images/rambler.png" />
+												<ToggleButton
+													Name="RamblerDescriptionSwitch"
+													Height="20"
+													Margin="0,0,0,6"
+													VerticalAlignment="Bottom"
+													Background="#00FFFFFF"
+													BorderBrush="#64FFD1"
+													BorderThickness="0"
+													Cursor="Hand"
+													Focusable="False"
+													IsChecked="True">
+													<FrameworkElement.Style>
+														<Style
+															BasedOn="{StaticResource ToggleButton}"
+															TargetType="{x:Type ToggleButton}">
+															<Setter
+																Property="hc:IconElement.Geometry"
+																Value="{StaticResource DownGeometry}" />
+															<Style.Triggers>
+																<Trigger
+																	Property="ToggleButton.IsChecked"
+																	Value="True">
+																	<Setter
+																		Property="hc:IconElement.Geometry"
+																		Value="{StaticResource UpGeometry}" />
+																</Trigger>
+															</Style.Triggers>
+														</Style>
+													</FrameworkElement.Style>
+												</ToggleButton>
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=RamblerDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<hc:TagContainer
+													Margin="20,10,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="Text Captcha"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchAttachment}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_DeleteMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_ParseContacts}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckYahoo}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Yahoo" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckYahoo}" />
+										<Image
+											Height="13"
+											Margin="0,0,10,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Source="../../../../Resources/Images/yahoo.png" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,0"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckYahoo, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition
+													Width="150" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Grid
+												Width="150"
+												Height="100"
+												HorizontalAlignment="Left">
+												<Image
+													Height="30"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													RenderOptions.BitmapScalingMode="HighQuality"
+													Source="../../../../Resources/Images/yahoo.png" />
+												<ToggleButton
+													Name="YahooDescriptionSwitch"
+													Height="20"
+													Margin="0,0,0,6"
+													VerticalAlignment="Bottom"
+													Background="#00FFFFFF"
+													BorderBrush="#64FFD1"
+													BorderThickness="0"
+													Cursor="Hand"
+													Focusable="False"
+													IsChecked="True">
+													<FrameworkElement.Style>
+														<Style
+															BasedOn="{StaticResource ToggleButton}"
+															TargetType="{x:Type ToggleButton}">
+															<Setter
+																Property="hc:IconElement.Geometry"
+																Value="{StaticResource DownGeometry}" />
+															<Style.Triggers>
+																<Trigger
+																	Property="ToggleButton.IsChecked"
+																	Value="True">
+																	<Setter
+																		Property="hc:IconElement.Geometry"
+																		Value="{StaticResource UpGeometry}" />
+																</Trigger>
+															</Style.Triggers>
+														</Style>
+													</FrameworkElement.Style>
+												</ToggleButton>
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=YahooDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<hc:TagContainer
+													Margin="20,10,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="ReCaptcha"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_ParseContacts}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckAol}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Aol" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckAol}" />
+										<TextBlock
+											Margin="0,0,7,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Bold}"
+											FontSize="14"
+											Foreground="#d9d9d9"
+											Text="Aol." />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,00"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckAol, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid
+												Width="150"
+												Height="80"
+												HorizontalAlignment="Center">
+												<TextBlock
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													FontFamily="{StaticResource Roboto-Bold}"
+													FontSize="40"
+													Foreground="#d9d9d9"
+													Text="Aol." />
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=AolDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<hc:TagContainer
+													Margin="20,10,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="ReCaptcha"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_ParseContacts}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckGmx}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Gmx &amp; Web.De" />
+										<Image
+											Height="20"
+											Margin="0,0,10,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Source="../../../../Resources/Images/webde.png" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckGmx}" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,0"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckGmx, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition
+													Width="150" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Grid
+												Width="150"
+												Height="100"
+												HorizontalAlignment="Left">
+												<Image
+													Height="40"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													RenderOptions.BitmapScalingMode="HighQuality"
+													Source="../../../../Resources/Images/webde.png" />
+												<ToggleButton
+													Name="GmxDescriptionSwitch"
+													Height="20"
+													Margin="0,0,0,6"
+													VerticalAlignment="Bottom"
+													Background="#00FFFFFF"
+													BorderBrush="#64FFD1"
+													BorderThickness="0"
+													Cursor="Hand"
+													Focusable="False"
+													IsChecked="True">
+													<FrameworkElement.Style>
+														<Style
+															BasedOn="{StaticResource ToggleButton}"
+															TargetType="{x:Type ToggleButton}">
+															<Setter
+																Property="hc:IconElement.Geometry"
+																Value="{StaticResource DownGeometry}" />
+															<Style.Triggers>
+																<Trigger
+																	Property="ToggleButton.IsChecked"
+																	Value="True">
+																	<Setter
+																		Property="hc:IconElement.Geometry"
+																		Value="{StaticResource UpGeometry}" />
+																</Trigger>
+															</Style.Triggers>
+														</Style>
+													</FrameworkElement.Style>
+												</ToggleButton>
+											</Grid>
+											<Grid
+												Column="1">
+												<StackPanel
+													VerticalAlignment="Center">
+													<CheckBox
+														Margin="15,0,0,0"
+														hc:ThemeManager.RequestedAccentColor="#64FFD1"
+														hc:ThemeManager.RequestedTheme="Dark"
+														Background="#202020"
+														Content="{DynamicResource l_EnableImapAccess}"
+														Cursor="Hand"
+														FontFamily="{StaticResource Roboto-Regular}"
+														FontSize="13"
+														Foreground="#d9d9d9"
+														IsChecked="{Binding WebSettings.EnableGmxImapAccess}" />
+												</StackPanel>
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=GmxDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<TextBlock
+													Margin="15,15,15,0"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Foreground="#d9d9d9"
+													LineHeight="20"
+													Text="{DynamicResource l_GmxDescription}"
+													TextWrapping="Wrap" />
+												<hc:TagContainer
+													Margin="20,5,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="Text Captcha"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchAttachment}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_DeleteMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="IMAP"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckInteria}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Interia" />
+										<Border
+											Height="22"
+											Margin="0,0,10,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											Background="#FFFFFF"
+											CornerRadius="4">
+											<Image
+												Height="22"
+												HorizontalAlignment="Center"
+												VerticalAlignment="Center"
+												RenderOptions.BitmapScalingMode="HighQuality"
+												Source="../../../../Resources/Images/interia.png" />
+										</Border>
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckInteria}" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,0"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckInteria, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid
+												Height="80">
+												<Border
+													Height="45"
+													HorizontalAlignment="Center"
+													Background="#FFFFFF"
+													CornerRadius="3">
+													<Image
+														Height="45"
+														HorizontalAlignment="Center"
+														VerticalAlignment="Center"
+														RenderOptions.BitmapScalingMode="HighQuality"
+														Source="../../../../Resources/Images/interia.png" />
+												</Border>
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=InteriaDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<hc:TagContainer
+													Margin="20,10,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="Text Captcha"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckProton}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Proton" />
+										<Image
+											Height="10"
+											Margin="0,0,10,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Source="../../../../Resources/Images/proton.png" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckProton}" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,0"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckProton, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid
+												Height="80">
+												<Image
+													Height="25"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													RenderOptions.BitmapScalingMode="HighQuality"
+													Source="../../../../Resources/Images/proton.png" />
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=ProtonDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<hc:TagContainer
+													Margin="20,10,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="HCaptcha"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckOnet}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Onet" />
+										<Path
+											Height="13"
+											Margin="0,0,10,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											Data="{StaticResource OnetPlGeometry}"
+											Fill="#ffd200"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Stretch="Uniform" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckOnet}" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,0"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckOnet, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid
+												Height="80">
+												<Path
+													Height="30"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													Data="{StaticResource OnetPlGeometry}"
+													Fill="#ffd200"
+													RenderOptions.BitmapScalingMode="HighQuality"
+													Stretch="Uniform" />
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=OnetDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<TextBlock
+													Margin="15,15,15,5"
+													FontFamily="{StaticResource Roboto-Regular}"
+													FontSize="13"
+													Foreground="#d9d9d9"
+													LineHeight="20"
+													Text="{DynamicResource l_OnetDescription}"
+													TextWrapping="Wrap" />
+												<hc:TagContainer
+													Margin="20,0,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_SearchMessages}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckApple}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="iCloud" />
+										<Image
+											Height="22"
+											Margin="0,0,10,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Source="../../../../Resources/Images/apple.png" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckApple}" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,0"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckApple, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid
+												Height="80">
+												<Image
+													Height="45"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													RenderOptions.BitmapScalingMode="HighQuality"
+													Source="../../../../Resources/Images/apple.png" />
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=AppleDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<hc:TagContainer
+													Margin="20,10,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+							<StackPanel>
+								<Border
+									Height="40"
+									Margin="10,10,10,0"
+									Background="#323232">
+									<FrameworkElement.Style>
+										<Style
+											TargetType="{x:Type Border}">
+											<Setter
+												Property="Border.CornerRadius"
+												Value="4" />
+											<Style.Triggers>
+												<DataTrigger
+													Value="True"
+													Binding="{Binding WebSettings.CheckSeznam}">
+													<Setter
+														Property="Border.CornerRadius"
+														Value="4 4 0 0" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</FrameworkElement.Style>
+									<Grid>
+										<TextBlock
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											FontFamily="{StaticResource Roboto-Regular}"
+											FontSize="13"
+											Foreground="#d9d9d9"
+											Text="Seznam" />
+										<Image
+											Height="22"
+											Margin="0,0,10,0"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											RenderOptions.BitmapScalingMode="HighQuality"
+											Source="../../../../Resources/Images/seznam.png" />
+										<ToggleButton
+											Margin="10,0,0,0"
+											HorizontalAlignment="Left"
+											hc:ThemeManager.RequestedAccentColor="#00FFB2"
+											Cursor="Hand"
+											Focusable="False"
+											Style="{StaticResource ToggleButtonSwitch}"
+											IsChecked="{Binding WebSettings.CheckSeznam}" />
+									</Grid>
+								</Border>
+								<Border
+									Margin="10,0,10,0"
+									Background="#2c2c2c"
+									BorderBrush="#64FFD1"
+									BorderThickness="0,0,0,3"
+									CornerRadius="0 0 4 4 "
+									Visibility="{Binding WebSettings.CheckSeznam, Converter={StaticResource Boolean2VisibilityConverter}}">
+									<StackPanel>
+										<Grid>
+											<Grid
+												Height="80">
+												<Image
+													Height="45"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"
+													RenderOptions.BitmapScalingMode="HighQuality"
+													Source="../../../../Resources/Images/seznam.png" />
+											</Grid>
+										</Grid>
+										<Border
+											Background="#282828"
+											Visibility="{Binding ElementName=SeznamDescriptionSwitch, Path=IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}">
+											<StackPanel>
+												<hc:TagContainer
+													Margin="20,10,20,10"
+													BorderThickness="0"
+													IsHitTestVisible="False">
+													<hc:Tag
+														Margin="5"
+														Content="{DynamicResource l_WebAuthentication}"
+														Cursor="Hand"
+														Selectable="False"
+														ShowCloseButton="False" />
+												</hc:TagContainer>
+											</StackPanel>
+										</Border>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+						</StackPanel>
+					</hc:ScrollViewer>
+				</Grid>
+			</Border>
+		</hc:TransitioningContentControl>
+	</Grid>
+</Page>
